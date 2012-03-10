@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Starts On</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @budgets.each do |budget| %>
+      <tr>
+        <td><%= budget.starts_on %></td>
+        <td>
+          <%= link_to "Edit", budget_path(budget), class: "btn" %>&nbsp;&nbsp;
+          <%= link_to "Delete", budget_path(budget), data: {method: "delete", confirm: "Are you sure?"}, rel: "nofollow", class: "btn" %>&nbsp;&nbsp;
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="well">
+  <%= link_to "Add New", new_budget_path, class: "btn btn-success" %>
+</div>

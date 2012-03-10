@@ -1,0 +1,11 @@
+<%= render "shared/validation_messages", :target => @budget %>
+
+<%= form_for @budget do |budget| %>
+  <%= budget.label :starts_on %>
+  <%= budget.text_field :starts_on %>
+
+  <div class="well">
+    <%= budget.submit "Add", class: "btn btn-success" %>&nbsp;&nbsp;or
+    <%= link_to "cancel", budgets_path %>
+  </div>
+<% end %>
