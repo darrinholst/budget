@@ -1,12 +1,32 @@
 <%= render "shared/validation_messages", :target => @budget %>
 
 <%= form_for @budget do |budget| %>
-  <%= budget.label :starts_on %>
   <%= budget.text_field :starts_on %>
 
-  <div class="well">
-    <%= budget.submit "Save", class: "btn btn-success" %>&nbsp;&nbsp;or
-    <%= link_to "cancel", budgets_path %>
-  </div>
+  <table class="table">
+    <tr>
+      <th></th>
+      <th>Budgeted</th>
+      <th>Spent</th>
+      <th>Remaining</th>
+    </tr>
+    <% @budget.categories.each do |category| %>
+      <tr class="category">
+        <td><%= category.name %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <% category.buckets.each do |bucket| %>
+        <tr class="bucket">
+          <td><%= bucket.name %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
 <% end %>
 

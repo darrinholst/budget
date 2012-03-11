@@ -1,0 +1,19 @@
+table.table {
+  td, th {
+    border: none;
+  }
+
+  tr:hover {
+    td, th {
+      background: none;
+    }
+  }
+}
+
+tr.category {
+  background: #eee;
+}
+
+tr.bucket td {
+  padding-left: 20px;
+}
