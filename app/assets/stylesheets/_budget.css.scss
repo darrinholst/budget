@@ -1,3 +1,14 @@
+.overview {
+  border-left: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding-left: 15px;
+  margin-left: 20px;
+
+  .table td {
+    padding-bottom: 2px;
+  }
+}
+
 table.table {
   td, th {
     border: none;
@@ -27,7 +38,8 @@ tr {
   &.category {
     font-weight: bold;
     font-size: 1.1em;
-    background: #eee;
+    border-left: 1px solid #eee;
+    border-bottom: 1px solid #eee;
   }
 
   &.bucket {

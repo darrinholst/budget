@@ -1,41 +1,74 @@
-<%= render "shared/validation_messages", :target => @budget %>
-
-<%= form_for @budget do |budget| %>
-  <%= budget.text_field :starts_on %>
-
-  <table class="table">
-    <tr>
-      <th></th>
-      <th>Budgeted</th>
-      <th>Spent</th>
-      <th>Remaining</th>
-    </tr>
-    <tr class="budget">
-      <td></td>
-      <td><%= @budget.budgeted %></td>
-      <td><%= @budget.spent %></td>
-      <td><%= @budget.remaining %></td>
-    </tr>
-    <% @budget.categories.each do |category| %>
-      <tr class="spacer">
-      </tr>
-
+<div class="container-fluid">
+  <div class="row-fluid">
+    <table class="table span8">
       <tr class="category">
-        <td><%= category.name %></td>
-        <td><%= category.budgeted %></td>
-        <td><%= category.spent %></td>
-        <td><%= category.remaining %></td>
+        <td>Income</td>
+        <td><%= @budget.budgeted_income %></td>
+        <td></td>
+        <td></td>
       </tr>
 
-      <% category.buckets.each do |bucket| %>
+      <% @budget.income_buckets.each do |income| %>
         <tr class="bucket">
-          <td><%= bucket.name %></td>
-          <td><%= bucket.budgeted %></td>
-          <td><%= bucket.spent %></td>
-          <td><%= bucket.remaining %></td>
+          <td><%= income.name %></td>
+          <td><%= income.budgeted %></td>
+          <td></td>
+          <td></td>
         </tr>
       <% end %>
-    <% end %>
-  </table>
-<% end %>
 
+      <% @budget.categories.each do |category| %>
+        <tr class="spacer"></tr>
+
+        <tr class="category">
+          <td><%= category.name %></td>
+          <td><%= category.budgeted %></td>
+          <td><%= category.spent %></td>
+          <td><%= category.remaining %></td>
+        </tr>
+
+        <% category.buckets.each do |bucket| %>
+          <tr class="bucket">
+            <td><%= bucket.name %></td>
+            <td><%= bucket.budgeted %></td>
+            <td><%= bucket.spent %></td>
+            <td><%= bucket.remaining %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+    <div class="span4">
+      <div class="overview">
+        <table class="table">
+          <tr>
+            <td>Budgeted Income</td>
+            <td><%= @budget.budgeted_income %></td>
+          </tr>
+          <tr>
+            <td>Budgeted Expenses</td>
+            <td><%= @budget.budgeted_expenses %></td>
+          </tr>
+          <tr>
+            <td>Budgeted Buffer</td>
+            <td><%= @budget.budgeted_buffer %></td>
+          </tr>
+
+          <tr class="spacer"></tr>
+
+          <tr>
+            <td>Actual Balance</td>
+            <td><%= @budget.actual_balance %></td>
+          </tr>
+          <tr>
+            <td>Left To Spend</td>
+            <td><%= @budget.left_to_spend %></td>
+          </tr>
+          <tr>
+            <td>Actual Buffer</td>
+            <td><%= @budget.actual_buffer %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
