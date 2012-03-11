@@ -1,6 +1,10 @@
 table.table {
   td, th {
     border: none;
+
+    &:not(:first-child) {
+      text-align: right;
+    }
   }
 
   tr:hover {
@@ -10,10 +14,25 @@ table.table {
   }
 }
 
-tr.category {
-  background: #eee;
-}
+tr {
+  &.budget {
+    font-weight: bold;
+    font-size: 1.3em;
+  }
 
-tr.bucket td {
-  padding-left: 20px;
+  &.spacer {
+    height: 20px;
+  }
+
+  &.category {
+    font-weight: bold;
+    font-size: 1.1em;
+    background: #eee;
+  }
+
+  &.bucket {
+    td:first-child {
+      padding-left: 20px;
+    }
+  }
 }

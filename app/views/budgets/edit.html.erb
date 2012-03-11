@@ -10,20 +10,29 @@
       <th>Spent</th>
       <th>Remaining</th>
     </tr>
+    <tr class="budget">
+      <td></td>
+      <td><%= @budget.budgeted %></td>
+      <td><%= @budget.spent %></td>
+      <td><%= @budget.remaining %></td>
+    </tr>
     <% @budget.categories.each do |category| %>
+      <tr class="spacer">
+      </tr>
+
       <tr class="category">
         <td><%= category.name %></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><%= category.budgeted %></td>
+        <td><%= category.spent %></td>
+        <td><%= category.remaining %></td>
       </tr>
 
       <% category.buckets.each do |bucket| %>
         <tr class="bucket">
           <td><%= bucket.name %></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td><%= bucket.budgeted %></td>
+          <td><%= bucket.spent %></td>
+          <td><%= bucket.remaining %></td>
         </tr>
       <% end %>
     <% end %>

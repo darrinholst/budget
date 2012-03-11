@@ -1,14 +1,14 @@
 class BudgetsController < ApplicationController
   def index
-    @budgets = Budget.all
+    @budgets = BudgetDecorator.all
   end
 
   def new
-    @budget = Budget.new
+    @budget = BudgetDecorator.new
   end
 
   def create
-    @budget = Budget.new(budget_params)
+    @budget = BudgetDecorator.new(budget_params)
 
     if(@budget.save)
       redirect_to budgets_path
@@ -18,12 +18,12 @@ class BudgetsController < ApplicationController
   end
 
   def show
-    @budget = Budget.find(params[:id])
+    @budget = BudgetDecorator.find(params[:id])
     render :edit
   end
 
   def update
-    @budget = Budget.find(params[:id])
+    @budget = BudgetDecorator.find(params[:id])
 
     if(@budget.update_attributes(budget_params))
       redirect_to budgets_path
@@ -33,7 +33,7 @@ class BudgetsController < ApplicationController
   end
 
   def destroy
-    Budget.find(params[:id]).destroy
+    BudgetDecorator.find(params[:id]).destroy
     redirect_to budgets_path
   end
 
