@@ -93,6 +93,7 @@ GEM
       i18n (~> 0.4)
       json
     multi_json (1.1.0)
+    pg (0.13.2)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.1)
@@ -165,6 +166,7 @@ DEPENDENCIES
   heroku
   jquery-rails
   money
+  pg
   rails (= 3.2.2)
   rails-boilerplate
   rb-fsevent
