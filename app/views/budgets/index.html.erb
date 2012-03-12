@@ -1,19 +1,27 @@
-<table class="table">
-  <tr>
-    <th>Starts On</th>
-    <th></th>
-  </tr>
-  <% @budgets.each do |budget| %>
-    <tr>
-      <td><%= budget.starts_on %></td>
-      <td>
-        <%= link_to "Edit", budget_path(budget), class: "btn" %>&nbsp;&nbsp;
-        <%= link_to "Delete", budget_path(budget), data: {method: "delete", confirm: "Are you sure?"}, rel: "nofollow", class: "btn" %>&nbsp;&nbsp;
-      </td>
-    </tr>
-  <% end %>
-</table>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <table class="table span9">
+      <tr>
+        <th>Starts On</th>
+        <th>Actual Balance</th>
+        <th>Left To Spend</th>
+        <th>Buffer</th>
+      </tr>
+      <% @budgets.each do |budget| %>
+        <tr>
+          <td><%= budget.starts_on %></td>
+          <td><%= budget.actual_balance %></td>
+          <td><%= budget.left_to_spend %></td>
+          <td><%= budget.actual_buffer %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 
-<div class="well">
-  <%= link_to "Add New", new_budget_path, class: "btn btn-success" %>
+  <div class="row-fluid">
+    <div class="well span9">
+      <%= link_to "Add New", new_budget_path, class: "btn btn-success" %>
+    </div>
+  </div>
 </div>
+
