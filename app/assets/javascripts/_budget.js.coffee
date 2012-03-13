@@ -4,10 +4,16 @@ $ ->
   $(".edit-budget").on "click", ".bucket .delete", -> alert("delete a bucket")
   $(".edit-budget").on "click", ".category .delete", -> alert("delete a category mr fancy pants")
 
-  sortable_options =
+  $(".buckets, .expenses").sortable
     axis: 'y'
-    helper: 'clone'
+    helper: 'original'
     placeholder: 'placeholder'
-    forcePlaceholderSize: true
+    start: (event, ui) ->
+      ui.placeholder.height(ui.item.data["originalHeight"])
+      ui.placeholder.addClass(ui.item.attr('class'))
 
-  $(".buckets, .expenses").sortable(sortable_options)
+  $(".buckets .bucket, .expenses .category-container").on "mousedown", ->
+    $(this).data["originalHeight"] = $(this).outerHeight() unless $(this).data["originalHeight"]
+
+  $(".buckets .bucket, .expenses .category-container").on "mouseup", ->
+    $(this).data["originalHeight"] = undefined

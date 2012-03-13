@@ -1,8 +1,15 @@
 .placeholder {
-  margin: 4px;
-  padding-left: 40px;
-  margin-left: -40px;
-  border: 2px dashed #eee;
+  padding-left: 40px !important;
+  margin-left: -40px !important;
+  border: 2px dashed #eee !important;
+
+  &.category-container {
+    margin-top: 20px !important;
+  }
+}
+
+.ui-sortable-helper.category-container {
+  margin-top: -20px !important;
 }
 
 .container-fluid {
