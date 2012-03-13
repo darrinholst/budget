@@ -16,5 +16,9 @@ if_changed("Gemfile.lock") do
   system "bundle"
 end
 
-system "bundle exec guard -G server.Guardfile"
+if_changed("db/schema.rb") do
+  system "rake db:reset"
+end
+
+system "script/rails server"
 

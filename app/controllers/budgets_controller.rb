@@ -17,6 +17,10 @@ class BudgetsController < ApplicationController
     end
   end
 
+  def edit
+    redirect_to budget_path(params[:id])
+  end
+
   def show
     @budget = BudgetDecorator.find(params[:id])
     render :edit

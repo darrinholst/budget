@@ -9,7 +9,7 @@
       </tr>
       <% @budgets.each do |budget| %>
         <tr>
-          <td><%= budget.starts_on %></td>
+          <td><%= link_to budget.starts_on, edit_budget_path(budget) %></td>
           <td><%= budget.actual_balance %></td>
           <td><%= budget.left_to_spend %></td>
           <td><%= budget.actual_buffer %></td>

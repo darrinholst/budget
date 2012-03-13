@@ -1,50 +1,97 @@
-.overview {
-  border-left: 1px solid #eee;
-  border-bottom: 1px solid #eee;
-  padding-left: 15px;
-  margin-left: 20px;
-
-  .table td {
-    padding-bottom: 2px;
-  }
+.placeholder {
+  margin: 4px;
+  padding-left: 40px;
+  margin-left: -40px;
+  border: 2px dashed #eee;
 }
 
-table.table {
-  td, th {
-    border: none;
+.container-fluid {
+  padding: 0;
+}
 
-    &:not(:first-child) {
-      text-align: right;
+.edit-budget {
+  ul {
+    list-style: none;
+    margin: 0;
+  }
+
+  .expenses .category {
+    margin-top: 20px;
+  }
+
+  .amount {
+    text-align: right;
+  }
+
+  .income .category {
+    cursor: default;
+  }
+
+  .category, .bucket {
+    margin: 4px;
+    position: relative;
+    border: 1px solid transparent;
+    padding-left: 40px;
+    margin-left: -40px;
+    cursor: move;
+
+    .add, .delete, .move {
+      display: none;
+    }
+
+    &:hover {
+      .add, .delete {
+        position: absolute;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 1px solid transparent;
+        @include border-radius(5px);
+        cursor: pointer;
+
+        &:hover {
+          border: 1px solid #ccc;
+        }
+      }
+
+      .add {
+        left: -10px;
+        background-position: -406px -95px;
+      }
+
+      .delete {
+        left: 10px;
+        background-position: -310px 2px;
+      }
     }
   }
 
-  tr:hover {
-    td, th {
-      background: none;
-    }
-  }
-}
-
-tr {
-  &.budget {
-    font-weight: bold;
-    font-size: 1.3em;
-  }
-
-  &.spacer {
-    height: 20px;
-  }
-
-  &.category {
+  .category {
     font-weight: bold;
     font-size: 1.1em;
-    border-left: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    margin-bottom: 2px;
   }
 
-  &.bucket {
-    td:first-child {
+  .bucket {
+    .name {
       padding-left: 20px;
+    }
+  }
+
+  .overview {
+    border-left: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding-left: 15px;
+
+    table.table {
+      td, th {
+        border: none;
+        padding-bottom: 2px;
+
+        &:not(:first-child) {
+          text-align: right;
+        }
+      }
     }
   }
 }
