@@ -1,49 +1,22 @@
 class BudgetsController < ApplicationController
+  respond_to :json
+
   def index
-    @budgets = BudgetDecorator.all
-  end
+    @budgets = Budget.all(:include => [
+      :income_buckets,
+      :categories => [:buckets]
+    ])
 
-  def new
-    @budget = BudgetDecorator.new
-  end
+    render :json => @budgets.to_json(
+      :only => [:id, :starts_on],
 
-  def create
-    @budget = BudgetDecorator.new(budget_params)
-
-    if(@budget.save)
-      redirect_to budgets_path
-    else
-      render :new
-    end
-  end
-
-  def edit
-    redirect_to budget_path(params[:id])
-  end
-
-  def show
-    @budget = BudgetDecorator.find(params[:id])
-    render :edit
-  end
-
-  def update
-    @budget = BudgetDecorator.find(params[:id])
-
-    if(@budget.update_attributes(budget_params))
-      redirect_to budgets_path
-    else
-      render :show
-    end
-  end
-
-  def destroy
-    BudgetDecorator.find(params[:id]).destroy
-    redirect_to budgets_path
-  end
-
-  private
-
-  def budget_params
-    params[:budget].slice(:starts_on)
+      :include => {
+        :income_buckets => {:only => [:id, :name, :budgeted]},
+        :categories => {
+          :only => [:id, :name],
+          :include => {:buckets => {:only => [:id, :name, :budgeted, :spent]}}
+        }
+      }
+    )
   end
 end

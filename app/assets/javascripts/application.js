@@ -1,6 +1,7 @@
-//= require plugins
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
-//= require twitter/bootstrap
-//= require_tree .
+//= require plugins
+//= require json2
+//= require underscore
+//= require backbone
+//= require backbone/budget_app

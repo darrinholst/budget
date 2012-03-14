@@ -7,8 +7,9 @@ gem 'chronic'
 gem 'draper'
 gem 'jquery-rails'
 gem 'money'
-gem 'rails-boilerplate'
 gem 'twitter-bootstrap-rails'
+gem 'rails-backbone'
+
 
 group :development, :test do
   gem 'sqlite3'       , :require => false
