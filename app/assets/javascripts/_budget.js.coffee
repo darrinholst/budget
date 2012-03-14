@@ -1,19 +1,22 @@
 $ ->
-  $(".edit-budget").on "click", ".bucket .add", -> alert("add a bucket")
-  $(".edit-budget").on "click", ".category .add", -> alert("add a category mr fancy pants")
-  $(".edit-budget").on "click", ".bucket .delete", -> alert("delete a bucket")
-  $(".edit-budget").on "click", ".category .delete", -> alert("delete a category mr fancy pants")
+  addBucket = (event) ->
+    bucket = $(this).parents(".bucket")
+    bucket.clone().insertAfter(bucket)
 
-  $(".buckets, .expenses").sortable
-    axis: 'y'
-    helper: 'original'
-    placeholder: 'placeholder'
-    start: (event, ui) ->
-      ui.placeholder.height(ui.item.data["originalHeight"])
-      ui.placeholder.addClass(ui.item.attr('class'))
+  deleteBucket = (event) ->
+    if confirm("Are you sure?")
+      $(this).parents(".bucket").remove()
 
-  $(".buckets .bucket, .expenses .category-container").on "mousedown", ->
-    $(this).data["originalHeight"] = $(this).outerHeight() unless $(this).data["originalHeight"]
+  addCategory = (event) ->
+    category = $(this).parents(".category-container")
+    category.clone().insertAfter(category)
 
-  $(".buckets .bucket, .expenses .category-container").on "mouseup", ->
-    $(this).data["originalHeight"] = undefined
+  deleteCategory = (event) ->
+    if confirm("Are you sure?")
+      $(this).parents(".category-container").remove()
+
+  $(".edit-budget").on "click", ".bucket .add", addBucket
+  $(".edit-budget").on "click", ".category .add", addCategory
+  $(".edit-budget").on "click", ".bucket .delete", deleteBucket
+  $(".edit-budget").on "click", ".category .delete", deleteCategory
+
