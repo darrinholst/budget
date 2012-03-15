@@ -1,1 +1,17 @@
 <div id="app"></div>
+
+<script>
+  window.budgets = <%= @budgets.to_json(
+      :only => [:id, :starts_on],
+
+      :include => {
+        :income_buckets => {:only => [:id, :name, :budgeted]},
+        :categories => {
+          :only => [:id, :name],
+          :include => {:buckets => {:only => [:id, :name, :budgeted, :spent]}}
+        }
+      }
+    ).html_safe
+  %>
+
+</script>
