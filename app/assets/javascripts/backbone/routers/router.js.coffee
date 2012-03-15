@@ -4,8 +4,8 @@ class BudgetApp.Routers.Router extends Backbone.Router
     @budgets.reset window.budgets
 
   routes:
-    "/:id" : "edit_budget"
-    ".*"   : "root"
+    ".*"          : "root"
+    "budgets/:id" : "edit_budget"
 
   root: ->
     @view = new BudgetApp.Views.BudgetsView(budgets: @budgets)
@@ -17,5 +17,14 @@ class BudgetApp.Routers.Router extends Backbone.Router
     $("#app").html(@view.render().el)
 
 $ ->
+  $(document).on "click", "a", (e) ->
+    e.preventDefault()
+    window.router.navigate($(this).attr("href").substr(1), true)
+
+  $(window).on "popstate", (e) ->
+    console.log(e)
+    window.router.navigate(location.pathname.substr(1), true)
+
   window.router = new BudgetApp.Routers.Router()
-  Backbone.history.start()
+  Backbone.history.start(pushState: true)
+

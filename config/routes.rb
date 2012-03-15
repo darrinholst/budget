@@ -1,5 +1,4 @@
 BudgetApp::Application.routes.draw do
-  root :to => 'landing#index'
-
+  root :to => 'budgets#index'
   resources :budgets
 end
