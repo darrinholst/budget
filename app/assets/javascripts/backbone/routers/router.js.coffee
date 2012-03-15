@@ -1,17 +1,17 @@
 class BudgetApp.Routers.Router extends Backbone.Router
   initialize: ->
     @budgets = new BudgetApp.Collections.BudgetsCollection()
-    @budgets.fetch()
+    @budgets.reset window.budgets
 
   routes:
-    "/:id" : "edit"
-    ".*"   : "index"
+    "/:id" : "edit_budget"
+    ".*"   : "root"
 
-  index: ->
+  root: ->
     @view = new BudgetApp.Views.BudgetsView(budgets: @budgets)
     $("#app").html(@view.render().el)
 
-  edit: (id) ->
+  edit_budget: (id) ->
     budget = @budgets.get(id)
     @view = new BudgetApp.Views.BudgetView(model: budget)
     $("#app").html(@view.render().el)
