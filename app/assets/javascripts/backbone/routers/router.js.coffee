@@ -22,7 +22,6 @@ $ ->
     window.router.navigate($(this).attr("href").substr(1), true)
 
   $(window).on "popstate", (e) ->
-    console.log(e)
     window.router.navigate(location.pathname.substr(1), true)
 
   window.router = new BudgetApp.Routers.Router()

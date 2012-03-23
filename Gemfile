@@ -8,8 +8,6 @@ gem 'draper'
 gem 'jquery-rails'
 gem 'money'
 gem 'twitter-bootstrap-rails'
-gem 'rails-backbone'
-
 
 group :development, :test do
   gem 'sqlite3'       , :require => false
@@ -23,6 +21,7 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
+  gem 'handlebars_assets'
 end
 
 group :production do
