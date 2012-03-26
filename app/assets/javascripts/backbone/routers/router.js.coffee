@@ -1,6 +1,6 @@
 class BudgetApp.Routers.Router extends Backbone.Router
   initialize: ->
-    @budgets = new BudgetApp.Collections.BudgetsCollection()
+    @budgets = new BudgetApp.Collections.Budgets()
     @budgets.reset window.budgets
 
   routes:
