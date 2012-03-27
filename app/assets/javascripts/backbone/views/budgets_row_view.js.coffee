@@ -3,15 +3,20 @@ class BudgetApp.Views.BudgetsRowView extends Backbone.View
   tagName: "tr"
 
   render: ->
+    #TODO: decorator pattern here?
     $(@el).html(@template(
       id: @model.id
-      starts_on: @model.get("starts_on")
-      actual_balance: $M(@model.get("actual_balance"))
-      left_to_spend: $M(@model.get("left_to_spend"))
-      actual_buffer: $M(@model.get("actual_buffer"))
+      starts_on: @formatDate(@model.startsOn())
+      actual_balance: @formatMoney(@model.actualBalance())
+      left_to_spend: @formatMoney(@model.leftToSpend())
+      actual_buffer: @formatMoney(@model.actualBuffer())
     ))
 
     return this
 
-  $M = (cents) ->
+  formatDate: (date) ->
+    #TODO: Yuuuck, do something sane with dates
+    "#{date.getUTCMonth() + 1}/#{date.getUTCDate()}/#{date.getUTCFullYear()}"
+
+  formatMoney: (cents) ->
     ((cents || 0) / 100).toFixed(2)
