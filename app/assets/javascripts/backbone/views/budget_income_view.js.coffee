@@ -3,7 +3,7 @@ class BudgetApp.Views.BudgetIncomeView extends BudgetApp.Views.BaseView
   className: "income"
 
   addBucket: (bucket) =>
-    @$(".buckets").append(new BudgetApp.Views.BudgetIncomeRowView(model: bucket).render().el)
+    @$(".buckets > div:last").before(new BudgetApp.Views.BudgetIncomeRowView(model: bucket).render().el)
 
   render: ->
     $(@el).html(@template(budgeted: @formatMoney(@collection.budgeted())))

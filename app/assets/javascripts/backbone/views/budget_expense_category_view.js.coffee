@@ -13,4 +13,5 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
       remaining: @formatMoney(@model.remaining())
     ))
     @model.buckets.each(@addBucket)
+    @$(".buckets").sortable(axis: "y")
     @

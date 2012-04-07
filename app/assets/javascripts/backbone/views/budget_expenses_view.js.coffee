@@ -8,4 +8,5 @@ class BudgetApp.Views.BudgetExpensesView extends BudgetApp.Views.BaseView
   render: ->
     $(@el).html(@template())
     @collection.each(@addCategory)
+    $(@el).sortable(axis: "y")
     @
