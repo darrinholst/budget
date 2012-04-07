@@ -3,11 +3,12 @@ class BudgetApp.Models.Category extends Backbone.Model
     @buckets = new BudgetApp.Collections.Buckets()
     @buckets.reset json.buckets
 
-  leftToSpend: ->
-    @buckets.leftToSpend()
+  name: -> @get("name")
+  budgeted: -> @buckets.budgeted()
+  spent: -> @buckets.spent()
+  remaining: -> @buckets.remaining()
 
 class BudgetApp.Collections.Categories extends Backbone.Collection
   model: BudgetApp.Models.Category
 
-  leftToSpend: ->
-    @models.reduce ((memo, category) -> memo + category.leftToSpend()), 0
+  remaining: -> @models.reduce ((memo, category) -> memo + category.remaining()), 0

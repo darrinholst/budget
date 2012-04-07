@@ -5,22 +5,19 @@ class BudgetApp.Models.Budget extends Backbone.Model
     actual_balance: 0
   }
 
-  initialize: (json) ->
+  initialize: ->
+    @income = new BudgetApp.Collections.Buckets()
+    @income.reset @get("income_buckets")
     @categories = new BudgetApp.Collections.Categories()
-    @categories.reset json.categories
+    @categories.reset @get("categories")
     @set("starts_on", new Date(Date.parse(@get("starts_on"))))
 
-  startsOn: ->
-    @get("starts_on")
-
-  actualBalance: ->
-    @get("actual_balance")
-
-  leftToSpend: ->
-    @categories.leftToSpend()
-
-  actualBuffer: ->
-    @actualBalance() - @leftToSpend()
+  startsOn: -> @get("starts_on")
+  actualBalance: -> @get("actual_balance")
+  remaining: -> @categories.remaining()
+  actualBuffer: -> @actualBalance() - @remaining()
+  incomeBuckets: -> @income
+  expenseCategories: -> @categories
 
 class BudgetApp.Collections.Budgets extends Backbone.Collection
   model: BudgetApp.Models.Budget

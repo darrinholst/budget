@@ -8,13 +8,10 @@ class BudgetApp.Routers.Router extends Backbone.Router
     "budgets/:id" : "edit_budget"
 
   root: ->
-    @view = new BudgetApp.Views.BudgetsView(budgets: @budgets)
-    $("#app").html(@view.render().el)
+    $("#app").html(new BudgetApp.Views.BudgetsView(collection: @budgets).render().el)
 
   edit_budget: (id) ->
-    budget = @budgets.get(id)
-    @view = new BudgetApp.Views.BudgetView(model: budget)
-    $("#app").html(@view.render().el)
+    $("#app").html(new BudgetApp.Views.BudgetView(model: @budgets.get(id)).render().el)
 
 $ ->
   $(document).on "click", "a", (e) ->

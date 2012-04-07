@@ -9,4 +9,3 @@ window.BudgetApp =
   Collections: {}
   Routers: {}
   Views: {}
-

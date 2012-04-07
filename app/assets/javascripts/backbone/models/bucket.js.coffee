@@ -4,12 +4,15 @@ class BudgetApp.Models.Bucket extends Backbone.Model
     spent: 0
   }
 
-  leftToSpend: ->
-    @get("budgeted") - @get("spent")
+  name: -> @get("name")
+  budgeted: -> @get("budgeted")
+  spent: -> @get("spent")
+  remaining: -> @budgeted() - @spent()
 
 class BudgetApp.Collections.Buckets extends Backbone.Collection
   model: BudgetApp.Models.Bucket
 
-  leftToSpend: ->
-    @models.reduce ((memo, bucket) -> memo + bucket.leftToSpend()), 0
+  budgeted: -> @models.reduce ((memo, bucket) -> memo + bucket.budgeted()), 0
+  spent: -> @models.reduce ((memo, bucket) -> memo + bucket.spent()), 0
+  remaining: -> @models.reduce ((memo, bucket) -> memo + bucket.remaining()), 0
 
