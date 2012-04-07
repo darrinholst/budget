@@ -9,26 +9,12 @@ table.table {
   }
 }
 
-.placeholder {
-  padding-left: 40px !important;
-  margin-left: -40px !important;
-  border: 2px dashed #eee !important;
-
-  &.category-container {
-    margin-top: 20px !important;
-  }
-}
-
-.ui-sortable-helper.category-container {
-  margin-top: -20px !important;
-}
-
 .container-fluid {
   padding: 0;
 }
 
 .income, .category-container {
-  padding: 10px 0 10px 40px;
+  padding: 10px 40px;
   margin-bottom: 20px;
 }
 
@@ -95,7 +81,7 @@ table.table {
   }
 
   .bucket .name, .actions {
-    padding-left: 20px;
+    text-indent: 15px;
   }
 
   .overview {
