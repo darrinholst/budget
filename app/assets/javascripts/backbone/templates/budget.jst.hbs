@@ -4,36 +4,37 @@
     </div>
 
     <div class="span4">
-      <div class="overview">
-        <table class="table">
-          <tr>
-            <td>Budgeted Income</td>
-            <td>F</td>
-          </tr>
-          <tr>
-            <td>Budgeted Expenses</td>
-            <td>U</td>
-          </tr>
-          <tr>
-            <td>Budgeted Buffer</td>
-            <td>M</td>
-          </tr>
-
-          <tr class="spacer"></tr>
-
-          <tr>
-            <td>Actual Balance</td>
-            <td>U</td>
-          </tr>
-          <tr>
-            <td>Left To Spend</td>
-            <td>L</td>
-          </tr>
-          <tr>
-            <td>Actual Buffer</td>
-            <td>LINS</td>
-          </tr>
-        </table>
+      <div class="overview container-fluid">
+        <div class="row-fluid">
+          <div class="span12"><strong>Budgeted</strong></div>
+        </div>
+        <div class="row-fluid">
+          <div class="span7 name">Income</div>
+          <div class="span5 amount">{{total_income}}</div>
+        </div>
+        <div class="row-fluid">
+          <div class="span7 name">Expenses</div>
+          <div class="span5 amount">{{total_expenses}}</div>
+        </div>
+        <div class="row-fluid">
+          <div class="span7 name">Buffer</div>
+          <div class="span5 amount">{{budgeted_buffer}}</div>
+        </div>
+        <div class="row-fluid">
+          <div class="span12"><strong>Actual</strong></div>
+        </div>
+        <div class="row-fluid">
+          <div class="span7 name">Balance</div>
+          <div class="span5 amount"><input type="text" name="actual" class="inline-edit" value="{{actual_balance}}"></div>
+        </div>
+        <div class="row-fluid">
+          <div class="span7 name">Left to Spend</div>
+          <div class="span5 amount">{{remaining}}</div>
+        </div>
+        <div class="row-fluid">
+          <div class="span7 name">Buffer</div>
+          <div class="span5 amount">{{actual_buffer}}</div>
+        </div>
       </div>
     </div>
   </div>

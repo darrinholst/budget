@@ -4,10 +4,11 @@ class BudgetApp.Models.Bucket extends Backbone.Model
     spent: 0
   }
 
-  name: -> @get("name")
-  budgeted: -> @get("budgeted")
-  spent: -> @get("spent")
+  name: (newValue) -> if newValue then @set("name", newValue) else @get("name")
+  budgeted: (newValue) -> if newValue then @set("budgeted", @parseMoney(newValue)) else @get("budgeted")
+  spent: (newValue) -> if newValue then @set("spent", @parseMoney(newValue)) else @get("spent")
   remaining: -> @budgeted() - @spent()
+  parseMoney: (value) -> parseFloat(value, 10) * 100
 
 class BudgetApp.Collections.Buckets extends Backbone.Collection
   model: BudgetApp.Models.Bucket

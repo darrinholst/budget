@@ -11,4 +11,5 @@ class BudgetApp.Models.Category extends Backbone.Model
 class BudgetApp.Collections.Categories extends Backbone.Collection
   model: BudgetApp.Models.Category
 
+  budgeted: -> @models.reduce ((memo, category) -> memo + category.budgeted()), 0
   remaining: -> @models.reduce ((memo, category) -> memo + category.remaining()), 0

@@ -5,5 +5,6 @@
 //= require json2
 //= require underscore
 //= require handlebars.runtime
+//= require inline-edit
 //= require backbone
 //= require backbone/budget_app

@@ -1,6 +1,6 @@
 Budget.delete_all
 
-budget = Budget.create!(starts_on: Chronic.parse("8/5/2012").to_date)
+budget = Budget.create!(starts_on: Time.now.to_date)
 
 budget.income_buckets.create!(name: "Salary", budgeted: 200000)
 
