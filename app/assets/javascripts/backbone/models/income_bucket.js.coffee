@@ -1,5 +1,6 @@
 BudgetApp.Models.IncomeBucket = BudgetApp.Models.Bucket.extend
   defaults:
+    name: "Income"
     budgeted: 0
 
   initialize: ->
@@ -8,4 +9,4 @@ BudgetApp.Models.IncomeBucket = BudgetApp.Models.Bucket.extend
 class BudgetApp.Collections.IncomeBuckets extends BudgetApp.Collections.Buckets
   model: BudgetApp.Models.IncomeBucket
 
-  url: -> "#{@.budget.url()}/income"
+  url: -> "#{@.budget.url()}/incomes"

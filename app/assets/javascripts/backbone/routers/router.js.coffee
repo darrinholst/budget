@@ -15,8 +15,14 @@ class BudgetApp.Routers.Router extends Backbone.Router
 
 $ ->
   $(document).on "click", "a", (e) ->
+    route = $(this).attr("href")
+
+    unless route == "#"
+      e.preventDefault()
+      window.router.navigate(route.substr(1), true)
+
+  $(document).on "click", "a", (e) ->
     e.preventDefault()
-    window.router.navigate($(this).attr("href").substr(1), true)
 
   $(window).on "popstate", (e) ->
     window.router.navigate(location.pathname.substr(1), true)

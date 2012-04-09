@@ -1,4 +1,4 @@
-class BudgetApp.Views.BudgetIncomeRowView extends BudgetApp.Views.BaseView
+class BudgetApp.Views.BudgetIncomeBucketView extends BudgetApp.Views.BaseView
   template: JST["backbone/templates/budget_income_bucket"]
   className: "row-fluid bucket"
 
