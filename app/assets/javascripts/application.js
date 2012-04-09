@@ -7,4 +7,5 @@
 //= require handlebars.runtime
 //= require inline-edit
 //= require backbone
+//= require backbone-relational
 //= require backbone/budget_app

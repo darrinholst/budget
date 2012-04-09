@@ -1,8 +1,7 @@
-class BudgetApp.Models.Bucket extends Backbone.Model
-  defaults: {
+BudgetApp.Models.Bucket = Backbone.RelationalModel.extend
+  defaults:
     budgeted: 0
     spent: 0
-  }
 
   name: (newValue) -> if newValue then @set("name", newValue) else @get("name")
   budgeted: (newValue) -> if newValue then @set("budgeted", @parseMoney(newValue)) else @get("budgeted")
@@ -13,7 +12,7 @@ class BudgetApp.Models.Bucket extends Backbone.Model
 class BudgetApp.Collections.Buckets extends Backbone.Collection
   model: BudgetApp.Models.Bucket
 
+  url: -> "#{@.category.get("budget").url()}/expense"
   budgeted: -> @models.reduce ((memo, bucket) -> memo + bucket.budgeted()), 0
   spent: -> @models.reduce ((memo, bucket) -> memo + bucket.spent()), 0
   remaining: -> @models.reduce ((memo, bucket) -> memo + bucket.remaining()), 0
-

@@ -1,6 +1,6 @@
 <script>
   window.budgets = <%= @budgets.to_json(
-      :only => [:id, :starts_on],
+      :only => [:id, :starts_on, :actual_balance],
 
       :include => {
         :income_buckets => {:only => [:id, :name, :budgeted]},
