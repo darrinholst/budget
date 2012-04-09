@@ -2,10 +2,20 @@ class BudgetApp.Views.BudgetIncomeView extends BudgetApp.Views.BaseView
   template: JST["backbone/templates/budget_income"]
   className: "income"
 
-  addBucket: (bucket) =>
-    @$(".buckets > div:last").before(new BudgetApp.Views.BudgetIncomeRowView(model: bucket).render().el)
+  initialize: ->
+    @collection.bind "change", => @renderSummary()
+
+  renderSummary: ->
+    @$(".category").html(JST["backbone/templates/budget_income_summary"](
+      budgeted: @formatMoney(@collection.budgeted())
+    ))
+
+  renderBuckets: ->
+    @collection.each (bucket) =>
+      @$(".buckets > div:last").before(new BudgetApp.Views.BudgetIncomeRowView(model: bucket).render().el)
 
   render: ->
-    $(@el).html(@template(budgeted: @formatMoney(@collection.budgeted())))
-    @collection.each(@addBucket)
+    $(@el).html(@template())
+    @renderSummary()
+    @renderBuckets()
     @

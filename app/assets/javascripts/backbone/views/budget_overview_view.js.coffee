@@ -6,11 +6,8 @@ class BudgetApp.Views.BudgetOverviewView extends BudgetApp.Views.BaseView
     "change input[name=actual]": -> @model.actualBalance(@$("input[name=actual]").val())
 
   initialize: ->
-    @model.bind("change", @sync)
-
-  sync: =>
-    @model.save()
-    @render()
+    @model.bind "change:actual_balance", => @model.save()
+    @model.bind "change", => @render()
 
   render : (event) ->
     $(@el).html(@template(

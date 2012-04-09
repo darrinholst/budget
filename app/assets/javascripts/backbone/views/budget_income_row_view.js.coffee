@@ -1,5 +1,5 @@
 class BudgetApp.Views.BudgetIncomeRowView extends BudgetApp.Views.BaseView
-  template: JST["backbone/templates/budget_income_row"]
+  template: JST["backbone/templates/budget_income_bucket"]
   className: "row-fluid bucket"
 
   events:
