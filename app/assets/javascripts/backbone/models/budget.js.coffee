@@ -1,5 +1,8 @@
 BudgetApp.Models.Budget = Backbone.RelationalModel.extend
+  url: '/budgets'
+
   defaults: {
+    starts_on: new Date()
     actual_balance: 0
   }
 
@@ -27,10 +30,7 @@ BudgetApp.Models.Budget = Backbone.RelationalModel.extend
     }
   ]
 
-  initialize: ->
-    @set("starts_on", new Date(Date.parse(@get("starts_on"))))
-
-  startsOn: -> @get("starts_on")
+  startsOn: -> new Date(Date.parse(@get("starts_on")))
   actualBalance: (newValue) -> if newValue then @set("actual_balance", @parseMoney(newValue)) else @get("actual_balance")
   incomeBuckets: -> @get("income_buckets")
   expenseCategories: -> @get("categories")

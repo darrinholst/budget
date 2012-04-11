@@ -1,13 +1,19 @@
 class BudgetsController < ApplicationController
+  before_filter :authenticate_user!
   respond_to :json
 
   def index
     find_budgets
+    render :index
   end
 
   def show
-    find_budgets
-    render :index
+    index
+  end
+
+  def create
+    budget = current_user.budgets.create(params[:budget])
+    render :json => budget
   end
 
   def update
@@ -46,7 +52,7 @@ class BudgetsController < ApplicationController
   end
 
   def find_budgets
-    @budgets = Budget.all(:include => [
+    @budgets = current_user.budgets.all(:include => [
       :income_buckets,
       :categories => [:buckets]
     ])

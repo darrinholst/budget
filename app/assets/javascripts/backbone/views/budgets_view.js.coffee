@@ -1,14 +1,21 @@
 class BudgetApp.Views.BudgetsView extends BudgetApp.Views.BaseView
   template: JST["backbone/templates/budgets"]
 
-  initialize: () ->
+  events: ->
+    "click [data-add-budget]": @addNew
+
+  initialize: ->
     @collection.bind('reset', @addAll)
 
+  addNew: =>
+    budget = new BudgetApp.Models.Budget()
+    @addOne(budget)
+
   addOne: (budget) =>
-    view = new BudgetApp.Views.BudgetsRowView({model : budget})
+    view = new BudgetApp.Views.BudgetsRowView({collection: @collection, model : budget})
     @$("tbody").append(view.render().el)
 
-  addAll: () =>
+  addAll: =>
     @collection.each(@addOne)
 
   render: =>
