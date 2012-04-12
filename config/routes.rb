@@ -6,7 +6,11 @@ BudgetApp::Application.routes.draw do
   resources :budgets do
     post "incomes", :to => 'budgets#create_income'
     put "incomes/:id", :to => 'budgets#update_income'
-    put "category/:id", :to => 'budgets#update_category'
-    put "expense/:id", :to => 'budgets#update_expense'
+
+    post "categories", :to => 'budgets#create_category'
+    put "categories/:id", :to => 'budgets#update_category'
+
+    post "categories/:category_id/expenses", :to => 'budgets#create_expense'
+    put "categories/:category_id/expenses/:id", :to => 'budgets#update_expense'
   end
 end

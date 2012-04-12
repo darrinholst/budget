@@ -12,6 +12,9 @@ BudgetApp.Models.Category = Backbone.RelationalModel.extend
     }
   ]
 
+  defaults:
+    name: "Click to change name..."
+
   initialize: ->
     @bind "change", => _.each(@getRelations(), (relation) -> relation.related && relation.related.trigger("change"))
 
@@ -24,6 +27,6 @@ BudgetApp.Models.Category = Backbone.RelationalModel.extend
 class BudgetApp.Collections.Categories extends Backbone.Collection
   model: BudgetApp.Models.Category
 
-  url: -> "#{@.budget.url()}/category"
+  url: -> "#{@.budget.url()}/categories"
   budgeted: -> @models.reduce ((memo, category) -> memo + category.budgeted()), 0
   remaining: -> @models.reduce ((memo, category) -> memo + category.remaining()), 0

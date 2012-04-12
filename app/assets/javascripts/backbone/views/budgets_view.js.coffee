@@ -1,5 +1,6 @@
 class BudgetApp.Views.BudgetsView extends BudgetApp.Views.BaseView
   template: JST["backbone/templates/budgets"]
+  className: "budgets"
 
   events: ->
     "click [data-add-budget]": @addNew
@@ -8,17 +9,20 @@ class BudgetApp.Views.BudgetsView extends BudgetApp.Views.BaseView
     @collection.bind('reset', @addAll)
 
   addNew: =>
-    budget = new BudgetApp.Models.Budget()
-    @addOne(budget)
+    @collection.add({})
+    budget = @collection.last()
+    budget.save()
+    @renderBudget(budget)
 
-  addOne: (budget) =>
+  renderBudget: (budget) =>
     view = new BudgetApp.Views.BudgetsRowView({collection: @collection, model : budget})
-    @$("tbody").append(view.render().el)
+    @$(".row-fluid:last").before(view.render().el)
 
   addAll: =>
-    @collection.each(@addOne)
+    @collection.each(@renderBudget)
 
   render: =>
-    $(@el).html(@template(budgets: @collection.toJSON()))
+    $(@el).html(@template())
     @addAll()
-    this
+    @
+

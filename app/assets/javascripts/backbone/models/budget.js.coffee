@@ -1,6 +1,4 @@
 BudgetApp.Models.Budget = Backbone.RelationalModel.extend
-  url: '/budgets'
-
   defaults: {
     starts_on: new Date()
     actual_balance: 0
@@ -43,4 +41,5 @@ BudgetApp.Models.Budget = Backbone.RelationalModel.extend
 
 class BudgetApp.Collections.Budgets extends Backbone.Collection
   model: BudgetApp.Models.Budget
-  url: '/budgets'
+  url: -> '/budgets'
+

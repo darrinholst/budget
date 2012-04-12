@@ -1,11 +1,16 @@
-table.table {
-  td, th {
-    border: none;
-    padding-bottom: 2px;
+.budgets {
+  .row-fluid:first-child {
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 5px;
+  }
 
-    &:not(:first-child) {
-      text-align: right;
-    }
+  .row-fluid {
+    margin: 4px 0;
+  }
+
+  .row-fluid:last-child {
+    margin-top: 15px;
   }
 }
 

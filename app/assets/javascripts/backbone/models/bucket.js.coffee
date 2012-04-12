@@ -1,5 +1,6 @@
 BudgetApp.Models.Bucket = Backbone.RelationalModel.extend
   defaults:
+    name: "Click to change name..."
     budgeted: 0
     spent: 0
 
@@ -15,7 +16,7 @@ BudgetApp.Models.Bucket = Backbone.RelationalModel.extend
 class BudgetApp.Collections.Buckets extends Backbone.Collection
   model: BudgetApp.Models.Bucket
 
-  url: -> "#{@.category.get("budget").url()}/expense"
+  url: -> "#{@category.url()}/expenses"
   budgeted: -> @models.reduce ((memo, bucket) -> memo + bucket.budgeted()), 0
   spent: -> @models.reduce ((memo, bucket) -> memo + bucket.spent()), 0
   remaining: -> @models.reduce ((memo, bucket) -> memo + bucket.remaining()), 0
