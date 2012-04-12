@@ -1,6 +1,6 @@
 BudgetApp.Models.Bucket = Backbone.RelationalModel.extend
   defaults:
-    name: "Click to change name..."
+    name: "Name..."
     budgeted: 0
     spent: 0
 

@@ -22,7 +22,7 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
       budgeted: @formatMoney(@model.budgeted())
       spent: @formatMoney(@model.spent())
       remaining: @formatMoney(@model.remaining())
-    ))
+    )).inlineEditable()
 
   renderBucket: (bucket, focus) =>
     view = new BudgetApp.Views.BudgetExpenseBucketView(model: bucket)

@@ -13,7 +13,7 @@ BudgetApp.Models.Category = Backbone.RelationalModel.extend
   ]
 
   defaults:
-    name: "Click to change name..."
+    name: "Name..."
 
   initialize: ->
     @bind "change", => _.each(@getRelations(), (relation) -> relation.related && relation.related.trigger("change"))

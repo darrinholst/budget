@@ -1,6 +1,6 @@
 BudgetApp.Models.IncomeBucket = BudgetApp.Models.Bucket.extend
   defaults:
-    name: "Click to change name..."
+    name: "Name..."
     budgeted: 0
 
   initialize: ->

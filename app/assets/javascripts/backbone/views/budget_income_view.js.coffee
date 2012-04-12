@@ -12,18 +12,23 @@ class BudgetApp.Views.BudgetIncomeView extends BudgetApp.Views.BaseView
     @collection.add({})
     newBucket = @collection.last()
     newBucket.save()
-    @renderBucket(newBucket)
+    @renderBucket(newBucket, true)
 
   renderSummary: =>
     @$(".category").html(JST["backbone/templates/budget_income_summary"](
       budgeted: @formatMoney(@collection.budgeted())
     ))
 
-  renderBucket: (bucket) =>
-    @$(".buckets").append(new BudgetApp.Views.BudgetIncomeBucketView(model: bucket).render().el)
+  renderBucket: (bucket, focus) =>
+    view = new BudgetApp.Views.BudgetIncomeBucketView(model: bucket)
+    @$(".buckets").append(view.render().el)
+
+    if(focus)
+      focus = -> $(view.el).find("input[name=name]").focus()
+      _.delay focus, 100
 
   renderBuckets: ->
-    @collection.each @renderBucket
+    @collection.each (bucket) => @renderBucket(bucket)
 
   render: ->
     $(@el).html(@template())
