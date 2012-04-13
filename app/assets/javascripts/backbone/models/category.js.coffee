@@ -16,7 +16,10 @@ BudgetApp.Models.Category = Backbone.RelationalModel.extend
     name: "Name..."
 
   initialize: ->
-    @bind "change", => _.each(@getRelations(), (relation) -> relation.related && relation.related.trigger("change"))
+    @on "change", @triggerParentChange
+
+  triggerParentChange: ->
+    _.each(@getRelations(), (relation) -> relation.related && relation.related.trigger("change"))
 
   name: (newValue) -> if newValue then @set("name", newValue) else @get("name")
   buckets: -> @get("buckets")

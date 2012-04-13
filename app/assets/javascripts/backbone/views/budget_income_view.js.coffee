@@ -6,7 +6,8 @@ class BudgetApp.Views.BudgetIncomeView extends BudgetApp.Views.BaseView
     "click [data-add-income]": "addNewIncomeBucket"
 
   initialize: ->
-    @collection.bind "change", @renderSummary
+    @collection.on "change", @renderSummary
+    @collection.on "remove", @renderSummary
 
   addNewIncomeBucket: ->
     @collection.add({})

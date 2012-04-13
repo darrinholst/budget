@@ -5,7 +5,11 @@ BudgetApp.Models.Bucket = Backbone.RelationalModel.extend
     spent: 0
 
   initialize: ->
-    @bind "change", => _.each(@getRelations(), (relation) -> relation.related && relation.related.trigger("change"))
+    @on "change", @triggerParentChange
+    @on "remove", @triggerParentChange
+
+  triggerParentChange: ->
+    _.each(@getRelations(), (relation) -> relation.related && relation.related.trigger("change"))
 
   name: (newValue) -> if newValue then @set("name", newValue) else @get("name")
   budgeted: (newValue) -> if newValue then @set("budgeted", @parseMoney(newValue)) else @get("budgeted")

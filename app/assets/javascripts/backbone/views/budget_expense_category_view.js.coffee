@@ -9,6 +9,7 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
   initialize: ->
     @model.bind "change:name", => @model.save()
     @model.bind "change", => @renderSummary()
+    @model.bind "remove", => @renderSummary()
 
   addNewExpenseBucket: ->
     @model.buckets().add({})
