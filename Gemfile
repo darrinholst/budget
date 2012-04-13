@@ -18,6 +18,7 @@ group :assets do
 end
 
 group :production do
+  gem 'thin'
   gem 'heroku'
   gem 'pg'
 end
