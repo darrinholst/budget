@@ -16,6 +16,6 @@ class BudgetApp.Views.BudgetBucketView extends BudgetApp.Views.BaseView
       @remove()
 
   sync: =>
-    @model.save()
+    # @model.save()
     @render()
 

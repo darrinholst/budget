@@ -12,6 +12,7 @@ class BudgetsController < ApplicationController
   end
 
   def create
+    p budget_params
     budget = current_user.budgets.create(budget_params)
     render :json => budget
   end
@@ -76,10 +77,7 @@ class BudgetsController < ApplicationController
   end
 
   def find_budgets
-    @budgets = current_user.budgets.all(:include => [
-      :income_buckets,
-      :categories => [:buckets]
-    ])
+    @budgets = current_user.budgets.order("starts_on desc").includes([:income_buckets, {:categories => :buckets}]).all
   end
 
   def budget_params

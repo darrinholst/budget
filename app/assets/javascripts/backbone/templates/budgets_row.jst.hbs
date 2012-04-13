@@ -1,5 +1,6 @@
-<div class="span3"><a href="/budgets/{{id}}" data-edit-budget>{{starts_on}}</a></div>
-<div class="span3">{{actual_balance}}</div>
+<!--<div class="span3"><a href="/budgets/{{id}}" data-edit-budget>{{starts_on}}</a></div>-->
+<div class="span3"><input type="text" class="inline-edit" name="starts_on" value="{{starts_on}}"></div>
+<div class="span3"><input type="text" class="inline-edit" name="actual_balance" value="{{actual_balance}}"></div>
 <div class="span3">{{remaining}}</div>
-<div class="span3">{{actual_buffer}}</div>
+<div class="span3" id="actual-buffer">{{actual_buffer}}</div>
 

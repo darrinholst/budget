@@ -6,6 +6,7 @@
 //= require underscore
 //= require handlebars.runtime
 //= require inline-edit
+//= require bootstrap-datepicker
 //= require backbone
 //= require backbone-relational
 //= require backbone/budget_app

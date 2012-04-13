@@ -1,6 +1,6 @@
 BudgetApp.Models.Budget = Backbone.RelationalModel.extend
   defaults: {
-    starts_on: new Date()
+    starts_on: "#{new Date().getUTCFullYear()}-#{new Date().getUTCMonth() + 1}-#{new Date().getUTCDate()}" #"1976-08-05"
     actual_balance: 0
   }
 
@@ -28,7 +28,7 @@ BudgetApp.Models.Budget = Backbone.RelationalModel.extend
     }
   ]
 
-  startsOn: -> new Date(Date.parse(@get("starts_on")))
+  startsOn: (newValue) -> if newValue then @set("starts_on", newValue) else @toDate(@get("starts_on"))
   actualBalance: (newValue) -> if newValue then @set("actual_balance", @parseMoney(newValue)) else @get("actual_balance")
   incomeBuckets: -> @get("income_buckets")
   expenseCategories: -> @get("categories")
@@ -38,6 +38,7 @@ BudgetApp.Models.Budget = Backbone.RelationalModel.extend
   totalExpenses: -> @expenseCategories().budgeted()
   budgetedBuffer: -> @totalIncome() - @totalExpenses()
   parseMoney: (value) -> parseFloat(value, 10) * 100
+  toDate: (value) -> new Date(Date.parse(value))
 
 class BudgetApp.Collections.Budgets extends Backbone.Collection
   model: BudgetApp.Models.Budget

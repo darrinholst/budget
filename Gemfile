@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
 gem 'bourbon'
+gem 'chronic'
 gem 'devise'
 gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
