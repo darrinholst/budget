@@ -33,6 +33,12 @@ class BudgetsController < ApplicationController
     render :json => bucket
   end
 
+  def delete_income
+    bucket = find_budget.income_buckets.find(params[:id])
+    bucket.destroy
+    render :json => bucket
+  end
+
   def create_category
     category = find_budget.categories.create(category_params)
     render :json => category
@@ -54,6 +60,12 @@ class BudgetsController < ApplicationController
   def update_expense
     bucket = find_budget.expense_buckets.find(params[:id])
     bucket.update_attributes!(expense_params)
+    render :json => bucket
+  end
+
+  def delete_expense
+    bucket = find_budget.expense_buckets.find(params[:id])
+    bucket.destroy
     render :json => bucket
   end
 

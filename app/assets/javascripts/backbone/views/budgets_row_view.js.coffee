@@ -3,14 +3,9 @@ class BudgetApp.Views.BudgetsRowView extends BudgetApp.Views.BaseView
   tagName: "div"
   className: "row-fluid"
 
-  events: ->
-    "click [data-edit-budget]": @edit
-
-  edit: =>
-    window.router.navigate("budgets/#{@model.id}", {trigger: true, replace: true})
-
   render: ->
     $(@el).html(@template(
+      id: @model.id
       starts_on: @formatDate(@model.startsOn())
       actual_balance: @formatMoney(@model.actualBalance())
       remaining: @formatMoney(@model.remaining())
