@@ -8,12 +8,16 @@ class BudgetApp.Views.BudgetsView extends BudgetApp.Views.BaseView
   initialize: ->
     @collection.on "reset", @addAll
     @collection.on "add", @newBudgetAdded
+    @collection.on "reorder", =>
+      @collection.sort()
+      @render()
 
   newBudgetAdded: (budget) =>
     #TODO: need a activity indicator here
+
     budget.save({},
       success: (budget) =>
-        @renderBudget(budget)
+        @render()
 
       error: =>
         alert("Couldn't save new budget")

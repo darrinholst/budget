@@ -8,14 +8,19 @@ class BudgetApp.Views.BudgetsRowView extends BudgetApp.Views.BaseView
     "change [name=starts_on]": "dateChanged"
     "change [name=actual_balance]": "actualBalanceChanged"
 
-  dateChanged: ->
+  dateChanged: =>
     @model.startsOn(@$("[name=starts_on]").trigger("blur").val())
-    @model.save()
+    #TODO: activity indicator
+
+    @model.save({},
+      success: =>
+        @collection.trigger("reorder")
+    )
 
   actualBalanceChanged: ->
     @model.actualBalance(@$("[name=actual_balance]").val())
-    @model.save({}, 
-      success: => 
+    @model.save({},
+      success: =>
         @$("[name=actual_balance]").val(@formatMoney(@model.actualBalance()))
         @$("#actual-buffer").html(@formatMoney(@model.actualBuffer()))
     )

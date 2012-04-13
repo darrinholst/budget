@@ -43,4 +43,8 @@ BudgetApp.Models.Budget = Backbone.RelationalModel.extend
 class BudgetApp.Collections.Budgets extends Backbone.Collection
   model: BudgetApp.Models.Budget
   url: -> '/budgets'
+  comparator: (a, b) -> 
+    return 1 if a.startsOn().getTime() < b.startsOn().getTime()
+    return -1 if a.startsOn().getTime() > b.startsOn().getTime()
+    return 0
 
