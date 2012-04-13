@@ -3,16 +3,21 @@ class BudgetApp.Views.BudgetsView extends BudgetApp.Views.BaseView
   className: "budgets"
 
   events: ->
-    "click [data-add-budget]": @addNew
+    "click [data-add-budget]": => @collection.add({})
 
   initialize: ->
-    @collection.bind('reset', @addAll)
+    @collection.on "reset", @addAll
+    @collection.on "add", @newBudgetAdded
 
-  addNew: =>
-    @collection.add({})
-    budget = @collection.last()
-    budget.save()
-    @renderBudget(budget)
+  newBudgetAdded: (budget) =>
+    #TODO: need a activity indicator here
+    budget.save({},
+      success: (budget) =>
+        @renderBudget(budget)
+
+      error: =>
+        alert("Couldn't save new budget")
+    )
 
   renderBudget: (budget) =>
     view = new BudgetApp.Views.BudgetsRowView({collection: @collection, model : budget})
