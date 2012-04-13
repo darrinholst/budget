@@ -65,7 +65,7 @@ module BudgetApp
     config.assets.version = '1.0'
 
     # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-    config.assets.precompile += %w( modernizr.js )
+    config.assets.precompile += %w( modernizr.js ga.js )
 
     config.assets.initialize_on_precompile = false
   end
