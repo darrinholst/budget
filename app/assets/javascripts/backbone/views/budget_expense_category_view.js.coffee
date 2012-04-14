@@ -45,7 +45,7 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
     @$(".buckets").sortable(axis: "y")
 
   render: ->
-    $(@el).html(@template())
+    $(@el).html(@template(name: @model.name())).inlineEditable()
     @renderSummary()
     @renderBuckets()
     @

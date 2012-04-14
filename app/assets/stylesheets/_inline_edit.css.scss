@@ -1,0 +1,28 @@
+input.inline-edit {
+  width: 95%;
+  text-align: right;
+  margin: 0;
+  padding: 2px 3px;
+  border: 1px solid transparent;
+  background: transparent;
+  @include box-shadow(none);
+
+  &.js-hover, &:focus {
+    border: 1px solid #CCC;
+    @include box-shadow(inset 0 1px 3px rgba(0, 0, 0, 0.1));
+  }
+
+  &:focus {
+    background: white;
+    @include box-shadow(inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6));
+  }
+
+  &[readonly] {
+    cursor: default;
+
+    &.js-hover, &:focus {
+      border: 1px solid transparent;
+      @include box-shadow(none);
+    }
+  }
+}
