@@ -11,7 +11,6 @@ class BudgetApp.Views.BudgetsView extends BudgetApp.Views.BaseView
     @collection.on "add", @newBudgetAdded
 
   addBudget: =>
-    #TODO: need a activity indicator here
     @collection.add({starts_on: @$("#starts_on").val()})
     @closeModal()
 

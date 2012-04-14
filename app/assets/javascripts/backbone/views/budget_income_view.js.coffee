@@ -11,7 +11,6 @@ class BudgetApp.Views.BudgetIncomeView extends BudgetApp.Views.BaseView
     @collection.on "add", @newBucketAdded
 
   addNewIncomeBucket: ->
-    #TODO: need a activity indicator here
     @collection.add({})
 
   newBucketAdded: (bucket) =>

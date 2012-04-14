@@ -4,6 +4,15 @@
       input = $(this)
       originalValue = input.val()
 
+      input.mouseenter ->
+        input.addClass("js-hover")
+
+      input.mouseleave ->
+        input.removeClass("js-hover")
+
+      input.blur ->
+        input.removeClass("js-hover")
+
       input.focus (event) ->
         select = -> input.select()
         setTimeout(select, 0)

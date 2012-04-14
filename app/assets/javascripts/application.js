@@ -3,6 +3,7 @@
 //= require jquery-ui
 //= require plugins
 //= require json2
+//= require date
 //= require underscore
 //= require underscore.string
 //= require handlebars.runtime

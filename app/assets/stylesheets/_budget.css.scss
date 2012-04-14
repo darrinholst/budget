@@ -95,7 +95,7 @@ input.inline-edit {
   background: transparent;
   @include box-shadow(none);
 
-  &:hover, &:focus {
+  &.js-hover, &:focus {
     border: 1px solid #CCC;
     @include box-shadow(inset 0 1px 3px rgba(0, 0, 0, 0.1));
   }
