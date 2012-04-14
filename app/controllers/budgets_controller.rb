@@ -12,7 +12,6 @@ class BudgetsController < ApplicationController
   end
 
   def create
-    p budget_params
     budget = current_user.budgets.create(budget_params)
     render :json => budget
   end
@@ -20,6 +19,12 @@ class BudgetsController < ApplicationController
   def update
     budget = current_user.budgets.find(params[:id])
     budget.update_attributes(budget_params)
+    render :json => budget
+  end
+
+  def destroy
+    budget = current_user.budgets.find(params[:id])
+    budget.destroy
     render :json => budget
   end
 

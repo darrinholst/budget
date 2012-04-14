@@ -1,29 +1,31 @@
 class BudgetApp.Views.BudgetsRowView extends BudgetApp.Views.BaseView
   template: JST["backbone/templates/budgets_row"]
   tagName: "div"
-  className: "row-fluid"
+  className: "row-fluid budget"
 
   events:
-    "changeDate": "dateChanged"
-    "change [name=starts_on]": "dateChanged"
-    "change [name=actual_balance]": "actualBalanceChanged"
+    "click [data-delete-budget]": "deleteBudget"
 
-  dateChanged: =>
-    @model.startsOn(@$("[name=starts_on]").trigger("blur").val())
-    #TODO: activity indicator
+  deleteBudget: ->
+    if confirm("Are you sure you want to delete this budget?")
+      @model.destroy()
+      @remove()
 
-    @model.save({},
-      success: =>
-        @collection.trigger("reorder")
-    )
+  # dateChanged: =>
+  #   @model.startsOn(@$("[name=starts_on]").trigger("blur").val())
 
-  actualBalanceChanged: ->
-    @model.actualBalance(@$("[name=actual_balance]").val())
-    @model.save({},
-      success: =>
-        @$("[name=actual_balance]").val(@formatMoney(@model.actualBalance()))
-        @$("#actual-buffer").html(@formatMoney(@model.actualBuffer()))
-    )
+  #   @model.save({},
+  #     success: =>
+  #       @collection.trigger("reorder")
+  #   )
+
+  # actualBalanceChanged: ->
+  #   @model.actualBalance(@$("[name=actual_balance]").val())
+  #   @model.save({},
+  #     success: =>
+  #       @$("[name=actual_balance]").val(@formatMoney(@model.actualBalance()))
+  #       @$("#actual-buffer").html(@formatMoney(@model.actualBuffer()))
+  #   )
 
   render: ->
     $(@el).html(@template(
@@ -32,7 +34,6 @@ class BudgetApp.Views.BudgetsRowView extends BudgetApp.Views.BaseView
       actual_balance: @formatMoney(@model.actualBalance())
       remaining: @formatMoney(@model.remaining())
       actual_buffer: @formatMoney(@model.actualBuffer())
-    )).inlineEditable()
+    ))
 
-    @$("[name=starts_on]").datepicker()
     @

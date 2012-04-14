@@ -1,7 +1,7 @@
 class BudgetApp.Views.BudgetExpenseBucketView extends BudgetApp.Views.BudgetBucketView
   template: JST["backbone/templates/budget_expense_bucket"]
 
-  render: ->
+  render: =>
     $(@el).html(@template(
       name: @model.name()
       budgeted: @formatMoney(@model.budgeted())

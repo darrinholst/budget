@@ -4,9 +4,11 @@
 //= require plugins
 //= require json2
 //= require underscore
+//= require underscore.string
 //= require handlebars.runtime
 //= require inline-edit
 //= require bootstrap-datepicker
+//= require twitter/bootstrap/bootstrap-modal
 //= require backbone
 //= require backbone-relational
 //= require backbone/budget_app

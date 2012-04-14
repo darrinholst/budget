@@ -3,23 +3,28 @@ class BudgetApp.Views.BudgetsView extends BudgetApp.Views.BaseView
   className: "budgets"
 
   events: ->
-    "click [data-add-budget]": => @collection.add({})
+    "click .modal-footer .btn-primary": "addBudget"
+    "click .modal-footer .btn-cancel": "closeModal"
+    "changeDate": => @$("#starts_on").blur()
 
   initialize: ->
-    @collection.on "reset", @addAll
     @collection.on "add", @newBudgetAdded
-    @collection.on "reorder", =>
-      @collection.sort()
-      @render()
+
+  addBudget: =>
+    #TODO: need a activity indicator here
+    @collection.add({starts_on: @$("#starts_on").val()})
+    @closeModal()
+
+  closeModal: =>
+    @$('#addBudget').modal('hide')
 
   newBudgetAdded: (budget) =>
-    #TODO: need a activity indicator here
-
     budget.save({},
       success: (budget) =>
         @render()
 
       error: =>
+        @closeModal()
         alert("Couldn't save new budget")
     )
 
@@ -31,7 +36,14 @@ class BudgetApp.Views.BudgetsView extends BudgetApp.Views.BaseView
     @collection.each(@renderBudget)
 
   render: =>
-    $(@el).html(@template())
+    budgets = ({date: @formatDate(budget.startsOn())} for budget in @collection.models)
+
+    $(@el).html(@template(
+      budgets: budgets
+      currentDate: @formatDate(new Date())
+    ))
+
     @addAll()
+    @$("#starts_on").datepicker()
     @
 

@@ -3,10 +3,13 @@ class BudgetApp.Views.BudgetOverviewView extends BudgetApp.Views.BaseView
   className: "overview container-fluid"
 
   events:
-    "change input[name=actual]": -> @model.actualBalance(@$("input[name=actual]").val())
+    "change input[name=actual]": "actualChanged"
+
+  actualChanged: =>
+    @model.actualBalance(@$("input[name=actual]").val())
+    @model.save()
 
   initialize: ->
-    # @model.bind "change:actual_balance", => @model.save()
     @model.bind "change", => @render()
 
   render : (event) ->

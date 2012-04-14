@@ -2,20 +2,28 @@ class BudgetApp.Views.BudgetBucketView extends BudgetApp.Views.BaseView
   className: "row-fluid bucket"
 
   events:
-    "change input[name=name]": -> @model.name(@$("input[name=name]").val())
-    "change input[name=budgeted]": -> @model.budgeted(@$("input[name=budgeted]").val())
-    "change input[name=spent]": -> @model.spent(@$("input[name=spent]").val())
+    "change input[name=name]": "nameChanged"
+    "change input[name=budgeted]": "budgetedChanged"
+    "change input[name=spent]": "spentChanged"
     "click [data-delete-bucket]": "deleteBucket"
 
-  initialize: ->
-    @model.bind("change", @sync)
+  initialize: =>
+    @model.bind("change", @render)
 
-  deleteBucket: ->
+  nameChanged: =>
+    @model.name(@$("input[name=name]").val())
+    @model.save()
+
+  budgetedChanged: =>
+    @model.budgeted(@$("input[name=budgeted]").val())
+    @model.save()
+
+  spentChanged: =>
+    @model.spent(@$("input[name=spent]").val())
+    @model.save()
+
+  deleteBucket: =>
     if confirm("Are you sure?")
       @model.destroy()
       @remove()
-
-  sync: =>
-    # @model.save()
-    @render()
 

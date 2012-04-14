@@ -18,7 +18,7 @@ $ ->
     $(document).on "click", "a", (e) ->
       route = $(this).attr("href")
 
-      unless route == "#"
+      unless _.str.startsWith(route, "#")
         e.preventDefault()
         window.router.navigate(route.substr(1), true)
 

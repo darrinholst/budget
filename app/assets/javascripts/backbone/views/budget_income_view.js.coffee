@@ -8,12 +8,20 @@ class BudgetApp.Views.BudgetIncomeView extends BudgetApp.Views.BaseView
   initialize: ->
     @collection.on "change", @renderSummary
     @collection.on "remove", @renderSummary
+    @collection.on "add", @newBucketAdded
 
   addNewIncomeBucket: ->
+    #TODO: need a activity indicator here
     @collection.add({})
-    newBucket = @collection.last()
-    newBucket.save()
-    @renderBucket(newBucket, true)
+
+  newBucketAdded: (bucket) =>
+    bucket.save({},
+      success: (bucket) =>
+        @renderBucket(bucket, true)
+
+      error: =>
+        alert("Couldn't save income bucket")
+    )
 
   renderSummary: =>
     @$(".category").html(JST["backbone/templates/budget_income_summary"](
@@ -23,10 +31,7 @@ class BudgetApp.Views.BudgetIncomeView extends BudgetApp.Views.BaseView
   renderBucket: (bucket, focus) =>
     view = new BudgetApp.Views.BudgetIncomeBucketView(model: bucket)
     @$(".buckets").append(view.render().el)
-
-    if(focus)
-      focus = -> $(view.el).find("input[name=name]").focus()
-      _.delay focus, 100
+    $(view.el).find("input[name=name]").focus() if(focus)
 
   renderBuckets: ->
     @collection.each (bucket) => @renderBucket(bucket)

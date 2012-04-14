@@ -3,21 +3,31 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
   className: "category-container"
 
   events:
-    "change input[name=name]": -> @model.name(@$("input[name=name]").val())
+    "change input[name=name]": "nameChanged"
     "click [data-add-expense]": "addNewExpenseBucket"
 
   initialize: ->
-    # @model.bind "change:name", => @model.save()
-    @model.bind "change", => @renderSummary()
-    @model.bind "remove", => @renderSummary()
+    @model.bind "change", @renderSummary
+    @model.bind "remove", @renderSummary
+    @model.buckets().on "add", @newBucketAdded
+
+  nameChanged: =>
+    @model.name(@$("input[name=name]").val())
+    @model.save()
 
   addNewExpenseBucket: ->
     @model.buckets().add({})
-    newBucket = @model.buckets().last()
-    newBucket.save()
-    @renderBucket(newBucket, true)
 
-  renderSummary: ->
+  newBucketAdded: (bucket) =>
+    bucket.save({},
+      success: (bucket) =>
+        @renderBucket(bucket, true)
+
+      error: =>
+        alert("Couldn't save new bucket")
+    )
+
+  renderSummary: =>
     @$(".category").html(JST["backbone/templates/budget_expense_category_summary"](
       name: @model.name()
       budgeted: @formatMoney(@model.budgeted())
@@ -28,10 +38,7 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
   renderBucket: (bucket, focus) =>
     view = new BudgetApp.Views.BudgetExpenseBucketView(model: bucket)
     @$(".buckets").append(view.render().el)
-
-    if(focus)
-      focus = -> $(view.el).find("input[name=name]").focus()
-      _.delay focus, 100
+    $(view.el).find("input[name=name]").focus() if focus
 
   renderBuckets: ->
     @model.buckets().each (bucket) => @renderBucket(bucket)
@@ -42,3 +49,4 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
     @renderSummary()
     @renderBuckets()
     @
+
