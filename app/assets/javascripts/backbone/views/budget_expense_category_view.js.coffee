@@ -5,6 +5,7 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
   events:
     "change input[name=name]": "nameChanged"
     "click [data-add-expense]": "addNewExpenseBucket"
+    "click [data-delete-category]": "deleteCategory"
 
   initialize: ->
     @model.bind "change", @renderSummary
@@ -26,6 +27,11 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
       error: =>
         alert("Couldn't save new bucket")
     )
+
+  deleteCategory: =>
+    if confirm("Are you sure?")
+      @model.destroy()
+      @remove()
 
   renderSummary: =>
     @$(".category").html(JST["backbone/templates/budget_expense_category_summary"](

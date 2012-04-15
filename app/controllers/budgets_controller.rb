@@ -56,6 +56,12 @@ class BudgetsController < ApplicationController
     render :json => category
   end
 
+  def delete_category
+    category = find_budget.categories.find(params[:id])
+    category.destroy
+    render :json => category
+  end
+
   def create_expense
     category = find_budget.categories.find(params[:category_id])
     p category

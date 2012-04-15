@@ -1,6 +1,6 @@
 class Budget < ActiveRecord::Base
-  has_many :categories
-  has_many :income_buckets
+  has_many :categories, :dependent => :destroy
+  has_many :income_buckets, :dependent => :destroy
   has_many :expense_buckets, :through => :categories, :source => :buckets
 
   def starts_on=(date)

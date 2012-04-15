@@ -10,6 +10,7 @@ BudgetApp::Application.routes.draw do
 
     post "categories", :to => 'budgets#create_category'
     put "categories/:id", :to => 'budgets#update_category'
+    delete "categories/:id", :to => 'budgets#delete_category'
 
     post "categories/:category_id/expenses", :to => 'budgets#create_expense'
     put "categories/:category_id/expenses/:id", :to => 'budgets#update_expense'
