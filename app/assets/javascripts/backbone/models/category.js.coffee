@@ -27,9 +27,18 @@ BudgetApp.Models.Category = Backbone.RelationalModel.extend
   spent: -> @buckets().spent()
   remaining: -> @buckets().remaining()
 
+  toJSON: (includeBuckets) ->
+    json = Backbone.RelationalModel.prototype.toJSON.call(this)
+    json.buckets_attributes = @buckets().toJSON() if includeBuckets
+    json
+
 class BudgetApp.Collections.Categories extends Backbone.Collection
   model: BudgetApp.Models.Category
 
   url: -> "#{@.budget.url()}/categories"
   budgeted: -> @models.reduce ((memo, category) -> memo + category.budgeted()), 0
   remaining: -> @models.reduce ((memo, category) -> memo + category.remaining()), 0
+
+  toJSON: (includeBuckets) ->
+    @map((model) -> model.toJSON(includeBuckets))
+

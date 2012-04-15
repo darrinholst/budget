@@ -92,7 +92,7 @@ class BudgetsController < ApplicationController
   end
 
   def budget_params
-    params.slice(:starts_on, :actual_balance)
+    params.slice(:starts_on, :actual_balance, :income_buckets_attributes, :categories_attributes)
   end
 
   def income_params

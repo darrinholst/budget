@@ -1,6 +1,44 @@
 BudgetApp.Models.Budget = Backbone.RelationalModel.extend
   defaults: {
     actual_balance: 0
+
+    income_buckets: [
+      {name: "Salary"}
+    ]
+
+    categories: [
+      {name: "Housing", buckets: [
+        {name: "Mortgage"}
+        {name: "Taxes"}
+      ]},
+      {name: "Bills", buckets: [
+        {name: "Electricity"}
+        {name: "Water"}
+        {name: "Gas"}
+        {name: "Phone"}
+        {name: "Trash"}
+        {name: "Cable"}
+      ]},
+      {name: "Food", buckets: [
+        {name: "Groceries"}
+        {name: "Dining Out"}
+      ]},
+      {name: "Transportation", buckets: [
+        {name: "Car Insurance"}
+        {name: "Gas"}
+      ]},
+      {name: "Personal", buckets: [
+        {name: "Health Insurance"}
+        {name: "Life Insurance"}
+        {name: "Child Care"}
+      ]},
+      {name: "Entertainment", buckets: [
+        {name: "Blow Money"}
+      ]},
+      {name: "Savings", buckets: [
+        {name: "Emergency Fund"}
+      ]}
+    ]
   }
 
   relations: [
@@ -38,6 +76,15 @@ BudgetApp.Models.Budget = Backbone.RelationalModel.extend
   budgetedBuffer: -> @totalIncome() - @totalExpenses()
   parseMoney: (value) -> parseFloat(value, 10) * 100
   toDate: (value) -> Date.parse(value)
+
+  toJSON: ->
+    json = Backbone.RelationalModel.prototype.toJSON.call(this)
+
+    if @isNew()
+      json.income_buckets_attributes = @incomeBuckets().toJSON()
+      json.categories_attributes = @expenseCategories().toJSON(true)
+
+    json
 
 class BudgetApp.Collections.Budgets extends Backbone.Collection
   model: BudgetApp.Models.Budget
