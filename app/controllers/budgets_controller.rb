@@ -100,7 +100,7 @@ class BudgetsController < ApplicationController
   end
 
   def category_params
-    params.slice(:name)
+    params.slice(:name, :buckets_attributes)
   end
 
   def expense_params

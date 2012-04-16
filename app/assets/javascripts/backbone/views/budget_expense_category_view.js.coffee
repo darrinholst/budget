@@ -6,11 +6,16 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
     "change input[name=name]": "nameChanged"
     "click [data-add-expense]": "addNewExpenseBucket"
     "click [data-delete-category]": "deleteCategory"
+    "sortupdate .buckets": "updateSortOrder"
 
   initialize: ->
     @model.bind "change", @renderSummary
     @model.bind "remove", @renderSummary
     @model.buckets().on "add", @newBucketAdded
+
+  updateSortOrder: =>
+    buckets = ({id: $(el).data("view").model.id, sort_order: i + 1} for el, i in @$(".bucket"))
+    @model.save(buckets_attributes: buckets)
 
   nameChanged: =>
     @model.name(@$("input[name=name]").val())
@@ -23,6 +28,7 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
     bucket.save({},
       success: (bucket) =>
         @renderBucket(bucket, true)
+        @updateSortOrder()
 
       error: =>
         alert("Couldn't save new bucket")
@@ -45,6 +51,7 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
     view = new BudgetApp.Views.BudgetExpenseBucketView(model: bucket)
     @$(".buckets").append(view.render().el)
     $(view.el).find("input[name=name]").focus() if focus
+    $(view.el).data("view", view)
 
   renderBuckets: ->
     @model.buckets().each (bucket) => @renderBucket(bucket)

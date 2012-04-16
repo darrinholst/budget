@@ -4,7 +4,7 @@ class BudgetApp.Views.BudgetExpensesView extends BudgetApp.Views.BaseView
 
   events:
     "click [data-add-category]": "addNewCategory"
-    "sortupdate": "updateSortOrder"
+    "sortupdate .categories": "updateSortOrder"
 
   initialize: =>
     @collection.on "add", @newCategoryAdded
@@ -28,12 +28,12 @@ class BudgetApp.Views.BudgetExpensesView extends BudgetApp.Views.BaseView
 
   renderCategory: (category, focus) =>
     view = new BudgetApp.Views.BudgetExpenseCategoryView(model: category)
-    @$(".row-fluid:last").before(view.render().el)
+    @$(".categories").append(view.render().el)
     $(view.el).find("input[name=name]").focus() if focus
     $(view.el).data("view", view)
 
   render: ->
     $(@el).html(@template())
     @collection.each (category) => @renderCategory(category)
-    $(@el).sortable(axis: "y")
+    @$(".categories").sortable(axis: "y")
     @
