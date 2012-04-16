@@ -1,3 +1,4 @@
 class IncomeBucket < ActiveRecord::Base
-  attr_accessible :name, :budgeted
+  default_scope :order => "sort_order ASC, id ASC"
+  attr_accessible :name, :budgeted, :sort_order
 end
