@@ -4,9 +4,14 @@ class BudgetApp.Views.BudgetExpensesView extends BudgetApp.Views.BaseView
 
   events:
     "click [data-add-category]": "addNewCategory"
+    "sortupdate": "updateSortOrder"
 
   initialize: =>
     @collection.on "add", @newCategoryAdded
+
+  updateSortOrder: =>
+    categories = ({id: $(el).data("view").model.id, sort_order: i + 1} for el, i in @$(".category-container"))
+    @model.save(categories_attributes: categories)
 
   addNewCategory: =>
     @collection.add({})
@@ -15,6 +20,7 @@ class BudgetApp.Views.BudgetExpensesView extends BudgetApp.Views.BaseView
     category.save({},
       success: (category) =>
         @renderCategory(category, true)
+        @updateSortOrder()
 
       error: =>
         alert("Couldn't save new category")
@@ -24,6 +30,7 @@ class BudgetApp.Views.BudgetExpensesView extends BudgetApp.Views.BaseView
     view = new BudgetApp.Views.BudgetExpenseCategoryView(model: category)
     @$(".row-fluid:last").before(view.render().el)
     $(view.el).find("input[name=name]").focus() if focus
+    $(view.el).data("view", view)
 
   render: ->
     $(@el).html(@template())
