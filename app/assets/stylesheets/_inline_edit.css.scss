@@ -6,6 +6,7 @@ input.inline-edit {
   border: 1px solid transparent;
   background: transparent;
   @include box-shadow(none);
+  -webkit-appearance: none;
 
   &.js-hover, &:focus {
     border: 1px solid #CCC;
