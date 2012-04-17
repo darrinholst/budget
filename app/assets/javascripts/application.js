@@ -12,4 +12,5 @@
 //= require twitter/bootstrap/bootstrap-modal
 //= require backbone
 //= require backbone-relational
+//= require backbone-local
 //= require backbone/budget_app

@@ -3,7 +3,7 @@ class BudgetApp.Views.BudgetsView extends BudgetApp.Views.BaseView
   className: "budgets"
 
   events: ->
-    "click .modal-footer .btn-primary": "addBudget"
+    "click .modal-footer .btn-success": "addBudget"
     "click .modal-footer .btn-cancel": "closeModal"
     "changeDate": => @$("#starts_on").blur()
 
@@ -20,6 +20,7 @@ class BudgetApp.Views.BudgetsView extends BudgetApp.Views.BaseView
   newBudgetAdded: (budget) =>
     budget.save({},
       success: (budget) =>
+        @closeModal()
         @render()
 
       error: =>

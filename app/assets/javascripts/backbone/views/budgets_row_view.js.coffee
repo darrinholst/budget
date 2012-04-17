@@ -13,7 +13,7 @@ class BudgetApp.Views.BudgetsRowView extends BudgetApp.Views.BaseView
 
   render: ->
     $(@el).html(@template(
-      id: @model.id
+      url: "#{if BudgetApp.localStorage? then "/sandbox" else ""}#{@model.url()}"
       starts_on: @formatDate(@model.startsOn())
       actual_balance: @formatMoney(@model.actualBalance())
       remaining: @formatMoney(@model.remaining())

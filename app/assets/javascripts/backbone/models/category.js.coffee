@@ -34,7 +34,7 @@ BudgetApp.Models.Category = Backbone.RelationalModel.extend
 
 class BudgetApp.Collections.Categories extends Backbone.Collection
   model: BudgetApp.Models.Category
-
+  initialize: -> @localStorage = BudgetApp.localStorage
   url: -> "#{@.budget.url()}/categories"
   budgeted: -> @models.reduce ((memo, category) -> memo + category.budgeted()), 0
   remaining: -> @models.reduce ((memo, category) -> memo + category.remaining()), 0
