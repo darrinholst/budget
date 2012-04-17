@@ -5,23 +5,24 @@ class BudgetApp.Routers.Router extends Backbone.Router
 
   routes:
     "budgets"             : "listBudgets"
+    "sandbox/budgets"     : "listBudgets"
     "budgets/:id"         : "editBudget"
-    "sandbox"             : "listSandboxBudgets"
-    "sandbox/budgets/:id" : "editSandboxBudget"
-
-  listSandboxBudgets: ->
-    BudgetApp.localStorage = new Backbone.LocalStorage("budgets")
-    @budgets.localStorage = BudgetApp.localStorage
-    @listBudgets()
-
-  editSandboxBudget: (id) ->
-    $("#backbone").html(new BudgetApp.Views.BudgetView(model: @budgets.get(id) || @budgets.create()).render().el)
+    "sandbox/budgets/:id" : "editBudget"
 
   listBudgets: ->
+    if(window.localStorage)
+      BudgetApp.localStorage = new Backbone.LocalStorage("budgets")
+      @budgets.localStorage = BudgetApp.localStorage
+
     $("#backbone").html(new BudgetApp.Views.BudgetsView(collection: @budgets).render().el)
 
   editBudget: (id) ->
-    $("#backbone").html(new BudgetApp.Views.BudgetView(model: @budgets.get(id)).render().el)
+    budget = @budgets.get(id)
+
+    if window.localStorage and !budget
+      budget = @budgets.create()
+
+    $("#backbone").html(new BudgetApp.Views.BudgetView(model: budget).render().el)
 
 $ ->
   if $("#backbone").length

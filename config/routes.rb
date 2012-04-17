@@ -2,8 +2,7 @@ BudgetApp::Application.routes.draw do
   devise_for :users
 
   root :to => 'landing#index'
-  get "sandbox", :to => "sandbox#index", :as => :sandbox
-  get "sandbox/*anything", :to => "sandbox#index"
+  get "sandbox/*anything", :to => "sandbox#index", :as => :sandbox
 
   resources :budgets do
     post "incomes", :to => 'budgets#create_income'
