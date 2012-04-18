@@ -6,6 +6,7 @@ gem 'timeliness'
 gem 'devise'
 gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
+gem 'git-version'
 
 group :development, :test do
   gem 'sqlite3'
@@ -22,5 +23,6 @@ group :production do
   gem 'thin'
   gem 'heroku'
   gem 'pg'
+  gem 'newrelic_rpm'
 end
 
