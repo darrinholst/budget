@@ -66,13 +66,13 @@ BudgetApp.Models.Budget = Backbone.RelationalModel.extend
   ]
 
   startsOn: (newValue) ->
-    if newValue
+    if newValue?
       @set("starts_on", newValue)
     else
       @toDate(@get("starts_on"))
 
   actualBalance: (newValue) ->
-    if newValue
+    if newValue?
       @set("actual_balance", @parseMoney(newValue))
     else
       @get("actual_balance")
@@ -104,9 +104,16 @@ BudgetApp.Models.Budget = Backbone.RelationalModel.extend
   toDate: (value) ->
     Date.parse(value)
 
+  clone: ->
+    cloned = Backbone.RelationalModel.prototype.clone.call(this)
+    cloned.set("income_buckets", @incomeBuckets().clone())
+    cloned.set("categories", @expenseCategories().clone())
+    cloned
+
   clear: ->
     @actualBalance(0)
     @expenseCategories().clear()
+    @
 
   toJSON: ->
     json = Backbone.RelationalModel.prototype.toJSON.call(this)

@@ -12,19 +12,19 @@ BudgetApp.Models.Bucket = Backbone.RelationalModel.extend
     _.each(@getRelations(), (relation) -> relation.related && relation.related.trigger("change"))
 
   name: (newValue) -> 
-    if newValue 
+    if newValue?
       @set("name", newValue) 
     else 
       @get("name")
 
   budgeted: (newValue) -> 
-    if newValue 
+    if newValue?
       @set("budgeted", @parseMoney(newValue)) 
     else 
       @get("budgeted")
 
   spent: (newValue) -> 
-    if newValue 
+    if newValue?
       @set("spent", @parseMoney(newValue)) 
     else 
       @get("spent")
@@ -55,4 +55,9 @@ class BudgetApp.Collections.Buckets extends Backbone.Collection
 
   clear: ->
     @each (bucket) -> bucket.spent(0)
+
+  clone: ->
+    cloned = new BudgetApp.Collections.Buckets()
+    cloned.add(bucket.clone()) for bucket in @models
+    cloned
 
