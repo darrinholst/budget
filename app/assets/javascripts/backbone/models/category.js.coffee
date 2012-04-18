@@ -21,11 +21,23 @@ BudgetApp.Models.Category = Backbone.RelationalModel.extend
   triggerParentChange: ->
     _.each(@getRelations(), (relation) -> relation.related && relation.related.trigger("change"))
 
-  name: (newValue) -> if newValue then @set("name", newValue) else @get("name")
-  buckets: -> @get("buckets")
-  budgeted: -> @buckets().budgeted()
-  spent: -> @buckets().spent()
-  remaining: -> @buckets().remaining()
+  name: (newValue) -> 
+    if newValue 
+      @set("name", newValue) 
+    else 
+      @get("name")
+
+  buckets: -> 
+    @get("buckets")
+
+  budgeted: -> 
+    @buckets().budgeted()
+
+  spent: -> 
+    @buckets().spent()
+
+  remaining: -> 
+    @buckets().remaining()
 
   toJSON: (includeBuckets) ->
     json = Backbone.RelationalModel.prototype.toJSON.call(this)
@@ -34,11 +46,22 @@ BudgetApp.Models.Category = Backbone.RelationalModel.extend
 
 class BudgetApp.Collections.Categories extends Backbone.Collection
   model: BudgetApp.Models.Category
-  initialize: -> @localStorage = BudgetApp.localStorage
-  url: -> "#{@.budget.url()}/categories"
-  budgeted: -> @models.reduce ((memo, category) -> memo + category.budgeted()), 0
-  remaining: -> @models.reduce ((memo, category) -> memo + category.remaining()), 0
+
+  initialize: -> 
+    @localStorage = BudgetApp.localStorage
+
+  url: -> 
+    "#{@.budget.url()}/categories"
+
+  budgeted: -> 
+    @models.reduce ((memo, category) -> memo + category.budgeted()), 0
+
+  remaining: -> 
+    @models.reduce ((memo, category) -> memo + category.remaining()), 0
 
   toJSON: (includeBuckets) ->
     @map((model) -> model.toJSON(includeBuckets))
+
+  clear: ->
+    @each (model) -> model.buckets().clear()
 

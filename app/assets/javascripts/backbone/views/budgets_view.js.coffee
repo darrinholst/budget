@@ -5,14 +5,34 @@ class BudgetApp.Views.BudgetsView extends BudgetApp.Views.BaseView
   events: ->
     "click .modal-footer .btn-success": "addBudget"
     "click .modal-footer .btn-cancel": "closeModal"
+    "shown #addBudget": "showModal"
     "changeDate": => @$("#starts_on").blur()
 
   initialize: ->
     @collection.on "add", @newBudgetAdded
 
   addBudget: =>
-    @collection.add({starts_on: @$("#starts_on").val()})
+    if @$("#from_clone").attr("checked")
+      newBudget = @collection.get(@$("#from_selection").val()).clone()
+      newBudget.clear()
+      newBudget.startsOn(@$("#starts_on").val())
+      @collection.add(newBudget)
+    else
+      @collection.add({starts_on: @$("#starts_on").val()})
+
     @closeModal()
+
+  showModal: =>
+    @$("#starts_on").val(@formatDate(new Date())).datepicker()
+
+    if @collection.length
+      @$("#from_clone").attr("disabled", false).attr("checked", true)
+      options = @$("#from_selection")[0].options
+      options.length = 0
+      options.add(new Option(@formatDate(budget.startsOn()), budget.id)) for budget in @collection.models
+    else
+      @$("#from_clone").attr("disabled", true)
+      @$("#from_scratch").attr("checked", true)
 
   closeModal: =>
     @$('#addBudget').modal('hide')
@@ -36,14 +56,7 @@ class BudgetApp.Views.BudgetsView extends BudgetApp.Views.BaseView
     @collection.each(@renderBudget)
 
   render: =>
-    budgets = ({date: @formatDate(budget.startsOn())} for budget in @collection.models)
-
-    $(@el).html(@template(
-      budgets: budgets
-      currentDate: @formatDate(new Date())
-    ))
-
+    $(@el).html(@template())
     @addAll()
-    @$("#starts_on").datepicker()
     @
 

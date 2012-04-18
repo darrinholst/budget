@@ -8,8 +8,10 @@ class Budget < ActiveRecord::Base
 
   attr_accessible :starts_on, :actual_balance, :income_buckets_attributes, :categories_attributes
 
+  validates :starts_on, :presence => true
+
   def starts_on=(date)
-    parsed = Chronic.parse(date)
+    parsed = Timeliness.parse(date)
     write_attribute(:starts_on, parsed) if parsed
   end
 end

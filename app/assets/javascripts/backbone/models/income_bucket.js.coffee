@@ -12,6 +12,10 @@ BudgetApp.Models.IncomeBucket = BudgetApp.Models.Bucket.extend
 
 class BudgetApp.Collections.IncomeBuckets extends BudgetApp.Collections.Buckets
   model: BudgetApp.Models.IncomeBucket
-  initialize: -> @localStorage = BudgetApp.localStorage
-  url: -> "#{@.budget.url()}/incomes"
+
+  initialize: -> 
+    @localStorage = BudgetApp.localStorage
+
+  url: -> 
+    "#{@.budget.url()}/incomes"
 

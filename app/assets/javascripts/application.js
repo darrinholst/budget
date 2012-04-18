@@ -10,6 +10,7 @@
 //= require inline-edit
 //= require bootstrap-datepicker
 //= require twitter/bootstrap/bootstrap-modal
+//= require twitter/bootstrap/bootstrap-dropdown
 //= require backbone
 //= require backbone-relational
 //= require backbone-local

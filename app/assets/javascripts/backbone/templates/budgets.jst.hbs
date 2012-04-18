@@ -21,20 +21,16 @@
   </div>
   <div class="modal-body">
     <label class="inline" for="starts_on">Starts On:</label>
-    <input type="text" id="starts_on" value="{{currentDate}}">
+    <input type="text" id="starts_on">
 
     <label class="radio">
-      <input name="from" type="radio" checked>
+      <input name="from" id="from_clone" type="radio" value="clone" checked>
       <span>From Existing</span>
-      <select>
-        {{#budgets}}
-          <option>{{date}}</option>
-        {{/budgets}}
-      </select>
+      <select id="from_selection"></select>
       <div class="clear"></div>
     </label>
     <label class="radio">
-      <input name="from" type="radio">
+      <input name="from" id="from_scratch" type="radio" value="scratch">
       <span>From Scratch</span>
       <div class="clear"></div>
     </label>

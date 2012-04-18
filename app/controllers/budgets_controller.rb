@@ -12,13 +12,13 @@ class BudgetsController < ApplicationController
   end
 
   def create
-    budget = current_user.budgets.create(budget_params)
+    budget = current_user.budgets.create!(budget_params)
     render :json => budget
   end
 
   def update
     budget = current_user.budgets.find(params[:id])
-    budget.update_attributes(budget_params)
+    budget.update_attributes!(budget_params)
     render :json => budget
   end
 
@@ -29,13 +29,13 @@ class BudgetsController < ApplicationController
   end
 
   def create_income
-    income = find_budget.income_buckets.create(income_params)
+    income = find_budget.income_buckets.create!(income_params)
     render :json => income
   end
 
   def update_income
     bucket = find_budget.income_buckets.find(params[:id])
-    bucket.update_attributes(income_params)
+    bucket.update_attributes!(income_params)
     render :json => bucket
   end
 
@@ -46,13 +46,13 @@ class BudgetsController < ApplicationController
   end
 
   def create_category
-    category = find_budget.categories.create(category_params)
+    category = find_budget.categories.create!(category_params)
     render :json => category
   end
 
   def update_category
     category = find_budget.categories.find(params[:id])
-    category.update_attributes(category_params)
+    category.update_attributes!(category_params)
     render :json => category
   end
 
@@ -65,7 +65,7 @@ class BudgetsController < ApplicationController
   def create_expense
     category = find_budget.categories.find(params[:category_id])
     p category
-    bucket = category.buckets.create(expense_params)
+    bucket = category.buckets.create!(expense_params)
     render :json => bucket
   end
 

@@ -65,17 +65,48 @@ BudgetApp.Models.Budget = Backbone.RelationalModel.extend
     }
   ]
 
-  startsOn: (newValue) -> if newValue then @set("starts_on", newValue) else @toDate(@get("starts_on"))
-  actualBalance: (newValue) -> if newValue then @set("actual_balance", @parseMoney(newValue)) else @get("actual_balance")
-  incomeBuckets: -> @get("income_buckets")
-  expenseCategories: -> @get("categories")
-  remaining: -> @expenseCategories().remaining()
-  actualBuffer: -> @actualBalance() - @remaining()
-  totalIncome: -> @incomeBuckets().budgeted()
-  totalExpenses: -> @expenseCategories().budgeted()
-  budgetedBuffer: -> @totalIncome() - @totalExpenses()
-  parseMoney: (value) -> parseFloat(value, 10) * 100
-  toDate: (value) -> Date.parse(value)
+  startsOn: (newValue) ->
+    if newValue
+      @set("starts_on", newValue)
+    else
+      @toDate(@get("starts_on"))
+
+  actualBalance: (newValue) ->
+    if newValue
+      @set("actual_balance", @parseMoney(newValue))
+    else
+      @get("actual_balance")
+
+  incomeBuckets: ->
+    @get("income_buckets")
+
+  expenseCategories: ->
+    @get("categories")
+
+  remaining: ->
+    @expenseCategories().remaining()
+
+  actualBuffer: ->
+    @actualBalance() - @remaining()
+
+  totalIncome: ->
+    @incomeBuckets().budgeted()
+
+  totalExpenses: ->
+    @expenseCategories().budgeted()
+
+  budgetedBuffer: ->
+    @totalIncome() - @totalExpenses()
+
+  parseMoney: (value) ->
+    parseFloat(value, 10) * 100
+
+  toDate: (value) ->
+    Date.parse(value)
+
+  clear: ->
+    @actualBalance(0)
+    @expenseCategories().clear()
 
   toJSON: ->
     json = Backbone.RelationalModel.prototype.toJSON.call(this)
@@ -89,7 +120,7 @@ BudgetApp.Models.Budget = Backbone.RelationalModel.extend
 class BudgetApp.Collections.Budgets extends Backbone.Collection
   model: BudgetApp.Models.Budget
   url: -> '/budgets'
-  comparator: (a, b) -> 
+  comparator: (a, b) ->
     return 1 if a.startsOn().getTime() < b.startsOn().getTime()
     return -1 if a.startsOn().getTime() > b.startsOn().getTime()
     return 0

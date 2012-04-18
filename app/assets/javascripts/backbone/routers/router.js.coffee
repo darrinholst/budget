@@ -10,7 +10,7 @@ class BudgetApp.Routers.Router extends Backbone.Router
     "sandbox/budgets/:id" : "editBudget"
 
   listBudgets: ->
-    if(window.localStorage)
+    if(window.localStorageEnabled)
       BudgetApp.localStorage = new Backbone.LocalStorage("budgets")
       @budgets.localStorage = BudgetApp.localStorage
 
