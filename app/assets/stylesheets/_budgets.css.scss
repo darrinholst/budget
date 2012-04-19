@@ -40,36 +40,30 @@
     }
   }
 
-
-  .budget {
-    .delete {
-      display: none;
-      cursor: pointer;
-      text-align: center;
+  .budget, .header {
+    .column {
+      width: 30%;
+      float: left;
+      text-align: right;
     }
 
-    &:hover {
-      background: #eee;
-
-      .delete {
-        display: inline-block;
-      }
+    .column:first-child {
+      width: 10%;
+      text-align: left;
     }
   }
 
-  .row-fluid:first-child {
+  .budget {
+    padding: 6px 0;
+  }
+
+  .header {
     font-weight: bold;
     border-bottom: 1px solid #eee;
     margin-bottom: 5px;
   }
 
-  .row-fluid {
-    margin: 0;
-    padding: 6px 4px;
-    @include border-radius(5px);
-  }
-
-  .row-fluid:last-child {
+  .footer {
     margin-top: 15px;
   }
 
