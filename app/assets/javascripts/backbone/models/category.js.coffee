@@ -17,6 +17,7 @@ BudgetApp.Models.Category = Backbone.RelationalModel.extend
 
   initialize: ->
     @on "change", @triggerParentChange
+    @on "remove", @triggerParentChange
 
   triggerParentChange: ->
     _.each(@getRelations(), (relation) -> relation.related && relation.related.trigger("change"))
