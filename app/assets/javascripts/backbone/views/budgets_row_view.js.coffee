@@ -5,6 +5,10 @@ class BudgetApp.Views.BudgetsRowView extends BudgetApp.Views.BaseView
 
   events:
     "click [data-delete-budget]": "deleteBudget"
+    "click": "go"
+
+  go: ->
+    window.router.navigate(@$("a").attr("href"), true)
 
   deleteBudget: ->
     if confirm("Are you sure you want to delete this budget?")
