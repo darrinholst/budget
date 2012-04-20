@@ -55,6 +55,10 @@
 
   .budget {
     padding: 6px 0;
+
+    .touch-indicator {
+      display: none;
+    }
   }
 
   .header {
@@ -67,7 +71,44 @@
     margin-top: 15px;
   }
 
-  input {
-    text-align: left !important;
+  @media (max-width: 767px) {
+    .header {
+      display: none;
+    }
+
+    .budget {
+      border-bottom: 1px solid #eee;
+      padding: 15px 10px;
+      cursor: pointer;
+
+      a {
+        color: #333;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      &:first-child {
+        border-top: 1px solid #eee;
+      }
+
+      .column {
+        display: none;
+
+        &:first-child {
+          width: 95%;
+          display: block;
+        }
+      }
+
+      .touch-indicator {
+        display: inline-block;
+        position: absolute;
+        right: 20px;
+      }
+    }
+
+    .footer {
+      padding: 0 10px;
+    }
   }
 }

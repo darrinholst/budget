@@ -19,3 +19,18 @@ ul {
   list-style: none;
   margin: 0;
 }
+
+@media (max-width: 767px) {
+  body {
+    padding: 0;
+  }
+
+  body > .container {
+    padding-top: 0;
+  }
+
+  .navbar-fixed-top {
+    margin-bottom: 0;
+    padding: 0 20px;
+  }
+}
