@@ -1,5 +1,7 @@
-<div class="alert alert-info">You are currently working in a sandboxed environment. No budgets you create will be saved. Please create an account or sign in to save your work.</div>
+<div class="sandbox">
+<div class="alert alert-info">You are currently signed in as a guest. No budgets you create will be saved. <%= link_to "Sign up", new_user_registration_path %> to start saving your work.</div>
 <div id="backbone"></div>
+</div>
 
 <script>
   window.localStorageEnabled = true;

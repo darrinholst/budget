@@ -1,4 +1,93 @@
 .budgets {
+  * { 
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box; 
+  }
+
+  .budget, .header {
+    line-height: 34px;
+    border-bottom: 1px solid #eee;
+
+    .column {
+      width: 30%;
+      float: left;
+      text-align: right;
+    }
+
+    .column:first-child {
+      width: 10%;
+      text-align: left;
+      padding-left: 7px;
+    }
+
+    .column:last-of-type {
+      padding-right: 7px;
+    }
+  }
+
+  .budget {
+    cursor: pointer !important;
+    @include border-radius(3px);
+
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    &:hover {
+      @include linear-gradient(#f5f5f5, #f0f0f0);
+    }
+
+    .touch-indicator {
+      display: none;
+    }
+  }
+
+  .header {
+    font-weight: bold;
+  }
+
+  .footer {
+    margin-top: 15px;
+  }
+
+  @media (max-width: 767px) {
+    .header {
+      display: none;
+    }
+
+    .budget {
+      border-bottom: 1px solid #eee;
+      padding: 15px 20px;
+      width: 100%;
+
+      .column {
+        display: none;
+
+        &:first-child {
+          width: 100%;
+          display: block;
+        }
+      }
+
+      .touch-indicator {
+        display: inline-block;
+        position: absolute;
+        right: 20px;
+        margin-top: 8px;
+      }
+    }
+
+    .footer {
+      margin-left: -20px;
+      padding-left: 20px;
+    }
+  }
+
+  /*---------------------------------------*/
+  /* Modal popover for adding a new budget */
+  /*---------------------------------------*/
   #addBudget {
     display: none;
     width: 400px;
@@ -38,80 +127,6 @@
         float: left;
         margin-bottom: 0;
       }
-    }
-  }
-
-  .budget, .header {
-    .column {
-      width: 30%;
-      float: left;
-      text-align: right;
-    }
-
-    .column:first-child {
-      width: 10%;
-      text-align: left;
-    }
-  }
-
-  .budget {
-    padding: 6px 0;
-
-    .touch-indicator {
-      display: none;
-    }
-  }
-
-  .header {
-    font-weight: bold;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 5px;
-  }
-
-  .footer {
-    margin-top: 15px;
-  }
-
-  @media (max-width: 767px) {
-    .header {
-      display: none;
-    }
-
-    .budget {
-      border-bottom: 1px solid #eee;
-      padding: 15px 20px;
-      cursor: pointer;
-      margin-left: -20px;
-
-      a {
-        color: #333;
-        text-decoration: none;
-        cursor: pointer;
-      }
-
-      &:first-child {
-        border-top: 1px solid #eee;
-      }
-
-      .column {
-        display: none;
-
-        &:first-child {
-          width: 95%;
-          display: block;
-        }
-      }
-
-      .touch-indicator {
-        display: inline-block;
-        position: absolute;
-        right: 20px;
-      }
-    }
-
-    .footer {
-      margin-left: -20px;
-      padding-left: 20px;
     }
   }
 }

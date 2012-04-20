@@ -28,11 +28,25 @@ form .inline {
 
 .landing {
   h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 70px;
+    font-size: 50px;
     line-height: 100px;
     color: #51A351;
-    text-shadow: 1px 1px 1px #62C462;
+    text-shadow: 1px 1px 0 black;
+  }
+
+  a {
+    font-size: 18px;
+    margin-right: 10px;
+    padding: 10px 15px;
+  }
+}
+
+.sandbox {
+  .alert-info {
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
   }
 }
 

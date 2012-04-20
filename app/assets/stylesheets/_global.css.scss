@@ -20,12 +20,26 @@ ul {
   margin: 0;
 }
 
+.navbar-fixed-top {
+  .brand {
+    padding-left: 26px;
+  }
+  
+  .nav.pull-right {
+    padding-right: 7px;
+  }
+}
+
 @media (max-width: 767px) {
   body > .container {
     padding-top: 0;
   }
 
   .navbar-fixed-top {
-    margin-bottom: 0;
+    margin-bottom: 10px;
+
+    .btn-navbar {
+      margin-right: 15px;
+    }
   }
 }
