@@ -6,6 +6,7 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
     "change input[name=name]": "nameChanged"
     "click [data-add-expense]": "addNewExpenseBucket"
     "click [data-delete-category]": "deleteCategory"
+    "click [data-configure-category]": "configureCategory"
     "sortupdate .buckets": "updateSortOrder"
 
   initialize: ->
@@ -38,6 +39,10 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
     if confirm("Are you sure?")
       @model.destroy()
       @remove()
+
+  configureCategory: =>
+    left = if parseInt($(@el).css("left")) < 0 then 0 else -100
+    $(@el).animate({left: left}, 150)
 
   renderSummary: =>
     @$(".category").html(JST["backbone/templates/budget_expense_category_summary"](

@@ -12,6 +12,8 @@
 //= require twitter/bootstrap/bootstrap-modal
 //= require twitter/bootstrap/bootstrap-collapse
 //= require twitter/bootstrap/bootstrap-dropdown
+//= require twitter/bootstrap/bootstrap-tooltip
+//= require twitter/bootstrap/bootstrap-popover
 //= require backbone
 //= require backbone-relational
 //= require backbone-local

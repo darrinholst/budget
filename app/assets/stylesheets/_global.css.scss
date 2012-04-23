@@ -1,5 +1,6 @@
 body {
   background: #fcfcfc;
+  padding-bottom: 20px;
 }
 
 body > .container {
@@ -22,19 +23,23 @@ ul {
 
 .navbar-fixed-top {
   .brand {
-    padding-left: 26px;
+    padding-left: 20px;
   }
-  
-  .nav.pull-right {
-    padding-right: 7px;
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+  .container {
+    width: auto;
+  }
+}
+
+@media (max-width: 979px) {
+  body > .container {
+    padding-top: 0;
   }
 }
 
 @media (max-width: 767px) {
-  body > .container {
-    padding-top: 0;
-  }
-
   .navbar-fixed-top {
     margin-bottom: 10px;
 
