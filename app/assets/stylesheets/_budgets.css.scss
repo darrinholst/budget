@@ -52,39 +52,6 @@
     margin-top: 15px;
   }
 
-  @media (max-width: 767px) {
-    .header {
-      display: none;
-    }
-
-    .budget {
-      border-bottom: 1px solid #eee;
-      padding: 15px 5px;
-      width: 100%;
-
-      .column {
-        display: none;
-
-        &:first-child {
-          width: 100%;
-          display: block;
-        }
-      }
-
-      .touch-indicator {
-        display: inline-block;
-        position: absolute;
-        right: 25px;
-        margin-top: 8px;
-      }
-    }
-
-    .footer {
-      margin-left: -20px;
-      padding-left: 20px;
-    }
-  }
-
   /*---------------------------------------*/
   /* Modal popover for adding a new budget */
   /*---------------------------------------*/
@@ -129,4 +96,45 @@
       }
     }
   }
+
+  @media (max-width: 500px) {
+    #addBudget {
+      width: 95% !important;
+      margin: 20px auto !important;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .header {
+      display: none;
+    }
+
+    .budget {
+      border-bottom: 1px solid #eee;
+      padding: 15px 5px;
+      width: 100%;
+
+      .column {
+        display: none;
+
+        &:first-child {
+          width: 100%;
+          display: block;
+        }
+      }
+
+      .touch-indicator {
+        display: inline-block;
+        position: absolute;
+        right: 25px;
+        margin-top: 8px;
+      }
+    }
+
+    .footer {
+      margin-left: -20px;
+      padding-left: 20px;
+    }
+  }
 }
+
