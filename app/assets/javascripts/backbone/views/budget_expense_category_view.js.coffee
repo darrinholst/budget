@@ -1,12 +1,13 @@
 class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
   template: JST["backbone/templates/budget_expense_category"]
-  className: "category-container"
+  className: "category-wrapper"
 
   events:
     "change input[name=name]": "nameChanged"
     "click [data-add-expense]": "addNewExpenseBucket"
     "click [data-delete-category]": "deleteCategory"
     "click [data-configure-category]": "configureCategory"
+    "click [data-add-bucket]": "addNewExpenseBucket"
     "sortupdate .buckets": "updateSortOrder"
 
   initialize: ->
@@ -24,6 +25,7 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
 
   addNewExpenseBucket: ->
     @model.buckets().add({})
+    @configureCategory()
 
   newBucketAdded: (bucket) =>
     bucket.save({},
@@ -41,8 +43,8 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
       @remove()
 
   configureCategory: =>
-    left = if parseInt($(@el).css("left")) < 0 then 0 else -100
-    $(@el).animate({left: left}, 150)
+    left = if parseInt(@$(".category-container").css("left")) < 0 then 0 else -150
+    @$(".category-container").animate({left: left}, 150)
 
   renderSummary: =>
     @$(".category").html(JST["backbone/templates/budget_expense_category_summary"](

@@ -1,15 +1,23 @@
-<i class="configure-category icon-cog" data-configure-category></i>
+<div class="category-container">
+  <i class="configure-category icon-cog" data-configure-category></i>
 
-<div class="row-fluid header">
-  <div class="span6"><input type="text" name="name" class="inline-edit" value="{{name}}"></div>
-  <div class="span2">Budgeted</div>
-  <div class="span2">Spent</div>
-  <div class="span2">Remaining</div>
+  <div class="row-fluid header">
+    <div class="span6"><input type="text" name="name" class="inline-edit" value="{{name}}"></div>
+    <div class="span2">Budgeted</div>
+    <div class="span2">Spent</div>
+    <div class="span2">Remaining</div>
+  </div>
+
+  <div class="row-fluid category">
+  </div>
+
+  <div class="row-fluid buckets">
+  </div>
 </div>
 
-<div class="row-fluid category">
+<div class="category-actions">
+  <ul>
+    <li><a href="#" class="btn btn-success" data-add-bucket>Add Bucket</a></li>
+    <li><a href="#" class="btn btn-danger" data-delete-category>Delete Catgory</a></li>
+  </ul>
 </div>
-
-<div class="row-fluid buckets">
-</div>
-
