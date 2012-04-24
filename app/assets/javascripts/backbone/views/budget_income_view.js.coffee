@@ -6,7 +6,7 @@ class BudgetApp.Views.BudgetIncomeView extends BudgetApp.Views.BaseView
     "click [data-add-income]": "addNewIncomeBucket"
     "sortupdate .buckets": "updateSortOrder"
     "click [data-configure-income]": "configureIncome"
-    
+
   initialize: ->
     @collection.on "change", @renderSummary
     @collection.on "remove", @renderSummary

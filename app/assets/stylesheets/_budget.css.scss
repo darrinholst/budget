@@ -104,9 +104,12 @@
 
   .configure-category {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
     cursor: pointer;
+    background: transparent image-url("cog.png") no-repeat 10px 8px;
   }
 
   .category-container, .income {
