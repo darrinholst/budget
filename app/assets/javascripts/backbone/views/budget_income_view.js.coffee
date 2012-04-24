@@ -1,11 +1,12 @@
 class BudgetApp.Views.BudgetIncomeView extends BudgetApp.Views.BaseView
   template: JST["backbone/templates/budget_income"]
-  className: "income"
+  className: "income-wrapper"
 
   events:
     "click [data-add-income]": "addNewIncomeBucket"
     "sortupdate .buckets": "updateSortOrder"
-
+    "click [data-configure-income]": "configureIncome"
+    
   initialize: ->
     @collection.on "change", @renderSummary
     @collection.on "remove", @renderSummary
@@ -17,6 +18,7 @@ class BudgetApp.Views.BudgetIncomeView extends BudgetApp.Views.BaseView
 
   addNewIncomeBucket: ->
     @collection.add({})
+    @configureIncome()
 
   newBucketAdded: (bucket) =>
     bucket.save({},
@@ -26,6 +28,10 @@ class BudgetApp.Views.BudgetIncomeView extends BudgetApp.Views.BaseView
       error: =>
         alert("Couldn't save income bucket")
     )
+
+  configureIncome: =>
+    left = if parseInt(@$(".income").css("left")) < 0 then 0 else -150
+    @$(".income").animate({left: left}, 150)
 
   renderSummary: =>
     @$(".category").html(JST["backbone/templates/budget_income_summary"](

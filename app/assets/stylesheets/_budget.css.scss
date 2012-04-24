@@ -98,23 +98,23 @@
     @include box-shadow(1px 1px 8px 2px rgba(0, 0, 0, .2));
   }
 
-  .category-wrapper {
+  .category-wrapper, .income-wrapper {
     position: relative;
   }
 
-  .category-container {
+  .configure-category {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+  }
+
+  .category-container, .income {
     position: relative;
     z-index: 2;
-
-    .configure-category {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      cursor: pointer;
-    }
   }
 
-  .category-actions {
+  .category-actions, .income-actions {
     position: absolute;
     top: 0;
     right: 0;
