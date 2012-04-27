@@ -8,45 +8,6 @@
 @import "validations";
 @import "inline_edit";
 @import "header";
-
 @import "budgets";
 @import "budget";
-
-form .inline {
-  margin-bottom: 9px;
-  vertical-align: middle;
-
-  input {
-    margin: 0;
-  }
-
-  label {
-    display: inline-block;
-    margin: 0;
-  }
-}
-
-.landing {
-  h1 {
-    font-size: 50px;
-    line-height: 100px;
-    color: #51A351;
-    text-shadow: 1px 1px 0 black;
-  }
-
-  a {
-    font-size: 18px;
-    margin-right: 10px;
-    padding: 10px 15px;
-  }
-}
-
-.sandbox {
-  .alert-info {
-    a {
-      color: inherit;
-      text-decoration: underline;
-    }
-  }
-}
 

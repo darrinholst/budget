@@ -31,6 +31,54 @@ ul {
   }
 }
 
+form .inline {
+  margin-bottom: 9px;
+  vertical-align: middle;
+
+  input {
+    margin: 0;
+  }
+
+  label {
+    display: inline-block;
+    margin: 0;
+  }
+}
+
+.landing {
+  h1 {
+    padding: 20px 0;
+    font-size: 50px;
+    color: #51A351;
+    text-shadow: 1px 1px 0 black;
+  }
+
+  a {
+    font-size: 18px;
+    margin-right: 10px;
+    padding: 10px 15px;
+  }
+}
+
+.sandbox {
+  .alert-info {
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
+  }
+}
+
+#activity {
+  display: none;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  height: 32px;
+  width: 32px;
+  background: image-url("activity.gif") no-repeat;
+}
+
 @media (min-width: 768px) and (max-width: 979px) {
   .container {
     width: auto;

@@ -61,6 +61,8 @@
       <%= yield %>
     </div>
 
+    <div id="activity"></div>
+
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "ga" if Rails.env.production? %>
   </body>
