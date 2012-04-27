@@ -8,4 +8,7 @@ class BudgetApp.Views.BudgetExpenseBucketView extends BudgetApp.Views.BudgetBuck
       spent: @formatMoney(@model.spent())
       remaining: @formatMoney(@model.remaining())
     )).inlineEditable()
+
+    @checkForCleared()
+
     @

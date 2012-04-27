@@ -13,10 +13,12 @@ class BudgetApp.Views.BudgetBucketView extends BudgetApp.Views.BaseView
   nameChanged: =>
     @model.name(@$("input[name=name]").val())
     @model.save()
+    @checkForCleared()
 
   budgetedChanged: =>
     @model.budgeted(@$("input[name=budgeted]").val())
     @model.save()
+    @checkForCleared()
 
   spentChanged: =>
     @model.spent(@$("input[name=spent]").val())
@@ -26,4 +28,11 @@ class BudgetApp.Views.BudgetBucketView extends BudgetApp.Views.BaseView
     if confirm("Are you sure?")
       @model.destroy()
       @remove()
+
+  checkForCleared: =>
+    if @model.remaining() == 0
+      $(@el).addClass("cleared")
+    else
+      $(@el).removeClass("cleared")
+
 

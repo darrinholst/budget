@@ -41,6 +41,10 @@
         text-align: left;
       }
     }
+
+    &.cleared input {
+      color: #aaa;
+    }
   }
 
   .category {

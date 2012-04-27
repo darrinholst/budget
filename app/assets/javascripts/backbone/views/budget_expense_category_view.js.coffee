@@ -54,6 +54,11 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
       remaining: @formatMoney(@model.remaining())
     )).inlineEditable()
 
+    if @model.remaining() == 0
+      @$(".category").addClass("cleared")
+    else
+      @$(".category").removeClass("cleared")
+
   renderBucket: (bucket, focus) =>
     view = new BudgetApp.Views.BudgetExpenseBucketView(model: bucket)
     @$(".buckets").append(view.render().el)
