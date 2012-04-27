@@ -58,5 +58,6 @@ class BudgetApp.Views.BudgetsView extends BudgetApp.Views.BaseView
   render: =>
     $(@el).html(@template())
     @addAll()
+    $(".nav.budget-list").hide()
     @
 

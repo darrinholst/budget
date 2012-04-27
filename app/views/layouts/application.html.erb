@@ -33,6 +33,14 @@
           <a class="brand" href="/">Budget Buffer</a>
 
           <div class="nav-collapse">
+            <ul class="nav budget-list">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="current-budget"></span><b class="caret"></b></a>
+                <ul class="dropdown-menu available-budgets">
+                </ul>
+              </li>
+            </ul>
+
             <ul class="nav pull-right">
               <% if user_signed_in? %>
                 <li>
