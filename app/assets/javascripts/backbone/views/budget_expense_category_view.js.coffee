@@ -48,8 +48,8 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
       @remove()
 
   configureCategory: =>
-    left = if parseInt(@$(".category-container").css("left")) < 0 then 0 else -150
-    @$(".category-container").animate({left: left}, 150)
+    left = if parseInt(@$(".category-container").css("left")) < 0 then 0 else -250
+    @$(".category-container").animate({left: left}, 250)
 
   renderSummary: =>
     @$(".category").html(JST["backbone/templates/budget_expense_category_summary"](
