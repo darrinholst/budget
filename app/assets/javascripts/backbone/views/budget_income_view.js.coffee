@@ -6,11 +6,16 @@ class BudgetApp.Views.BudgetIncomeView extends BudgetApp.Views.BaseView
     "click [data-add-income]": "addNewIncomeBucket"
     "sortupdate .buckets": "updateSortOrder"
     "click [data-configure-income]": "configureIncome"
+    "click [data-collapse]": "collapseCategory"
 
   initialize: ->
     @collection.on "change", @renderSummary
     @collection.on "remove", @renderSummary
     @collection.on "add", @newBucketAdded
+
+  collapseCategory: =>
+    @$(".buckets").toggle("slide")
+    @$(".collapse-category").toggleClass("icon-chevron-down").toggleClass("icon-chevron-right")
 
   updateSortOrder: =>
     buckets = ({id: $(el).data("view").model.id, sort_order: i + 1} for el, i in @$(".bucket"))

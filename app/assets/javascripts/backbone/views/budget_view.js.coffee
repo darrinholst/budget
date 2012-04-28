@@ -1,6 +1,18 @@
 class BudgetApp.Views.BudgetView extends BudgetApp.Views.BaseView
   template: JST["backbone/templates/budget"]
 
+  events:
+    "click [data-collapse-all]": "collapseAll"
+    "click [data-expand-all]": "expandAll"
+
+  collapseAll: =>
+    $(".buckets").slideUp()
+    $(".collapse-category").removeClass("icon-chevron-down").addClass("icon-chevron-right")
+
+  expandAll: =>
+    $(".buckets").slideDown()
+    $(".collapse-category").removeClass("icon-chevron-right").addClass("icon-chevron-down")
+
   fillDropDown: =>
     $(".nav.budget-list").show()
     $(".nav.budget-list .current-budget").html(@formatDate(@model.startsOn()))
@@ -8,7 +20,6 @@ class BudgetApp.Views.BudgetView extends BudgetApp.Views.BaseView
     available.html("")
     @model.collection.each (budget) =>
       available.append("<li><a href=\"#{budget.url()}\" data-push-state>#{@formatDate(budget.startsOn())}</a></li>") unless budget.id == @model.id
-
 
   render : (event) ->
     $(@el).html(@template())

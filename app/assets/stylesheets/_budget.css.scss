@@ -1,4 +1,18 @@
 .edit-budget {
+  .collapse-all {
+    padding: 15px 5px;
+
+    li {
+      display: inline-block;
+      float: left;
+      margin-right: 15px;
+    }
+
+    a:focus {
+      outline: none;
+    }
+  }
+
   .main {
     float: left;
     margin-left: 0;
@@ -6,7 +20,14 @@
 
   .sidebar {
     position: fixed;
-    top: 50px;
+    top: 98px;
+  }
+
+  .collapse-category {
+    position: absolute;
+    cursor: pointer;
+    left: 5px;
+    top: 14px;
   }
 
   .header {
@@ -14,10 +35,7 @@
     color: #aaa;
     text-align: right;
 
-    > div {
-    }
-
-    > div:first-child {
+    > div:first-of-type {
       margin-left: -12px;
       margin-right: 12px;
 
@@ -171,12 +189,16 @@
   @media (min-width: 768px) and (max-width: 979px) {
     .sidebar {
       right: 10px;
-      top: 67px;
+      top: 115px;
       width: 29%
     }
 
-    .main {
+    .main{
       padding-left: 20px;
+    }
+
+    .collapse-all {
+      padding-left: 25px;
     }
   }
 
