@@ -8,17 +8,13 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
     "click [data-delete-category]": "deleteCategory"
     "click [data-configure-category]": "configureCategory"
     "click [data-add-bucket]": "addNewExpenseBucket"
-    "click [data-collapse]": "collapseCategory"
+    "click [data-collapse]": "toggleCollapseCategory"
     "sortupdate .buckets": "updateSortOrder"
 
   initialize: ->
     @model.bind "change", @renderSummary
     @model.bind "remove", @renderSummary
     @model.buckets().on "add", @newBucketAdded
-
-  collapseCategory: =>
-    @$(".buckets").toggle("slide")
-    @$(".collapse-category").toggleClass("icon-chevron-down").toggleClass("icon-chevron-right")
 
   updateSortOrder: =>
     buckets = ({id: $(el).data("view").model.id, sort_order: i + 1} for el, i in @$(".bucket"))
@@ -75,7 +71,7 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
     @$(".buckets").sortable(axis: "y")
 
   render: ->
-    $(@el).html(@template(name: @model.name())).inlineEditable()
+    $(@el).html(@template(name: @model.name(), collapsed: @isCollapsed())).inlineEditable()
     @renderSummary()
     @renderBuckets()
     @

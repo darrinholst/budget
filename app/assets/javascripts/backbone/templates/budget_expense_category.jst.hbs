@@ -1,10 +1,11 @@
 <div class="category-container">
   <div class="configure-category" data-configure-category></div>
+  <i class="collapse-category icon icon-chevron-{{#if collapsed}}right{{else}}down{{/if}}" data-collapse></i>
 
   <div class="row-fluid category header">
   </div>
 
-  <div class="row-fluid buckets">
+  <div class="row-fluid buckets" {{#if collapsed}}style="display: none"{{/if}}>
   </div>
 </div>
 

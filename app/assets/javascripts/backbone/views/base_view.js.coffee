@@ -13,3 +13,16 @@ class BudgetApp.Views.BaseView extends Backbone.View
 
     number
 
+  toggleCollapseCategory: =>
+    @$(".buckets").toggle("slide")
+    @$(".collapse-category").toggleClass("icon-chevron-down").toggleClass("icon-chevron-right")
+
+    if Modernizr.localstorage
+      if @$(".collapse-category").hasClass("icon-chevron-right")
+        localStorage.setItem("collapsed#{@model.id}", true)
+      else
+        localStorage.removeItem("collapsed#{@model.id}")
+
+  isCollapsed: =>
+    Modernizr.localstorage && 'true' == localStorage.getItem("collapsed#{@model.id}")
+
