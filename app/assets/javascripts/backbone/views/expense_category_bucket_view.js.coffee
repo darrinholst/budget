@@ -1,5 +1,5 @@
-class BudgetApp.Views.BudgetExpenseBucketView extends BudgetApp.Views.BudgetBucketView
-  template: JST["backbone/templates/budget_expense_bucket"]
+class BudgetApp.Views.ExpenseCategoryBucketView extends BudgetApp.Views.BaseBucketView
+  template: JST["backbone/templates/expense_category_bucket"]
 
   render: =>
     $(@el).html(@template(

@@ -1,5 +1,5 @@
-class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
-  template: JST["backbone/templates/budget_expense_category"]
+class BudgetApp.Views.ExpenseCategoryView extends BudgetApp.Views.BaseView
+  template: JST["backbone/templates/expense_category"]
   className: "category-wrapper"
 
   events:
@@ -48,7 +48,7 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
     @$(".category-container").animate({left: left}, 250)
 
   renderSummary: =>
-    @$(".category").html(JST["backbone/templates/budget_expense_category_summary"](
+    @$(".category").html(JST["backbone/templates/expense_category_summary"](
       name: @model.name()
       budgeted: @formatMoney(@model.budgeted())
       spent: @formatMoney(@model.spent())
@@ -61,7 +61,7 @@ class BudgetApp.Views.BudgetExpenseCategoryView extends BudgetApp.Views.BaseView
       @$(".category").removeClass("cleared")
 
   renderBucket: (bucket, focus) =>
-    view = new BudgetApp.Views.BudgetExpenseBucketView(model: bucket)
+    view = new BudgetApp.Views.ExpenseCategoryBucketView(model: bucket)
     @$(".buckets").append(view.render().el)
     $(view.el).find("input[name=name]").focus() if focus
     $(view.el).data("view", view)

@@ -1,4 +1,6 @@
-class BudgetApp.Views.BudgetBucketView extends BudgetApp.Views.BaseView
+#= require backbone/views/base_view
+
+class BudgetApp.Views.BaseBucketView extends BudgetApp.Views.BaseView
   className: "row-fluid bucket"
 
   events:
@@ -34,5 +36,4 @@ class BudgetApp.Views.BudgetBucketView extends BudgetApp.Views.BaseView
       $(@el).addClass("cleared")
     else
       $(@el).removeClass("cleared")
-
 

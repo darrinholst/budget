@@ -1,5 +1,5 @@
-class BudgetApp.Views.BudgetsRowView extends BudgetApp.Views.BaseView
-  template: JST["backbone/templates/budgets_row"]
+class BudgetApp.Views.IndexRowView extends BudgetApp.Views.BaseView
+  template: JST["backbone/templates/index_row"]
   tagName: "div"
   className: "row-fluid budget"
 

@@ -1,5 +1,5 @@
-class BudgetApp.Views.BudgetIncomeView extends BudgetApp.Views.BaseView
-  template: JST["backbone/templates/budget_income"]
+class BudgetApp.Views.IncomeView extends BudgetApp.Views.BaseView
+  template: JST["backbone/templates/income"]
   className: "income-wrapper"
 
   events:
@@ -35,12 +35,12 @@ class BudgetApp.Views.BudgetIncomeView extends BudgetApp.Views.BaseView
     @$(".income").animate({left: left}, 150)
 
   renderSummary: =>
-    @$(".category").html(JST["backbone/templates/budget_income_summary"](
+    @$(".category").html(JST["backbone/templates/income_summary"](
       budgeted: @formatMoney(@collection.budgeted())
     ))
 
   renderBucket: (bucket, focus) =>
-    view = new BudgetApp.Views.BudgetIncomeBucketView(model: bucket)
+    view = new BudgetApp.Views.IncomeBucketView(model: bucket)
     @$(".buckets").append(view.render().el)
     $(view.el).find("input[name=name]").focus() if(focus)
     $(view.el).data("view", view)

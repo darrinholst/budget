@@ -1,5 +1,5 @@
-class BudgetApp.Views.BudgetsView extends BudgetApp.Views.BaseView
-  template: JST["backbone/templates/budgets"]
+class BudgetApp.Views.IndexView extends BudgetApp.Views.BaseView
+  template: JST["backbone/templates/index"]
   className: "budgets"
 
   events: ->
@@ -49,7 +49,7 @@ class BudgetApp.Views.BudgetsView extends BudgetApp.Views.BaseView
     )
 
   renderBudget: (budget) =>
-    view = new BudgetApp.Views.BudgetsRowView({collection: @collection, model : budget})
+    view = new BudgetApp.Views.IndexRowView({collection: @collection, model : budget})
     @$(".row-fluid:last").before(view.render().el)
 
   addAll: =>

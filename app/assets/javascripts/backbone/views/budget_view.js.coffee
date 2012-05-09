@@ -23,8 +23,8 @@ class BudgetApp.Views.BudgetView extends BudgetApp.Views.BaseView
 
   render : (event) ->
     $(@el).html(@template())
-    @$("[data-income-container]").html(new BudgetApp.Views.BudgetIncomeView(model: @model, collection: @model.incomeBuckets()).render().el)
-    @$("[data-expenses-container]").html(new BudgetApp.Views.BudgetExpensesView(model: @model, collection: @model.expenseCategories()).render().el)
-    @$("[data-overview-container]").html(new BudgetApp.Views.BudgetOverviewView(model: @model).render().el)
+    @$("[data-income-container]").html(new BudgetApp.Views.IncomeView(model: @model, collection: @model.incomeBuckets()).render().el)
+    @$("[data-expenses-container]").html(new BudgetApp.Views.ExpensesView(model: @model, collection: @model.expenseCategories()).render().el)
+    @$("[data-overview-container]").html(new BudgetApp.Views.OverviewView(model: @model).render().el)
     @fillDropDown()
     @

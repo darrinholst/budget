@@ -1,5 +1,5 @@
-class BudgetApp.Views.BudgetExpensesView extends BudgetApp.Views.BaseView
-  template: JST["backbone/templates/budget_expenses"]
+class BudgetApp.Views.ExpensesView extends BudgetApp.Views.BaseView
+  template: JST["backbone/templates/expenses"]
   className: "expenses"
 
   events:
@@ -27,7 +27,7 @@ class BudgetApp.Views.BudgetExpensesView extends BudgetApp.Views.BaseView
     )
 
   renderCategory: (category, focus) =>
-    view = new BudgetApp.Views.BudgetExpenseCategoryView(model: category)
+    view = new BudgetApp.Views.ExpenseCategoryView(model: category)
     @$(".categories").append(view.render().el)
     $(view.el).find("input[name=name]").focus() if focus
     $(view.el).data("view", view)

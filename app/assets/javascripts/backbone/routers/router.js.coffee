@@ -14,7 +14,7 @@ class BudgetApp.Routers.Router extends Backbone.Router
       BudgetApp.localStorage = new Backbone.LocalStorage("budgets")
       @budgets.localStorage = BudgetApp.localStorage
 
-    $("#backbone").html(new BudgetApp.Views.BudgetsView(collection: @budgets).render().el)
+    $("#backbone").html(new BudgetApp.Views.IndexView(collection: @budgets).render().el)
 
   editBudget: (id) ->
     budget = @budgets.get(id)

@@ -16,7 +16,9 @@ class BudgetApp.Views.BaseView extends Backbone.View
   toggleCollapseCategory: =>
     @$(".buckets").toggle("slide")
     @$(".collapse-category").toggleClass("icon-chevron-down").toggleClass("icon-chevron-right")
+    @saveCollapsedState()
 
+  saveCollapsedState: =>
     if Modernizr.localstorage
       if @$(".collapse-category").hasClass("icon-chevron-right")
         localStorage.setItem("collapsed#{@model.id}", true)
