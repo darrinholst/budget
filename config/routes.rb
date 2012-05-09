@@ -1,20 +1,14 @@
 BudgetApp::Application.routes.draw do
   devise_for :users
 
-  root :to => 'landing#index'
-  get "sandbox/*anything", :to => "sandbox#index", :as => :sandbox
+  root to: 'landing#index'
+  get "sandbox/*anything", to: "sandbox#index", as: :sandbox
 
   resources :budgets do
-    post "incomes", :to => 'budgets#create_income'
-    put "incomes/:id", :to => 'budgets#update_income'
-    delete "incomes/:id", :to => 'budgets#delete_income'
+    resources :incomes, only: [:create, :update, :destroy]
 
-    post "categories", :to => 'budgets#create_category'
-    put "categories/:id", :to => 'budgets#update_category'
-    delete "categories/:id", :to => 'budgets#delete_category'
-
-    post "categories/:category_id/expenses", :to => 'budgets#create_expense'
-    put "categories/:category_id/expenses/:id", :to => 'budgets#update_expense'
-    delete "categories/:category_id/expenses/:id", :to => 'budgets#delete_expense'
+    resources :categories, only: [:create, :update, :destroy] do
+      resources :expenses, only: [:create, :update, :destroy]
+    end
   end
 end
