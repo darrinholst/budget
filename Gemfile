@@ -10,6 +10,7 @@ gem 'git-version'
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'rspec'
 end
 
 group :assets do
