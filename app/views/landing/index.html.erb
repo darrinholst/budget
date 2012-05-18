@@ -1,8 +1,10 @@
-<div class="landing">
+<div class="hero-unit">
+  <h1>Envelope Budgeting!</h1>
+  <p>This is a super, alpha, beta envelope budgeting application. It should work for the most part. Heck, I'm using it, how bad could it be?</p>
   <p>
-    <h1>Coming Soon</h1>
+    <%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-success btn-large" %>
+    <%= link_to "Try Before You Buy", sandbox_path(:anything => "budgets"), :class => "btn btn-success btn-large" %>
   </p>
-
-  <%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-warning" %>
-  <%= link_to "Try It Out", sandbox_path(:anything => "budgets"), :class => "btn btn-warning" %>
 </div>
+
+<a href="https://github.com/darrinholst/budget"><img style="position: absolute; top: 0; left: 0; border: 0; z-index: 9999;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png" alt="Fork me on GitHub"></a>
