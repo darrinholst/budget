@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'controllers/landing_controller'
+require 'landing_controller'
 
 describe LandingController do
   let(:controller) {LandingController.new}

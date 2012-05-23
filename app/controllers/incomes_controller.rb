@@ -1,6 +1,12 @@
+require 'income_bucket_repository'
+
 class IncomesController < ApplicationController
   before_filter :authenticate_user!
   respond_to :json
+
+  def initialize(incomeBucketRepository = IncomeBucketRepository.new)
+    @incomeBucketRepository = incomeBucketRepository
+  end
 
   def create
     income = find_budget.income_buckets.create!(income_params)
@@ -13,10 +19,9 @@ class IncomesController < ApplicationController
     render :json => bucket
   end
 
-  def destory
-    bucket = find_budget.income_buckets.find(params[:id])
-    bucket.destroy
-    render :json => bucket
+  def destroy
+    destroyed = @incomeBucketRepository.destroy(current_user, params[:budget_id], params[:id])
+    render json: destroyed
   end
 
   private
