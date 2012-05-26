@@ -10,7 +10,10 @@ gem 'git-version'
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'guard-jasmine'
+  gem 'jasminerice'
   gem 'rspec'
+  gem 'thin'
 end
 
 group :assets do
