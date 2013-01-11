@@ -11,47 +11,47 @@ BudgetApp.Models.Bucket = Backbone.RelationalModel.extend
   triggerParentChange: ->
     _.each(@getRelations(), (relation) -> relation.related && relation.related.trigger("change"))
 
-  name: (newValue) -> 
+  name: (newValue) ->
     if newValue?
-      @set("name", newValue) 
-    else 
+      @set("name", newValue)
+    else
       @get("name")
 
-  budgeted: (newValue) -> 
+  budgeted: (newValue) ->
     if newValue?
-      @set("budgeted", @parseMoney(newValue)) 
-    else 
+      @set("budgeted", @parseMoney(newValue))
+    else
       @get("budgeted")
 
-  spent: (newValue) -> 
+  spent: (newValue) ->
     if newValue?
-      @set("spent", @parseMoney(newValue)) 
-    else 
+      @set("spent", @parseMoney(newValue))
+    else
       @get("spent")
 
-  remaining: -> 
+  remaining: ->
     @budgeted() - @spent()
 
-  parseMoney: (value) -> 
+  parseMoney: (value) ->
     parseFloat(value, 10) * 100
 
 class BudgetApp.Collections.Buckets extends Backbone.Collection
   model: BudgetApp.Models.Bucket
 
-  initialize: -> 
+  initialize: ->
     @localStorage = BudgetApp.localStorage
 
-  url: -> 
+  url: ->
     "#{@category.url()}/expenses"
 
-  budgeted: -> 
+  budgeted: ->
     @models.reduce ((memo, bucket) -> memo + bucket.budgeted()), 0
 
-  spent: -> 
+  spent: ->
     @models.reduce ((memo, bucket) -> memo + bucket.spent()), 0
 
-  remaining: -> 
-    @models.reduce ((memo, bucket) -> memo + bucket.remaining()), 0
+  remaining: ->
+    @models.reduce ((memo, bucket) -> memo + (if bucket.remaining() < 0 then 0 else bucket.remaining())), 0
 
   clear: ->
     @each (bucket) -> bucket.spent(0)
