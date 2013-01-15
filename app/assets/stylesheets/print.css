@@ -1,0 +1,51 @@
+body {
+  padding: 5px;
+}
+
+body, p, ol, ul, td, th, input, div {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 12px;
+}
+
+.navbar, .dont-print, a, .datepicker {
+  display: none;
+}
+
+.row-fluid, .cleared {
+  clear: both;
+}
+
+.category > div, .bucket > div, .overview > .row-fluid > div {
+  float: left;
+}
+
+.income-wrapper {
+  margin: 30px 0;
+}
+
+.category-wrapper {
+  margin-bottom: 30px;
+}
+
+.header input {
+  font-weight: bold;
+}
+
+input {
+  border: none;
+  height: 14px;
+  line-height: 14px;
+}
+
+ul {
+  list-style: none;
+}
+
+.span6 {
+  width: 200px;
+}
+
+.span2 {
+  width: 100px;
+}
+
