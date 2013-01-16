@@ -17,13 +17,13 @@ input.inline-edit {
     background: white;
     @include box-shadow(inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6));
   }
+}
 
-  &[readonly] {
-    cursor: default;
+.readonly input.inline-edit, .inline-edit[readonly] {
+  cursor: default;
 
-    &.js-hover, &:focus {
-      border: 1px solid transparent;
-      @include box-shadow(none);
-    }
+  &.js-hover, &:focus {
+    border: 1px solid transparent;
+    @include box-shadow(none);
   }
 }

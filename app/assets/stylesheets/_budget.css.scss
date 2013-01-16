@@ -203,10 +203,6 @@
     .overview {
       margin-left: 0;
     }
-
-    input.inline-edit {
-      // width: 50%;
-    }
   }
 
   @media (min-width: 768px) and (max-width: 979px) {
@@ -240,3 +236,20 @@
   }
 }
 
+.readonly {
+  .bucket:hover .delete {
+    display: none;
+  }
+
+  .configure-category {
+    display: none;
+  }
+
+  a[data-add-category] {
+    display: none;
+  }
+
+  .ui-sortable {
+    cursor: default;
+  }
+}

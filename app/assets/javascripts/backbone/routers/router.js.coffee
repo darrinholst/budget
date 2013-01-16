@@ -6,8 +6,13 @@ class BudgetApp.Routers.Router extends Backbone.Router
   routes:
     "budgets"             : "listBudgets"
     "sandbox/budgets"     : "listBudgets"
+    "shared/:token"       : "showBudget"
     "budgets/:id"         : "editBudget"
     "sandbox/budgets/:id" : "editBudget"
+
+  showBudget: ->
+    budget = @budgets.first()
+    $("#backbone").html(new BudgetApp.Views.BudgetView(model: budget, readonly: true).render().el)
 
   listBudgets: ->
     if(window.localStorageEnabled)

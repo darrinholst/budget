@@ -3,6 +3,7 @@ BudgetApp::Application.routes.draw do
 
   root to: 'landing#index'
   get "sandbox/*anything", to: "sandbox#index", as: :sandbox
+  get "shared/:token", to: "shared#show"
 
   resources :budgets do
     resources :incomes, only: [:create, :update, :destroy]
