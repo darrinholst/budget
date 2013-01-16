@@ -19,21 +19,18 @@ BudgetApp.Models.Bucket = Backbone.RelationalModel.extend
 
   budgeted: (newValue) ->
     if newValue?
-      @set("budgeted", @parseMoney(newValue))
+      @set("budgeted", $.parseMoney(newValue))
     else
       @get("budgeted")
 
   spent: (newValue) ->
     if newValue?
-      @set("spent", @parseMoney(newValue))
+      @set("spent", $.parseMoney(newValue))
     else
       @get("spent")
 
   remaining: ->
     @budgeted() - @spent()
-
-  parseMoney: (value) ->
-    parseFloat(value, 10) * 100
 
 class BudgetApp.Collections.Buckets extends Backbone.Collection
   model: BudgetApp.Models.Bucket

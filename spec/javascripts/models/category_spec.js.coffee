@@ -15,8 +15,8 @@ describe "Category", ->
 
     it "calculates remaining amount with some negative categories", ->
       categories.add(category(100, 0))
-      categories.add(category(100, 150)) #overspending should add to remaining
-      expect(categories.remaining()).toEqual(150)
+      categories.add(category(100, 150))
+      expect(categories.remaining()).toEqual(100)
 
     category = (budgeted, spent) ->
       {buckets: [budgeted: budgeted, spent: spent]}

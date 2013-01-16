@@ -73,7 +73,7 @@ BudgetApp.Models.Budget = Backbone.RelationalModel.extend
 
   actualBalance: (newValue) ->
     if newValue?
-      @set("actual_balance", @parseMoney(newValue))
+      @set("actual_balance", $.parseMoney(newValue))
     else
       @get("actual_balance")
 
@@ -97,9 +97,6 @@ BudgetApp.Models.Budget = Backbone.RelationalModel.extend
 
   budgetedBuffer: ->
     @totalIncome() - @totalExpenses()
-
-  parseMoney: (value) ->
-    parseFloat(value, 10) * 100
 
   toDate: (value) ->
     Date.parse(value)
