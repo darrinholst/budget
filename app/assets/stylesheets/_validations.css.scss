@@ -2,7 +2,7 @@
   border: 1px solid red;
   padding: 20px;
   margin: 20px 0;
-  @include border-radius(3px);
+  border-radius: 3px;
 
   ul {
     list-style: none;

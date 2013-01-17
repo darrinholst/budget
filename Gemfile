@@ -2,11 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
 gem 'bourbon'
-gem 'timeliness'
 gem 'devise'
+gem 'font-awesome-rails'
 gem 'jquery-rails'
+gem 'timeliness'
 gem 'twitter-bootstrap-rails'
-gem 'git-version'
 
 group :development, :test do
   gem 'sqlite3'
