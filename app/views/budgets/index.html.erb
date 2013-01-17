@@ -8,7 +8,16 @@
         :income_buckets => {:only => [:id, :name, :budgeted]},
         :categories => {
           :only => [:id, :name],
-          :include => {:buckets => {:only => [:id, :name, :budgeted, :spent]}}
+          :include => {
+            :buckets => {
+              :only => [:id, :name, :budgeted, :spent],
+              :include => {
+                :itemizations => {
+                  :only => [:id, :name, :spent]
+                }
+              }
+            }
+          }
         }
       }
     ).html_safe

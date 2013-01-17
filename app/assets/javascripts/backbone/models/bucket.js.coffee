@@ -1,4 +1,17 @@
 BudgetApp.Models.Bucket = Backbone.RelationalModel.extend
+  relations: [
+    {
+      type: Backbone.HasMany
+      key: 'itemizations'
+      relatedModel: 'BudgetApp.Models.Itemization'
+      collectionType: 'BudgetApp.Collections.Itemizations'
+      includeInJSON: false
+      reverseRelation:
+        key: 'bucket'
+        includeInJSON: false
+    }
+  ]
+
   defaults:
     name: "Name..."
     budgeted: 0
@@ -27,10 +40,13 @@ BudgetApp.Models.Bucket = Backbone.RelationalModel.extend
     if newValue?
       @set("spent", $.parseMoney(newValue))
     else
-      @get("spent")
+      if @itemizations().any() then @itemizations().spent() else @get("spent")
 
   remaining: ->
     @budgeted() - @spent()
+
+  itemizations: ->
+    @get("itemizations")
 
 class BudgetApp.Collections.Buckets extends Backbone.Collection
   model: BudgetApp.Models.Bucket

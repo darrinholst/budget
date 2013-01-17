@@ -3,7 +3,12 @@ class BudgetsController < ApplicationController
   respond_to :json
 
   def index
-    @budgets = current_user.budgets.order("starts_on desc").includes([:income_buckets, {:categories => :buckets}]).all
+    @budgets = current_user
+                 .budgets
+                 .order("starts_on desc")
+                 .includes([:income_buckets, {:categories => {:buckets => :itemizations}}])
+                 .all
+
     render :index
   end
 

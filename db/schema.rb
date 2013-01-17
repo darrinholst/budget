@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130115231846) do
+ActiveRecord::Schema.define(:version => 20130117025154) do
 
   create_table "buckets", :force => true do |t|
     t.string   "name"
@@ -47,6 +47,14 @@ ActiveRecord::Schema.define(:version => 20130115231846) do
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
     t.integer  "sort_order", :default => 0
+  end
+
+  create_table "itemizations", :force => true do |t|
+    t.string   "name"
+    t.integer  "bucket_id"
+    t.integer  "spent",      :default => 0, :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "users", :force => true do |t|
