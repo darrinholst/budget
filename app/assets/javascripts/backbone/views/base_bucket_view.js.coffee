@@ -8,6 +8,7 @@ class BudgetApp.Views.BaseBucketView extends BudgetApp.Views.BaseView
     "change input[name=budgeted]": "budgetedChanged"
     "change input[name=spent]": "spentChanged"
     "click [data-delete-bucket]": "deleteBucket"
+    "click [data-itemize-bucket]": "itemizeBucket"
 
   initialize: =>
     @model.bind("change", @render)
@@ -25,6 +26,8 @@ class BudgetApp.Views.BaseBucketView extends BudgetApp.Views.BaseView
   spentChanged: =>
     @model.spent(@$("input[name=spent]").val())
     @model.save()
+
+  itemizeBucket: =>
 
   deleteBucket: =>
     if confirm("Are you sure?")

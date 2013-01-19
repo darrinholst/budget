@@ -61,7 +61,7 @@ class BudgetApp.Views.ExpenseCategoryView extends BudgetApp.Views.BaseView
       @$(".category").removeClass("cleared")
 
   renderBucket: (bucket, focus) =>
-    view = new BudgetApp.Views.ExpenseCategoryBucketView(model: bucket)
+    view = new BudgetApp.Views.ExpenseBucketView(model: bucket)
     @$(".buckets").append(view.render().el)
     $(view.el).find("input[name=name]").focus() if focus
     $(view.el).data("view", view)

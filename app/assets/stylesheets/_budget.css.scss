@@ -111,7 +111,7 @@
       }
     }
 
-    .delete {
+    .delete, .itemize {
       position: absolute;
       width: 16px;
       height: 20px;
@@ -122,8 +122,19 @@
       text-align: center;
     }
 
+    .spent {
+      position: relative;
+    }
+
+    .itemize {
+      top: 3px;
+      right: -23px;
+    }
+
     &:hover {
-      .add, .delete {
+      background: #fffff0;
+
+      .add, .delete, .itemize {
         display: inline-block;
         cursor: pointer;
       }
