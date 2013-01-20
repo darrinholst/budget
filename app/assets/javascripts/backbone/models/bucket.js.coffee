@@ -45,8 +45,11 @@ BudgetApp.Models.Bucket = Backbone.RelationalModel.extend
   remaining: ->
     @budgeted() - @spent()
 
-  itemizations: ->
-    @get("itemizations")
+  itemizations: (newValues) ->
+    if newValues?
+      @set("itemizations", newValues)
+    else
+      @get("itemizations")
 
 class BudgetApp.Collections.Buckets extends Backbone.Collection
   model: BudgetApp.Models.Bucket

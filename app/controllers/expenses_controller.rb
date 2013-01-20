@@ -27,6 +27,6 @@ class ExpensesController < ApplicationController
   end
 
   def expense_params
-    params.slice(:name, :budgeted, :spent)
+    params.slice(:name, :budgeted, :spent, :itemizations_attributes)
   end
 end

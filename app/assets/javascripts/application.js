@@ -10,6 +10,7 @@
 //= require inline-edit
 //= require activity
 //= require money-parser
+//= require popover-closer
 //= require bootstrap-datepicker
 //= require twitter/bootstrap/bootstrap-modal
 //= require twitter/bootstrap/bootstrap-collapse
