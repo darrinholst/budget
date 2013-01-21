@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby -w
 require 'digest/md5'
 
+raise "Ruby 1.9.3 is requied" unless RUBY_VERSION.eql?("1.9.3")
+
 def if_changed(filename)
   last_digest_filename = ".#{filename.gsub('/', '_')}"
   last_digest = File.read(last_digest_filename) rescue ""
@@ -17,8 +19,13 @@ if_changed("Gemfile.lock") do
 end
 
 if_changed("db/schema.rb") do
-  system "rake db:reset"
+  puts "Migrating database..."
+  system "rake db:migrate"
 end
 
-system "script/rails server"
+puts "Seeding database..."
+system "rake db:seed"
+
+puts "Starting server..."
+system "bundle exec rails s"
 

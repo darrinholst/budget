@@ -1,25 +1,6 @@
 <div id="backbone"></div>
 
 <script>
-  window.budgets = <%= @budgets.to_json(
-      :only => [:id, :starts_on, :actual_balance],
-
-      :include => {
-        :income_buckets => {:only => [:id, :name, :budgeted]},
-        :categories => {
-          :only => [:id, :name],
-          :include => {
-            :buckets => {
-              :only => [:id, :name, :budgeted, :spent],
-              :include => {
-                :itemizations => {
-                  :only => [:id, :name, :spent]
-                }
-              }
-            }
-          }
-        }
-      }
-    ).html_safe
-  %>
+  window.budgets = <%= render("partials/budgets.json.jbuilder", budgets: @budgets).html_safe %>
 </script>
+

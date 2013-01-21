@@ -1,14 +1,10 @@
 class BudgetsController < ApplicationController
   before_filter :authenticate_user!
-  respond_to :json
+
+  attr_writer :budget_repository
 
   def index
-    @budgets = current_user
-                 .budgets
-                 .order("starts_on desc")
-                 .includes([:income_buckets, {:categories => {:buckets => :itemizations}}])
-                 .all
-
+    @budgets = budget_repository.all_for(current_user)
     render :index
   end
 
@@ -17,20 +13,17 @@ class BudgetsController < ApplicationController
   end
 
   def create
-    budget = current_user.budgets.create!(budget_params)
-    render :json => budget
+    @budget = current_user.budgets.create!(budget_params)
   end
 
   def update
-    budget = current_user.budgets.find(params[:id])
-    budget.update_attributes!(budget_params)
-    render :json => budget
+    @budget = current_user.budgets.find(params[:id])
+    @budget.update_attributes!(budget_params)
   end
 
   def destroy
-    budget = current_user.budgets.find(params[:id])
-    budget.destroy
-    render :json => budget
+    @budget = current_user.budgets.find(params[:id])
+    @budget.destroy
   end
 
   private
@@ -38,4 +31,9 @@ class BudgetsController < ApplicationController
   def budget_params
     params.slice(:starts_on, :actual_balance, :income_buckets_attributes, :categories_attributes)
   end
+
+  def budget_repository
+    @budget_repository ||= BudgetRepository.new
+  end
 end
+

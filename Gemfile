@@ -4,15 +4,21 @@ gem 'rails', '3.2.11'
 gem 'bourbon'
 gem 'devise'
 gem 'font-awesome-rails'
+gem 'jbuilder'
 gem 'jquery-rails'
 gem 'timeliness'
 gem 'twitter-bootstrap-rails'
 
 group :development, :test do
-  gem 'sqlite3'
+  gem 'factory_girl'
+  gem 'growl'
+  gem 'guard'
   gem 'guard-jasmine'
+  gem 'guard-rspec'
   gem 'jasminerice'
+  gem 'rb-fsevent'
   gem 'rspec'
+  gem 'sqlite3'
   gem 'thin'
 end
 
