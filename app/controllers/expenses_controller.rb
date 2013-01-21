@@ -11,7 +11,7 @@ class ExpensesController < ApplicationController
   def update
     bucket = find_budget.expense_buckets.find(params[:id])
     bucket.update_attributes!(expense_params)
-    render :json => bucket
+    render :json => bucket.to_json(:include => {:itemizations => {:only => [:id, :name, :spent]}})
   end
 
   def destroy

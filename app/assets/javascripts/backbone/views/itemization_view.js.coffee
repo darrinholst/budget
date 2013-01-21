@@ -3,22 +3,16 @@ class BudgetApp.Views.ItemizationView extends BudgetApp.Views.BaseView
   className: "row-fluid itemization"
 
   events:
-    "change input[name=name]": "nameChanged"
-    "change input[name=spent]": "spentChanged"
+    "change input[name=itemization_name]": "nameChanged"
+    "change input[name=itemization_spent]": "spentChanged"
 
   nameChanged: (event) =>
-    event.stopPropagation()
-    @model.name(@$("input[name=name]").val())
-    @saveEm()
+    @model.name(@$("input[name=itemization_name]").val())
+    @model.get("bucket").save(itemizations_attributes: [@model.toJSON()])
 
   spentChanged: (event) =>
-    event.stopPropagation()
-    @model.spent(@$("input[name=spent]").val())
-    @saveEm()
-
-  saveEm: ->
-    bucket = @model.get("bucket")
-    bucket.save(itemizations_attributes: bucket.itemizations().toJSON())
+    @model.spent(@$("input[name=itemization_spent]").val())
+    @model.get("bucket").save(itemizations_attributes: [@model.toJSON()])
 
   render: ->
     $(@el).html(@template(
