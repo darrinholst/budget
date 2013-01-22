@@ -1,4 +1,4 @@
-BudgetApp.Models.Category = Backbone.RelationalModel.extend
+BudgetApp.Models.Category = BudgetApp.Models.BaseModel.extend
   relations: [
     {
       type: Backbone.HasMany

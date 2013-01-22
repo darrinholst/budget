@@ -1,4 +1,4 @@
-BudgetApp.Models.Budget = Backbone.RelationalModel.extend
+BudgetApp.Models.Budget = BudgetApp.Models.BaseModel.extend
   defaults: {
     actual_balance: 0
 

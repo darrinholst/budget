@@ -1,4 +1,4 @@
-BudgetApp.Models.Itemization = Backbone.RelationalModel.extend
+BudgetApp.Models.Itemization = BudgetApp.Models.BaseModel.extend
   defaults:
     name: "Name..."
     spent: 0

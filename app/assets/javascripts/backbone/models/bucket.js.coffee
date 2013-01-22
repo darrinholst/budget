@@ -1,4 +1,4 @@
-BudgetApp.Models.Bucket = Backbone.RelationalModel.extend
+BudgetApp.Models.Bucket = BudgetApp.Models.BaseModel.extend
   relations: [
     {
       type: Backbone.HasMany
