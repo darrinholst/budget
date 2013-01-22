@@ -19,6 +19,7 @@ group :development, :test do
   gem 'guard-jasmine'
   gem 'guard-rspec'
   gem 'jasminerice'
+  gem 'meta_request'
   gem 'rb-fsevent'
   gem 'rspec'
   gem 'sqlite3'
