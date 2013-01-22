@@ -12,6 +12,8 @@ class BudgetApp.Views.IndexView extends BudgetApp.Views.BaseView
     @collection.on "add", @newBudgetAdded
 
   addBudget: =>
+    console.log(@$("#from_clone").attr("checked"))
+
     if @$("#from_clone").attr("checked")
       newBudget = @collection.get(@$("#from_selection").val()).clone()
       newBudget.clear()
@@ -31,7 +33,7 @@ class BudgetApp.Views.IndexView extends BudgetApp.Views.BaseView
       options.length = 0
       options.add(new Option(@formatDate(budget.startsOn()), budget.id)) for budget in @collection.models
     else
-      @$("#from_clone").attr("disabled", true)
+      @$("#from_clone").attr("disabled", true).attr("checked", false)
       @$("#from_scratch").attr("checked", true)
 
   closeModal: =>

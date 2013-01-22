@@ -1,6 +1,6 @@
 <div id="backbone"></div>
 
 <script>
-  window.budgets = <%= render("partials/budgets.json.jbuilder", budgets: @budgets).html_safe %>
+  window.budgets = <%= render(:partial => "partials/budgets", :formats => [:json], :locals => {budgets: @budgets}).html_safe %>
 </script>
 

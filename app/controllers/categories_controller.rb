@@ -1,22 +1,18 @@
 class CategoriesController < ApplicationController
   before_filter :authenticate_user!
-  respond_to :json
 
   def create
-    category = find_budget.categories.create!(category_params)
-    render :json => category
+    @category = find_budget.categories.create!(category_params)
   end
 
   def update
-    category = find_budget.categories.find(params[:id])
-    category.update_attributes!(category_params)
-    render :json => category
+    @category = find_budget.categories.find(params[:id])
+    @category.update_attributes!(category_params)
   end
 
   def destroy
-    category = find_budget.categories.find(params[:id])
-    category.destroy
-    render :json => category
+    @category = find_budget.categories.find(params[:id])
+    @category.destroy
   end
 
   private
@@ -26,6 +22,9 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params.slice(:name, :buckets_attributes)
+    params.permit(
+      :name,
+      :buckets_attributes
+    )
   end
 end

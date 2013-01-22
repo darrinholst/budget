@@ -1,23 +1,18 @@
 class ExpensesController < ApplicationController
   before_filter :authenticate_user!
-  respond_to :json
 
   def create
-    category = find_budget.categories.find(params[:category_id])
-    bucket = category.buckets.create!(expense_params)
-    render :json => bucket
+    @expense_bucket = find_budget.categories.find(params[:category_id]).buckets.create!(expense_params)
   end
 
   def update
-    bucket = find_budget.expense_buckets.find(params[:id])
-    bucket.update_attributes!(expense_params)
-    render :json => bucket.to_json(:include => {:itemizations => {:only => [:id, :name, :spent]}})
+    @expense_bucket = find_budget.expense_buckets.find(params[:id])
+    @expense_bucket.update_attributes!(expense_params)
   end
 
   def destroy
-    bucket = find_budget.expense_buckets.find(params[:id])
-    bucket.destroy
-    render :json => bucket
+    @expense_bucket = find_budget.expense_buckets.find(params[:id])
+    @expense_bucket.destroy
   end
 
   private
@@ -27,6 +22,12 @@ class ExpensesController < ApplicationController
   end
 
   def expense_params
-    params.slice(:name, :budgeted, :spent, :itemizations_attributes)
+    params.permit(
+      :name,
+      :budgeted,
+      :spent,
+      :sort_order,
+      :itemizations_attributes
+    )
   end
 end

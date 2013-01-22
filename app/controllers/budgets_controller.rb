@@ -13,23 +13,26 @@ class BudgetsController < ApplicationController
   end
 
   def create
-    @budget = current_user.budgets.create!(budget_params)
+    @budget = budget_repository.create(current_user, budget_params)
   end
 
   def update
-    @budget = current_user.budgets.find(params[:id])
-    @budget.update_attributes!(budget_params)
+    @budget = budget_repository.update(current_user, params[:id], budget_params)
   end
 
   def destroy
-    @budget = current_user.budgets.find(params[:id])
-    @budget.destroy
+    @budget = budget_repository.delete(current_user, params[:id])
   end
 
   private
 
   def budget_params
-    params.slice(:starts_on, :actual_balance, :income_buckets_attributes, :categories_attributes)
+    params.permit(
+      :starts_on,
+      :actual_balance,
+      :income_buckets_attributes,
+      :categories_attributes
+    )
   end
 
   def budget_repository

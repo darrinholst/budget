@@ -5,7 +5,7 @@ class BudgetApp.Views.IncomeView extends BudgetApp.Views.BaseView
   events:
     "click [data-add-income]": "addNewIncomeBucket"
     "sortupdate .buckets": "updateSortOrder"
-    "click [data-configure-income]": "configureIncome"
+    "click [data-configure-category]": "configureIncome"
     "click [data-collapse]": "toggleCollapseCategory"
 
   initialize: ->

@@ -6,6 +6,7 @@ gem 'devise'
 gem 'font-awesome-rails'
 gem 'jbuilder'
 gem 'jquery-rails'
+gem 'strong_parameters'
 gem 'timeliness'
 gem 'twitter-bootstrap-rails'
 

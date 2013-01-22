@@ -12,6 +12,10 @@ class ApplicationController
     @params ||= {}
   end
 
+  def render(args)
+    self.render_args = args
+  end
+
   def method_missing(meth, *args)
     if meth =~ /.*=$/
       attributes[meth[0...-1].to_sym] = args.first

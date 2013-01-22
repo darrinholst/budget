@@ -6,8 +6,6 @@ class Budget < ActiveRecord::Base
   accepts_nested_attributes_for :income_buckets
   accepts_nested_attributes_for :categories
 
-  attr_accessible :starts_on, :actual_balance, :income_buckets_attributes, :categories_attributes
-
   validates :starts_on, :presence => true
 
   def starts_on=(date)

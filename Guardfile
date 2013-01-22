@@ -7,3 +7,12 @@ group 'fast specs' do
   end
 end
 
+group 'javascript tests' do
+  guard 'jasmine', :server => :thin do
+    watch(%r{(?:app|lib)/assets/javascripts/(.+?)\.(js\.coffee|js|coffee)$}) { |m| "spec/javascripts/#{m[1]}_spec.#{m[2]}" }
+    watch(%r{spec/javascripts/(.+)_spec\.(js\.coffee|js|coffee)$})           { |m| m[0] }
+    watch(%r{spec/javascripts/helpers/(.+?)\.(js\.coffee|js|coffee)$})       { "spec/javascripts" }
+    watch(%r{spec/javascripts/spec\.(js\.coffee|js|coffee)$})                { "spec/javascripts" }
+  end
+end
+
