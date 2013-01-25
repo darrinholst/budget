@@ -33,6 +33,7 @@ end
 
 group :assets do
   gem 'less-rails'
+  gem 'therubyracer'
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
