@@ -32,6 +32,7 @@ group :development do
 end
 
 group :assets do
+  gem 'less-rails'
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
