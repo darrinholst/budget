@@ -27,6 +27,10 @@ group :development, :test do
   gem 'thin'
 end
 
+group :development do
+  gem 'awesome_print'
+end
+
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'

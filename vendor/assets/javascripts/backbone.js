@@ -1359,7 +1359,7 @@
   var methodMap = {
     'create': 'POST',
     'update': 'PUT',
-    'patch':  'PATCH',
+    'patch':  'PUT',
     'delete': 'DELETE',
     'read':   'GET'
   };

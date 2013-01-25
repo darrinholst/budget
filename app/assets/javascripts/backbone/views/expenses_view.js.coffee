@@ -11,7 +11,7 @@ class BudgetApp.Views.ExpensesView extends BudgetApp.Views.BaseView
 
   updateSortOrder: =>
     categories = ({id: $(el).data("view").model.id, sort_order: i + 1} for el, i in @$(".category-wrapper"))
-    @model.save(categories_attributes: categories)
+    @model.save({categories_attributes: categories}, {patch: true})
 
   addNewCategory: =>
     @collection.add({})
