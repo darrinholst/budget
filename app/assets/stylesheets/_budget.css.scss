@@ -18,7 +18,7 @@
     margin-left: 0;
 
     header {
-      padding: 10px 30px 15px 20px;
+      padding: 10px 30px 5px 20px;
 
       .row-fluid {
         text-align: right;
@@ -33,7 +33,7 @@
           margin-left: -15px;
           margin-right: 15px;
           text-align: left;
-          font-size: 14px;
+          font-size: 16px;
         }
       }
     }
@@ -45,6 +45,7 @@
   }
 
   .collapse-category {
+    display: none;
     position: absolute;
     cursor: pointer;
     left: 5px;
@@ -52,7 +53,6 @@
   }
 
   .header {
-    font-size: 12px;
     color: #aaa;
     text-align: right;
 
@@ -61,7 +61,7 @@
       margin-right: 12px;
 
       input {
-        font-size: 18px;
+        font-size: 20px;
         font-weight: bold;
         text-align: left;
       }
@@ -69,31 +69,35 @@
   }
 
   .income .category div:first-child {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
   }
 
-  .category, .bucket {
+  .cleared input {
+    color: #999;
+  }
+
+  .over input {
+    color: #a00;
+  }
+
+  .category, .bucket, .itemization {
     div:first-child {
       input {
         margin-left: -5px;
         text-align: left;
       }
     }
-
-    &.cleared input {
-      color: #aaa;
-    }
   }
 
   .category {
     font-weight: bold;
-    font-size: 15px;
+    font-size: 18px;
     margin-bottom: 4px;
 
     input {
       font-weight: bold;
-      font-size: 15px;
+      font-size: 18px;
     }
   }
 
@@ -101,13 +105,13 @@
     cursor: move;
   }
 
-  .bucket {
+  .bucket, .itemization {
     position: relative;
     padding-right: 30px;
 
     div:first-child {
       input {
-        margin-left: 15px;
+        margin-left: 7px;
       }
     }
 
@@ -132,11 +136,17 @@
     }
 
     &:hover {
-      background: #fffff0;
-
       .add, .delete, .itemize {
         display: inline-block;
         cursor: pointer;
+      }
+    }
+  }
+
+  .itemization {
+    div:first-child {
+      input {
+        margin-left: 14px;
       }
     }
   }
@@ -155,9 +165,16 @@
 
   .category-wrapper, .income-wrapper {
     position: relative;
+
+    &:hover {
+      .configure-category, .collapse-category {
+        display: block;
+      }
+    }
   }
 
   .configure-category {
+    display: none;
     position: absolute;
     top: 7px;
     right: 0;

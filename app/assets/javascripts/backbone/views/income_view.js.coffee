@@ -15,7 +15,7 @@ class BudgetApp.Views.IncomeView extends BudgetApp.Views.BaseView
 
   updateSortOrder: =>
     buckets = ({id: $(el).data("view").model.id, sort_order: i + 1} for el, i in @$(".bucket"))
-    @model.save({income_buckets_attributes: buckets}, {patch: true})
+    @model.patch(income_buckets_attributes: buckets)
 
   addNewIncomeBucket: ->
     @collection.add({})

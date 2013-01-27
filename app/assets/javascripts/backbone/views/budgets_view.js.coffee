@@ -12,8 +12,6 @@ class BudgetApp.Views.IndexView extends BudgetApp.Views.BaseView
     @collection.on "add", @newBudgetAdded
 
   addBudget: =>
-    console.log(@$("#from_clone").attr("checked"))
-
     if @$("#from_clone").attr("checked")
       newBudget = @collection.get(@$("#from_selection").val()).clone()
       newBudget.clear()

@@ -7,11 +7,11 @@ class BudgetApp.Views.BudgetView extends BudgetApp.Views.BaseView
 
   collapseAll: =>
     $(".buckets").slideUp()
-    $(".collapse-category").removeClass("icon-chevron-down").addClass("icon-chevron-right")
+    $(".collapse-category").removeClass("icon-angle-down").addClass("icon-angle-right")
 
   expandAll: =>
     $(".buckets").slideDown()
-    $(".collapse-category").removeClass("icon-chevron-right").addClass("icon-chevron-down")
+    $(".collapse-category").removeClass("icon-angle-right").addClass("icon-angle-down")
 
   fillDropDown: =>
     $(".nav.budget-list").show()

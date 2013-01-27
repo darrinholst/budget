@@ -1,48 +1,37 @@
 #= require backbone/views/base_view
 
 class BudgetApp.Views.BaseBucketView extends BudgetApp.Views.BaseView
-  className: "row-fluid bucket"
-
-  events:
+  events: ->
     "change input[name=name]": "nameChanged"
     "change input[name=budgeted]": "budgetedChanged"
-    "change input[name=spent]": "spentChanged"
     "click [data-delete-bucket]": "deleteBucket"
-    "click [data-itemize-bucket]": "itemizeBucket"
-    "focus input[name=spent]": "spentFocused"
 
   initialize: =>
-    @model.bind("change", @render)
+    @model.bind "change", @colorize
+    @model.bind "change:name", @renderName
+    @model.bind "change:budgeted", @renderBudgeted
 
-  nameChanged: =>
-    @model.name(@$("input[name=name]").val())
-    @model.save()
-    @checkForCleared()
+  nameChanged: (event) =>
+    @model.name(event.target.value)
+    @model.patch(name: @model.name())
 
-  budgetedChanged: =>
-    @model.budgeted(@$("input[name=budgeted]").val())
-    @model.save()
-    @checkForCleared()
+  renderName: =>
+    @$("input[name=name]").val(@model.name())
 
-  spentChanged: =>
-    @model.spent(@$("input[name=spent]").val())
-    @model.save()
+  budgetedChanged: (event) =>
+    @model.budgeted(event.target.value)
+    @model.patch(budgeted: @model.budgeted())
 
-  spentFocused: =>
-    if @model.itemizations().any() then @itemizeBucket()
-
-  itemizeBucket: ->
-    view = new BudgetApp.Views.ItemizationsView(target: @$(".itemize"), model: @model)
-    view.render()
+  renderBudgeted: =>
+    @$("input[name=budgeted]").val(@formatMoney(@model.budgeted()))
+    @$("input[name=remaining]").val(@formatMoney(@model.remaining()))
 
   deleteBucket: =>
     if confirm("Are you sure?")
       @model.destroy()
       @remove()
 
-  checkForCleared: =>
-    if @model.remaining() == 0
-      $(@el).addClass("cleared")
-    else
-      $(@el).removeClass("cleared")
+  colorize: =>
+    $(@el)[if @model.remaining() == 0 then "addClass" else "removeClass"]("cleared")
+    $(@el)[if @model.remaining() < 0 then "addClass" else "removeClass"]("over")
 
