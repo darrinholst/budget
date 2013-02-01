@@ -22,9 +22,12 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params.permit(
+    p = params.permit(
       :name,
       :buckets_attributes
     )
+
+    p[:buckets_attributes] ||= []
+    p
   end
 end
