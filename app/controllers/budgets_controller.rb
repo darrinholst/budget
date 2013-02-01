@@ -1,27 +1,33 @@
 class BudgetsController < ApplicationController
   before_filter :authenticate_user!
-
   attr_writer :budget_repository
 
   def index
+    authorize Budget
     @budgets = budget_repository.all_for(current_user)
     render :index
   end
 
   def show
+    authorize Budget
     index
   end
 
   def create
-    @budget = budget_repository.create(current_user, budget_params)
+    authorize Budget
+    @budget = budget_repository.create(budget_params.merge(:user_id => current_user))
   end
 
   def update
-    @budget = budget_repository.update(current_user, params[:id], budget_params)
+    @budget = budget_repository.find(params[:id])
+    authorize @budget
+    budget_repository.update(@budget, budget_params)
   end
 
   def destroy
-    @budget = budget_repository.delete(current_user, params[:id])
+    @budget = budget_repository.find(params[:id])
+    authorize @budget
+    budget_repository.delete(@budget)
   end
 
   private

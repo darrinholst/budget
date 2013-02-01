@@ -6,19 +6,19 @@ class BudgetRepository
         .all
   end
 
-  def create(user, params)
-    user.budgets.create!(params)
+  def create(params)
+    Budget.create!(params)
   end
 
-  def update(user, id, params)
-    budget = user.budgets.find(id)
+  def find(id)
+    Budget.find(id)
+  end
+
+  def update(budget, params)
     budget.update_attributes!(params)
-    budget
   end
 
-  def delete(user, id)
-    budget = user.budgets.find(id)
+  def delete(budget)
     budget.destroy
-    budget
   end
 end

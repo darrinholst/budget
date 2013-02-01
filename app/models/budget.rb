@@ -1,4 +1,5 @@
 class Budget < ActiveRecord::Base
+  belongs_to :user
   has_many :categories, :dependent => :destroy
   has_many :income_buckets, :dependent => :destroy
   has_many :expense_buckets, :through => :categories, :source => :buckets

@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'budget'
 require 'budgets_controller'
 
 describe BudgetsController do
