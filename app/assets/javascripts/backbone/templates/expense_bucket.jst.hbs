@@ -1,11 +1,12 @@
-<div class="row-fluid bucket">
+<div class="row-fluid bucket {{#if hasItemizations}}has-itemizations{{/if}}">
   <div class="span6"><input type="text" name="name" class="inline-edit" value="{{name}}"></div>
   <div class="span2"><input type="text" name="budgeted" class="inline-edit" value="{{budgeted}}"></div>
   <div class="span2 spent"><input type="text" name="spent" class="inline-edit" value="{{spent}}"><i class="itemize icon icon-plus" data-itemize-bucket title="itemize spending"></i></div>
   <div class="span2"><input type="text" name="remaining" class="inline-edit" value="{{remaining}}" readonly></div>
+  <i class="collapse-bucket icon icon-angle-{{#if collapsed}}right{{else}}down{{/if}}" data-collapse></i>
   <i class="delete icon icon-remove" data-delete-bucket title="remove bucket"></i>
 </div>
 
-<div class="itemizations">
+<div class="itemizations" {{#if collapsed}}style="display: none"{{/if}}>
 </div>
 

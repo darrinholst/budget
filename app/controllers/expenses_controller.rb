@@ -27,7 +27,6 @@ class ExpensesController < ApplicationController
       :budgeted,
       :spent,
       :sort_order,
-      :itemizations_attributes
     )
   end
 end

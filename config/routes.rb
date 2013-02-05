@@ -12,4 +12,8 @@ BudgetApp::Application.routes.draw do
       resources :expenses, only: [:create, :update, :destroy]
     end
   end
+
+  scope "buckets/:bucket_id" do
+    resources :itemizations, only: [:create, :update, :destroy]
+  end
 end

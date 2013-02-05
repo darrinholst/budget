@@ -1,0 +1,6 @@
+#!/bin/sh
+
+bundle install --without staging production
+bundle exec rake db:test:prepare
+RAILS_ENV=test  bundle exec rake spec spec:javascripts
+

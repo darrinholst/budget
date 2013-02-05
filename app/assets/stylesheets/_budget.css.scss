@@ -135,6 +135,18 @@
       right: -23px;
     }
 
+    .collapse-bucket {
+      display: none;
+      position: absolute;
+      cursor: pointer;
+      left: -5px;
+      top: 5px;
+    }
+
+    &.has-itemizations:hover .collapse-bucket {
+      display: block;
+    }
+
     &:hover {
       .add, .delete, .itemize {
         display: inline-block;

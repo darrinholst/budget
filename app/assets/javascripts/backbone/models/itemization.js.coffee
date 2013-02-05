@@ -22,7 +22,7 @@ class BudgetApp.Collections.Itemizations extends Backbone.Collection
     @localStorage = BudgetApp.localStorage
 
   url: ->
-    "#{@bucket.url()}/itemizations"
+    "/buckets/#{@bucket.id}/itemizations"
 
   spent: ->
     @models.reduce ((memo, item) -> memo + item.spent()), 0
