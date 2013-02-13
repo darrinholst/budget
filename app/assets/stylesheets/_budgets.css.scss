@@ -64,6 +64,7 @@
     display: none;
     width: 400px;
     margin-left: -200px;
+    z-index: 9999;
 
     .inline {
       display: inline-block;

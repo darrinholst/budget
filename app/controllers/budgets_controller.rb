@@ -15,7 +15,7 @@ class BudgetsController < ApplicationController
 
   def create
     authorize Budget
-    @budget = budget_repository.create(budget_params.merge(:user_id => current_user))
+    @budget = budget_repository.create(budget_params.merge(:user_id => current_user.id))
   end
 
   def update
