@@ -3,6 +3,13 @@ BudgetApp.Models.Itemization = BudgetApp.Models.BaseModel.extend
     name: "Name..."
     spent: 0
 
+  initialize: ->
+    @on "change", @triggerParentChange
+    @on "remove", @triggerParentChange
+
+  triggerParentChange: ->
+    _.each(@getRelations(), (relation) -> relation.related && relation.related.trigger("change"))
+
   name: (newValue) ->
     if newValue?
       @set("name", newValue)

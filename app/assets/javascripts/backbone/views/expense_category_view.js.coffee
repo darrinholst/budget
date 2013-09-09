@@ -17,7 +17,7 @@ class BudgetApp.Views.ExpenseCategoryView extends BudgetApp.Views.BaseView
     @model.buckets().on "add", @newBucketAdded
 
   updateSortOrder: =>
-    buckets = ({id: $(el).data("view").model.id, sort_order: i + 1} for el, i in @$(".bucket"))
+    buckets = ({id: $(el).data("view").model.id, sort_order: i + 1} for el, i in @$(".buckets > div"))
     @model.patch(buckets_attributes: buckets)
 
   nameChanged: =>
