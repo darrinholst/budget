@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'incomes_controller'
 
 describe IncomesController do
-  let(:income_bucket_repository) {stub}
+  let(:income_bucket_repository) {double}
   let(:controller) {
     controller = IncomesController.new
     controller.income_bucket_repository = income_bucket_repository
@@ -10,7 +10,7 @@ describe IncomesController do
   }
 
   describe "#destroy" do
-    let(:bucket) {stub}
+    let(:bucket) {double}
 
     it "deletes the bucket" do
       controller.params = {budget_id: :budget_id, id: :bucket_id}

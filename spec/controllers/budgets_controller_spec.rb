@@ -3,8 +3,8 @@ require 'budget'
 require 'budgets_controller'
 
 describe BudgetsController do
-  let(:budget_repository) {stub("Budget Repository")}
-  let(:current_user) {stub("Current User")}
+  let(:budget_repository) {double("Budget Repository")}
+  let(:current_user) {double("Current User")}
   let(:controller) {
     controller = BudgetsController.new
     controller.budget_repository = budget_repository
