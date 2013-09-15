@@ -22,12 +22,8 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    p = params.permit(
-      :name,
-      :buckets_attributes
-    )
-
-    p[:buckets_attributes] ||= []
-    p
+    params.permit(:name).tap do |whitelisted|
+      whitelisted[:buckets_attributes] = params[:buckets_attributes] || []
+    end
   end
 end

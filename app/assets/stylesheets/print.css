@@ -15,8 +15,16 @@ body, p, ol, ul, td, th, input, div {
   clear: both;
 }
 
-.category > div, .bucket > div, .overview > .row-fluid > div {
+.itemization > div, .category > div, .bucket > div, .overview > .row-fluid > div {
   float: left;
+}
+
+.bucket > div:first-child {
+  text-indent: 10px;
+}
+
+.itemization > div:first-child {
+  text-indent: 20px;
 }
 
 .income-wrapper {

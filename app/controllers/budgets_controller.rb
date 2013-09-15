@@ -33,12 +33,10 @@ class BudgetsController < ApplicationController
   private
 
   def budget_params
-    params.permit(
-      :starts_on,
-      :actual_balance,
-      :income_buckets_attributes,
-      :categories_attributes
-    )
+    params.permit(:starts_on, :actual_balance).tap do |whitelisted|
+      whitelisted[:income_buckets_attributes] = params[:income_buckets_attributes] || []
+      whitelisted[:categories_attributes] = params[:categories_attributes] || []
+    end
   end
 
   def budget_repository
