@@ -1,6 +1,7 @@
 <div id="backbone"></div>
 
 <script>
+  <% self.formats = [:json] %>
   window.budgets = <%= render(:partial => "partials/budgets", :formats => [:json], :locals => {budgets: @budgets}).html_safe %>
 </script>
 
