@@ -8,7 +8,7 @@ end
 
 desc 'run javascript specs'
 task 'spec:javascripts' do
-  `bundle exec guard-jasmine -s thin`
+  `bundle exec guard-jasmine`
   fail unless $? == 0
 end
 

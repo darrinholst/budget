@@ -31,4 +31,9 @@ BudgetApp::Application.configure do
 
   # Do not compress assets
   config.assets.compress = false
+
+  unless ENV["LOG_TO_FILE"]
+    config.logger = Logger.new(STDOUT)
+    STDOUT.sync = true
+  end
 end

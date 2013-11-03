@@ -9,11 +9,13 @@ gem 'font-awesome-rails'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'pg'
 gem 'pundit'
 gem 'safe_yaml'
 gem 'strong_parameters'
 gem 'timeliness'
 gem 'twitter-bootstrap-rails'
+gem 'unicorn'
 
 group :development, :test do
   gem 'factory_girl'
@@ -25,12 +27,15 @@ group :development, :test do
   gem 'meta_request'
   gem 'rb-fsevent'
   gem 'rspec'
-  gem 'sqlite3'
-  gem 'thin'
 end
 
 group :development do
   gem 'awesome_print'
+  gem 'foreman'
+end
+
+group :test do
+  gem 'sqlite3'
 end
 
 group :assets do
@@ -43,9 +48,7 @@ group :assets do
 end
 
 group :production do
-  gem 'thin'
-  gem 'heroku'
-  gem 'pg'
   gem 'newrelic_rpm'
+  gem 'rails_12factor'
 end
 

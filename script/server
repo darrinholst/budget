@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby -w
 require 'digest/md5'
+require 'fileutils'
 
 def if_changed(filename)
   last_digest_filename = ".#{filename.gsub('/', '_')}"
@@ -12,18 +13,22 @@ def if_changed(filename)
   end
 end
 
+unless File.exist?(".env")
+  puts "creating .env from sample.env"
+  FileUtils.cp("sample.env", ".env")
+end
+
 if_changed("Gemfile.lock") do
   system "bundle"
 end
 
 if_changed("db/schema.rb") do
   puts "Migrating database..."
-  system "rake db:migrate"
+  system "LOG_TO_FILE=true rake db:migrate"
 end
 
 puts "Seeding database..."
-system "rake db:seed"
-
+system "LOG_TO_FILE=true rake db:seed"
 puts "Starting server..."
-system "bundle exec rails s"
+exec "bundle exec foreman start"
 
