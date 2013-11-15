@@ -1,2 +1,5 @@
 $.parseMoney = (value) ->
-  parseInt((parseFloat(value.replace(/,/g, ''), 10) * 100).toFixed())
+  valueAsString = ('' + value).replace(/,/g, '')
+  valueAsFloat = parseFloat(valueAsString, 10) * 100
+  parseInt(valueAsFloat.toFixed())
+
