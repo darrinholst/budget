@@ -15,19 +15,22 @@ class BudgetsController < ApplicationController
 
   def create
     authorize Budget
-    @budget = budget_repository.create(budget_params.merge(:user_id => current_user.id))
+    budget = budget_repository.create(budget_params.merge(:user_id => current_user.id))
+    render json: budget
   end
 
   def update
-    @budget = budget_repository.find(params[:id])
-    authorize @budget
-    budget_repository.update(@budget, budget_params)
+    budget = budget_repository.find(params[:id])
+    authorize budget
+    budget_repository.update(budget, budget_params)
+    render json: budget
   end
 
   def destroy
-    @budget = budget_repository.find(params[:id])
-    authorize @budget
-    budget_repository.delete(@budget)
+    budget = budget_repository.find(params[:id])
+    authorize budget
+    budget_repository.delete(budget)
+    render json: budget
   end
 
   private

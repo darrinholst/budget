@@ -2,17 +2,19 @@ class ItemizationsController < ApplicationController
   before_filter :authenticate_user!
 
   def create
-    @itemization = find_bucket.itemizations.create!(itemization_params)
+    render json: find_bucket.itemizations.create!(itemization_params)
   end
 
   def update
-    @itemization = find_bucket.itemizations.find(params[:id])
-    @itemization.update_attributes!(itemization_params)
+    itemization = find_bucket.itemizations.find(params[:id])
+    itemization.update_attributes!(itemization_params)
+    render json: itemization
   end
 
   def destroy
-    @itemization = find_bucket.itemizations.find(params[:id])
-    @itemization.destroy
+    itemization = find_bucket.itemizations.find(params[:id])
+    itemization.destroy
+    render json: itemization
   end
 
   private

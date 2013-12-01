@@ -19,7 +19,7 @@ describe IncomesController do
 
       controller.destroy
 
-      controller.instance_variable_get("@income_bucket").should == bucket
+      controller.render_args.should == {json: bucket}
     end
   end
 end

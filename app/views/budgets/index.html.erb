@@ -1,9 +1,7 @@
 <div id="backbone"></div>
 <span class="pull-right contact"><%= link_to 'Contact me', 'mailto:darrinholst+budgetbuffer@gmail.com'%></span>
 
-
 <script>
-  <% self.formats = [:json] %>
-  window.budgets = <%= render(:partial => "partials/budgets", :formats => [:json], :locals => {budgets: @budgets}).html_safe %>
+  window.budgets = <%= json_for(@budgets).html_safe %>
 </script>
 

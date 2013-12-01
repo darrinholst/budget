@@ -4,16 +4,18 @@ class IncomesController < ApplicationController
   attr_writer :income_bucket_repository
 
   def create
-    @income_bucket = find_budget.income_buckets.create!(income_params)
+    render json: find_budget.income_buckets.create!(income_params)
   end
 
   def update
-    @income_bucket = find_budget.income_buckets.find(params[:id])
-    @income_bucket.update_attributes!(income_params)
+    bucket = find_budget.income_buckets.find(params[:id])
+    bucket.update_attributes!(income_params)
+    render josn: bucket
   end
 
   def destroy
-    @income_bucket = income_bucket_repository.destroy(current_user, params[:budget_id], params[:id])
+    bucket = income_bucket_repository.destroy(current_user, params[:budget_id], params[:id])
+    render json: bucket
   end
 
   private
