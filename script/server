@@ -24,11 +24,11 @@ end
 
 if_changed("db/schema.rb") do
   puts "Migrating database..."
-  system "LOG_TO_FILE=true rake db:migrate"
+  system "LOG_TO_FILE=true bundle exec rake db:migrate"
 end
 
 puts "Seeding database..."
-system "LOG_TO_FILE=true rake db:seed"
+system "LOG_TO_FILE=true bundle exec rake db:seed"
 puts "Starting server..."
 exec "bundle exec foreman start"
 

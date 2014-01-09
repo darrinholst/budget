@@ -18,8 +18,12 @@ class BudgetApp.Views.BudgetView extends BudgetApp.Views.BaseView
     $(".nav.budget-list .current-budget").html(@formatDate(@model.startsOn()))
     available = $(".nav.budget-list .available-budgets")
     available.html("")
+
     @model.collection.each (budget) =>
-      available.append("<li><a href=\"#{budget.url()}\" data-push-state>#{@formatDate(budget.startsOn())}</a></li>") unless budget.id == @model.id
+      if budget.id == @model.id
+        available.append("<li class=\"current\">#{@formatDate(budget.startsOn())}</li>")
+      else
+        available.append("<li><a href=\"#{budget.url()}\" data-push-state>#{@formatDate(budget.startsOn())}</a></li>")
 
   render : (event) ->
     $(@el).html(@template(readonly: @options.readonly))
