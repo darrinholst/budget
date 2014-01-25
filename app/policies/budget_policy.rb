@@ -16,6 +16,7 @@ class BudgetPolicy < ApplicationPolicy
   end
 
   def destroy?
+    update?
   end
 end
 

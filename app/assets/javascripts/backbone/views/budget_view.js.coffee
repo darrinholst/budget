@@ -7,6 +7,7 @@ class BudgetApp.Views.BudgetView extends BudgetApp.Views.BaseView
   events:
     "click [data-collapse-all]": "collapseAll"
     "click [data-expand-all]": "expandAll"
+    "click [data-delete-budget]": "deleteBudget"
 
   collapseAll: =>
     $(".buckets").slideUp()
@@ -15,6 +16,12 @@ class BudgetApp.Views.BudgetView extends BudgetApp.Views.BaseView
   expandAll: =>
     $(".buckets").slideDown()
     $(".collapse-category").removeClass("icon-angle-right").addClass("icon-angle-down")
+
+  deleteBudget: =>
+    if confirm("Are you sure?")
+      @model.destroy()
+      @remove()
+      window.router.navigate('/budgets', true)
 
   fillDropDown: =>
     $(".nav.budget-list").show()
