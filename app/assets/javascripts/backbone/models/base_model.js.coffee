@@ -1,10 +1,10 @@
 class BudgetApp.Models.BaseModel extends Backbone.RelationalModel
-  save: (key, value, options) ->
-    #log "--Saving----------------------------------------------------------------"
-    #log @
-    #log arguments
-    #log "------------------------------------------------------------------------"
-    super(key, value, options)
+  initialize: ->
+    @on 'change', @_triggerParentChange
+    @on 'remove', @_triggerParentChange
+
+  _triggerParentChange: ->
+    _.each(@getRelations(), (relation) -> relation.related && relation.related.trigger('change'))
 
   patch: (attributes) ->
     @save(attributes, {patch: true})

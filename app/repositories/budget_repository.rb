@@ -3,6 +3,7 @@ class BudgetRepository
     user.budgets
         .order("starts_on desc")
         .includes([:income_buckets, {:categories => {:buckets => :itemizations}}])
+        .limit(12)
         .all
   end
 

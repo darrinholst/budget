@@ -1,4 +1,18 @@
 describe "Category", ->
+  describe "Instance", ->
+    category = null
+    budget = null
+
+    beforeEach ->
+      budget = new BudgetApp.Models.Budget()
+      category = new BudgetApp.Models.Category(budget: budget)
+
+    it "triggers a change on the budget when changed", ->
+      budgetChanged = false
+      budget.on('change', -> budgetChanged = true)
+      category.name('name')
+      expect(budgetChanged).toBe(true)
+
   describe "Collection", ->
     categories = null
 

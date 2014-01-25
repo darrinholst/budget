@@ -1,4 +1,7 @@
 BudgetApp.Models.Category = BudgetApp.Models.BaseModel.extend
+  defaults:
+    name: "Name..."
+
   relations: [
     {
       type: Backbone.HasMany
@@ -11,16 +14,6 @@ BudgetApp.Models.Category = BudgetApp.Models.BaseModel.extend
         includeInJSON: false
     }
   ]
-
-  defaults:
-    name: "Name..."
-
-  initialize: ->
-    @on "change", @triggerParentChange
-    @on "remove", @triggerParentChange
-
-  triggerParentChange: ->
-    _.each(@getRelations(), (relation) -> relation.related && relation.related.trigger("change"))
 
   name: (newValue) ->
     if newValue?

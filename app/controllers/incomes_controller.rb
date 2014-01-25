@@ -10,7 +10,7 @@ class IncomesController < ApplicationController
   def update
     bucket = find_budget.income_buckets.find(params[:id])
     bucket.update_attributes!(income_params)
-    render josn: bucket
+    render json: bucket
   end
 
   def destroy

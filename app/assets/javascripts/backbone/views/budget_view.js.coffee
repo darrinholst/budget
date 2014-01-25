@@ -1,6 +1,9 @@
 class BudgetApp.Views.BudgetView extends BudgetApp.Views.BaseView
   template: JST["backbone/templates/budget"]
 
+  initialize: (options) =>
+    @readonly = options.readonly
+
   events:
     "click [data-collapse-all]": "collapseAll"
     "click [data-expand-all]": "expandAll"
@@ -26,7 +29,7 @@ class BudgetApp.Views.BudgetView extends BudgetApp.Views.BaseView
         available.append("<li><a href=\"#{budget.url()}\" data-push-state>#{@formatDate(budget.startsOn())}</a></li>")
 
   render : (event) ->
-    $(@el).html(@template(readonly: @options.readonly))
+    $(@el).html(@template(readonly: @readonly))
     @$("[data-income-container]").html(new BudgetApp.Views.IncomeView(model: @model, collection: @model.incomeBuckets()).render().el)
     @$("[data-expenses-container]").html(new BudgetApp.Views.ExpensesView(model: @model, collection: @model.expenseCategories()).render().el)
     @$("[data-overview-container]").html(new BudgetApp.Views.OverviewView(model: @model).render().el)
