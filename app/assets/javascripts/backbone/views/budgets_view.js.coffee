@@ -1,38 +1,59 @@
 class BudgetApp.Views.IndexView extends BudgetApp.Views.BaseView
-  template: JST["backbone/templates/index"]
-  className: "budgets"
+  template: JST['backbone/templates/index']
+  className: 'budgets'
 
   events: ->
-    "click .modal-footer .btn-success": "addBudget"
-    "click .modal-footer .btn-cancel": "closeModal"
-    "shown #addBudget": "showModal"
-    "changeDate": => @$("#starts_on").blur()
+    'click .modal-footer .btn-success': 'addBudget'
+    'click .modal-footer .btn-cancel': 'closeModal'
+    'shown #addBudget': 'showModal'
+    'changeDate': => @$('#starts_on').blur()
 
   initialize: ->
-    @collection.on "add", @newBudgetAdded
+    @collection.on 'add', @newBudgetAdded
+    $(document).bind('keydown', 'j', @selectNext)
+    $(document).bind('keydown', 'k', @selectPrevious)
+    $(document).bind('keydown', 'return', @openSelected)
+    $(document).bind('keydown', 'o', @openSelected)
+
+  remove: ->
+    console.log('remove?')
+    $(document).unbind('keydown', null, @selectNext)
+    $(document).unbind('keydown', null, @selectPrevious)
+    $(document).unbind('keydown', null, @openSelected)
+
+  selectNext: =>
+    if @$('.budget.selected').next('.budget').length
+      @$('.budget.selected').removeClass('selected').next('.budget').addClass('selected')
+
+  selectPrevious: =>
+    if @$('.budget.selected').prev('.budget').length
+      @$('.budget.selected').removeClass('selected').prev('.budget').addClass('selected')
+
+  openSelected: =>
+    window.router.navigate(@$(".selected a").attr("href"), true)
 
   addBudget: =>
-    if $("[name=from]:checked").val() == "clone"
-      newBudget = @collection.get(@$("#from_selection").val()).clone()
+    if $('[name=from]:checked').val() == 'clone'
+      newBudget = @collection.get(@$('#from_selection').val()).clone()
       newBudget.clear()
-      newBudget.startsOn(@$("#starts_on").val())
+      newBudget.startsOn(@$('#starts_on').val())
       @collection.add(newBudget)
     else
-      @collection.add({starts_on: @$("#starts_on").val()})
+      @collection.add({starts_on: @$('#starts_on').val()})
 
     @closeModal()
 
   showModal: =>
-    @$("#starts_on").val(@formatDate(new Date())).datepicker()
+    @$('#starts_on').val(@formatDate(new Date())).datepicker()
 
     if @collection.length
-      @$("#from_clone").attr("disabled", false).attr("checked", true)
-      options = @$("#from_selection")[0].options
+      @$('#from_clone').attr('disabled', false).attr('checked', true)
+      options = @$('#from_selection')[0].options
       options.length = 0
       options.add(new Option(@formatDate(budget.startsOn()), budget.id)) for budget in @collection.models
     else
-      @$("#from_clone").attr("disabled", true).attr("checked", false)
-      @$("#from_scratch").attr("checked", true)
+      @$('#from_clone').attr('disabled', true).attr('checked', false)
+      @$('#from_scratch').attr('checked', true)
 
   closeModal: =>
     @$('#addBudget').modal('hide')
@@ -45,19 +66,20 @@ class BudgetApp.Views.IndexView extends BudgetApp.Views.BaseView
 
       error: =>
         @closeModal()
-        alert("Couldn't save new budget")
+        alert('Couldn\'t save new budget')
     )
 
   renderBudget: (budget) =>
     view = new BudgetApp.Views.IndexRowView({collection: @collection, model : budget})
-    @$(".row-fluid:last").before(view.render().el)
+    @$('.row-fluid:last').before(view.render().el)
 
-  addAll: =>
+  addAll: ->
     @collection.each(@renderBudget)
 
-  render: =>
+  render: ->
     $(@el).html(@template())
     @addAll()
-    $(".nav.budget-list").hide()
+    $('.nav.budget-list').hide()
+    @$('.budget:first').addClass('selected')
     @
 

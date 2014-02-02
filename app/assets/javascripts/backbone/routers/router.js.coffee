@@ -12,14 +12,14 @@ class BudgetApp.Routers.Router extends Backbone.Router
 
   showBudget: ->
     budget = @budgets.first()
-    $("#backbone").html(new BudgetApp.Views.BudgetView(model: budget, readonly: true).render().el)
+    @_showView(new BudgetApp.Views.BudgetView(model: budget, readonly: true))
 
   listBudgets: ->
     if(window.localStorageEnabled)
       BudgetApp.localStorage = new Backbone.LocalStorage("budgets")
       @budgets.localStorage = BudgetApp.localStorage
 
-    $("#backbone").html(new BudgetApp.Views.IndexView(collection: @budgets).render().el)
+    @_showView(new BudgetApp.Views.IndexView(collection: @budgets))
 
   editBudget: (id) ->
     budget = @budgets.get(id)
@@ -27,7 +27,12 @@ class BudgetApp.Routers.Router extends Backbone.Router
     if window.localStorage and !budget
       budget = @budgets.create()
 
-    $("#backbone").html(new BudgetApp.Views.BudgetView(model: budget).render().el)
+    @_showView(new BudgetApp.Views.BudgetView(model: budget))
+
+  _showView: (view) ->
+    @currentView.remove() if @currentView
+    @currentView = view
+    $("#backbone").html(@currentView.render().el)
 
 $ ->
   if $("#backbone").length
