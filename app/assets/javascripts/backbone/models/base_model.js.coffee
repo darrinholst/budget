@@ -1,5 +1,6 @@
 class BudgetApp.Models.BaseModel extends Backbone.RelationalModel
   initialize: ->
+    super()
     @on 'change', @_triggerParentChange
     @on 'remove', @_triggerParentChange
 

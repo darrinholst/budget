@@ -48,6 +48,7 @@ class BudgetApp.Collections.Buckets extends Backbone.Collection
   model: BudgetApp.Models.Bucket
 
   initialize: ->
+    super()
     @localStorage = BudgetApp.localStorage
 
   url: ->

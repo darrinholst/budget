@@ -47,6 +47,7 @@ class BudgetApp.Collections.Categories extends Backbone.Collection
   model: BudgetApp.Models.Category
 
   initialize: ->
+    super()
     @localStorage = BudgetApp.localStorage
 
   url: ->

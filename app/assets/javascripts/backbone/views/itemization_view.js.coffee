@@ -20,10 +20,11 @@ class BudgetApp.Views.ItemizationView extends BudgetApp.Views.BaseView
     "change input[name=itemization_spent]": "spentChanged"
     "click [data-delete-itemization]": "deleteItemization"
 
-  initialize: =>
-    @model.bind "change:name", @renderName
-    @model.bind "change:spent", @renderSpent
-    @model.bind "focus:item", @focused
+  initialize: ->
+    super()
+    @listenTo(@model, 'change:name', @renderName)
+    @listenTo(@model, 'change:spent', @renderSpent)
+    @listenTo(@model, 'focus:item', @focused)
 
   focused: =>
     @$("input[name=itemization_spent]").focus()

@@ -1,8 +1,8 @@
 class BudgetApp.Views.ItemizationsView extends BudgetApp.Views.BaseView
   initialize: ->
     super()
-    @collection.bind "focus", @focused
-    @collection.bind "add", @itemizationAdded
+    @listenTo(@collection, "focus", @focused)
+    @listenTo(@collection, "add", @itemizationAdded)
 
   focused: =>
     @collection.last().trigger("focus:item")
@@ -12,7 +12,7 @@ class BudgetApp.Views.ItemizationsView extends BudgetApp.Views.BaseView
     @focused()
 
   renderItemization: (itemization) =>
-    view = new BudgetApp.Views.ItemizationView(model: itemization)
+    view = @newView(BudgetApp.Views.ItemizationView, model: itemization)
     $(@el).append(view.render().el)
 
   render: =>

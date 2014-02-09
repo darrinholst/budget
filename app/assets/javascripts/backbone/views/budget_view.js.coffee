@@ -2,6 +2,7 @@ class BudgetApp.Views.BudgetView extends BudgetApp.Views.BaseView
   template: JST["backbone/templates/budget"]
 
   initialize: (options) =>
+    super()
     @readonly = options.readonly
 
   events:
@@ -37,8 +38,8 @@ class BudgetApp.Views.BudgetView extends BudgetApp.Views.BaseView
 
   render : (event) ->
     $(@el).html(@template(readonly: @readonly))
-    @$("[data-income-container]").html(new BudgetApp.Views.IncomeView(model: @model, collection: @model.incomeBuckets()).render().el)
-    @$("[data-expenses-container]").html(new BudgetApp.Views.ExpensesView(model: @model, collection: @model.expenseCategories()).render().el)
-    @$("[data-overview-container]").html(new BudgetApp.Views.OverviewView(model: @model).render().el)
+    @$("[data-income-container]").html(@newView(BudgetApp.Views.IncomeView, model: @model, collection: @model.incomeBuckets()).render().el)
+    @$("[data-expenses-container]").html(@newView(BudgetApp.Views.ExpensesView, model: @model, collection: @model.expenseCategories()).render().el)
+    @$("[data-overview-container]").html(@newView(BudgetApp.Views.OverviewView, model: @model).render().el)
     @fillDropDown()
     @

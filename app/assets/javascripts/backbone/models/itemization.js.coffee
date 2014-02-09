@@ -19,6 +19,7 @@ class BudgetApp.Collections.Itemizations extends Backbone.Collection
   model: BudgetApp.Models.Itemization
 
   initialize: ->
+    super()
     @localStorage = BudgetApp.localStorage
 
   url: ->

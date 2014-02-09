@@ -9,9 +9,10 @@ class BudgetApp.Views.IncomeView extends BudgetApp.Views.BaseView
     "click [data-collapse]": "toggleCollapseCategory"
 
   initialize: ->
-    @collection.on "change", @renderSummary
-    @collection.on "remove", @renderSummary
-    @collection.on "add", @newBucketAdded
+    super()
+    @listenTo(@collection, 'change', @renderSummary)
+    @listenTo(@collection, 'remove', @renderSummary)
+    @listenTo(@collection, 'add', @newBucketAdded)
 
   updateSortOrder: =>
     buckets = ({id: $(el).data("view").model.id, sort_order: i + 1} for el, i in @$(".bucket"))
@@ -40,7 +41,7 @@ class BudgetApp.Views.IncomeView extends BudgetApp.Views.BaseView
     ))
 
   renderBucket: (bucket, focus) =>
-    view = new BudgetApp.Views.IncomeBucketView(model: bucket)
+    view = @newView(BudgetApp.Views.IncomeBucketView, model: bucket)
     @$(".buckets").append(view.render().el)
     $(view.el).find("input[name=name]").focus() if(focus)
     $(view.el).data("view", view)

@@ -16,7 +16,8 @@ class BudgetApp.Views.OverviewView extends BudgetApp.Views.BaseView
     @model.save()
 
   initialize: ->
-    @model.bind "change", => @render()
+    super()
+    @listenTo(@model, 'change', @render)
 
   render : (event) ->
     $(@el).html(@template(

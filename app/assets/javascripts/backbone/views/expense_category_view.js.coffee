@@ -12,9 +12,9 @@ class BudgetApp.Views.ExpenseCategoryView extends BudgetApp.Views.BaseView
     "sortupdate .buckets": "updateSortOrder"
 
   initialize: ->
-    @model.bind "change", @renderSummary
-    @model.bind "remove", @renderSummary
-    @model.buckets().on "add", @newBucketAdded
+    super()
+    @listenTo(@model, "change", @renderSummary)
+    @listenTo(@model.buckets(), "add", @newBucketAdded)
 
   updateSortOrder: =>
     buckets = ({id: $(el).data("view").model.id, sort_order: i + 1} for el, i in @$(".buckets > div"))
@@ -61,7 +61,7 @@ class BudgetApp.Views.ExpenseCategoryView extends BudgetApp.Views.BaseView
       @$(".category").removeClass("cleared")
 
   renderBucket: (bucket, focus) =>
-    view = new BudgetApp.Views.ExpenseBucketView(model: bucket)
+    view = @newView(BudgetApp.Views.ExpenseBucketView, model: bucket)
     @$(".buckets").append(view.render().el)
     $(view.el).find("input[name=name]").focus() if focus
     $(view.el).data("view", view)

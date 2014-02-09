@@ -7,6 +7,7 @@ class BudgetApp.Collections.IncomeBuckets extends BudgetApp.Collections.Buckets
   model: BudgetApp.Models.IncomeBucket
 
   initialize: ->
+    super()
     @localStorage = BudgetApp.localStorage
 
   url: ->

@@ -7,7 +7,8 @@ class BudgetApp.Views.ExpensesView extends BudgetApp.Views.BaseView
     "sortupdate .categories": "updateSortOrder"
 
   initialize: =>
-    @collection.on "add", @newCategoryAdded
+    super()
+    @listenTo(@collection, "add", @newCategoryAdded)
 
   updateSortOrder: =>
     categories = ({id: $(el).data("view").model.id, sort_order: i + 1} for el, i in @$(".category-wrapper"))
@@ -27,7 +28,7 @@ class BudgetApp.Views.ExpensesView extends BudgetApp.Views.BaseView
     )
 
   renderCategory: (category, focus) =>
-    view = new BudgetApp.Views.ExpenseCategoryView(model: category)
+    view = @newView(BudgetApp.Views.ExpenseCategoryView, model: category)
     @$(".categories").append(view.render().el)
     $(view.el).find("input[name=name]").focus() if focus
     $(view.el).data("view", view)

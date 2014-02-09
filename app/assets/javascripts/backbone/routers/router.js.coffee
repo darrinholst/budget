@@ -1,5 +1,6 @@
 class BudgetApp.Routers.Router extends Backbone.Router
   initialize: ->
+    super()
     @budgets = new BudgetApp.Collections.Budgets()
     @budgets.reset window.budgets
 
@@ -30,7 +31,7 @@ class BudgetApp.Routers.Router extends Backbone.Router
     @_showView(new BudgetApp.Views.BudgetView(model: budget))
 
   _showView: (view) ->
-    @currentView.remove() if @currentView
+    @currentView.close() if @currentView && @currentView.close
     @currentView = view
     $("#backbone").html(@currentView.render().el)
 

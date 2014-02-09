@@ -6,10 +6,11 @@ class BudgetApp.Views.BaseBucketView extends BudgetApp.Views.BaseView
     "change input[name=budgeted]": "budgetedChanged"
     "click [data-delete-bucket]": "deleteBucket"
 
-  initialize: =>
-    @model.bind "change", @colorize
-    @model.bind "change:name", @renderName
-    @model.bind "change:budgeted", @renderBudgeted
+  initialize: ->
+    super()
+    @listenTo(@model, 'change', @colorize)
+    @listenTo(@model, 'change:name', @renderName)
+    @listenTo(@model, 'change:budgeted', @renderBudgeted)
 
   nameChanged: (event) =>
     @model.name(event.target.value)

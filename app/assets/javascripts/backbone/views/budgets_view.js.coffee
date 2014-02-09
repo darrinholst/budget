@@ -9,17 +9,18 @@ class BudgetApp.Views.IndexView extends BudgetApp.Views.BaseView
     'changeDate': => @$('#starts_on').blur()
 
   initialize: ->
-    @collection.on 'add', @newBudgetAdded
-    $(document).bind('keydown', 'j', @selectNext)
-    $(document).bind('keydown', 'k', @selectPrevious)
-    $(document).bind('keydown', 'return', @openSelected)
-    $(document).bind('keydown', 'o', @openSelected)
+    super()
+    @listenTo(@collection, 'add', @newBudgetAdded)
+    $(document).on('keydown', 'j', @selectNext)
+    $(document).on('keydown', 'k', @selectPrevious)
+    $(document).on('keydown', 'return', @openSelected)
+    $(document).on('keydown', 'o', @openSelected)
 
-  remove: ->
-    console.log('remove?')
-    $(document).unbind('keydown', null, @selectNext)
-    $(document).unbind('keydown', null, @selectPrevious)
-    $(document).unbind('keydown', null, @openSelected)
+  close: ->
+    super()
+    $(document).off('keydown', null, @selectNext)
+    $(document).off('keydown', null, @selectPrevious)
+    $(document).off('keydown', null, @openSelected)
 
   selectNext: =>
     if @$('.budget.selected').next('.budget').length
@@ -70,7 +71,7 @@ class BudgetApp.Views.IndexView extends BudgetApp.Views.BaseView
     )
 
   renderBudget: (budget) =>
-    view = new BudgetApp.Views.IndexRowView({collection: @collection, model : budget})
+    view = @newView(BudgetApp.Views.IndexRowView, {collection: @collection, model : budget})
     @$('.row-fluid:last').before(view.render().el)
 
   addAll: ->

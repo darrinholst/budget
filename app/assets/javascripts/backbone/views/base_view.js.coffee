@@ -1,4 +1,8 @@
 class BudgetApp.Views.BaseView extends Backbone.View
+  initialize: ->
+    super()
+    @_childViews = []
+
   formatDate: (date) ->
     "#{@_pad(date.getUTCMonth() + 1, 2)}/#{@_pad(date.getUTCDate(), 2)}/#{date.getUTCFullYear()}"
 
@@ -27,4 +31,13 @@ class BudgetApp.Views.BaseView extends Backbone.View
 
   isCollapsed: =>
     Modernizr.localstorage && 'true' == localStorage.getItem("collapsed#{@model.id}")
+
+  close: ->
+    @remove()
+    childView.close() for childView in @_childViews
+
+  newView: (clazz, options = {}) ->
+    view = new clazz(options)
+    @_childViews.push(view)
+    view
 

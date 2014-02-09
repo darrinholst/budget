@@ -11,12 +11,12 @@ class BudgetApp.Views.ExpenseBucketView extends BudgetApp.Views.BaseBucketView
 
   initialize: ->
     super()
-    @model.bind "change:spent", @renderSpent
-    @model.bind "change:itemizations", @renderSpent
+    @listenTo(@model, 'change:spent', @renderSpent)
+    @listenTo(@model, 'change:itemizations', @renderSpent)
 
   itemizeBucket: ->
     @toggleCollapseBucket(event) if @bucketIsCollapsed()
-    @model.itemizations().add(new BudgetApp.Models.Itemization(bucket: @model))
+    @model.itemizations().add(@newView(BudgetApp.Models.Itemization, bucket: @model))
     @$(".bucket").addClass("has-itemizations")
 
   spentFocused: (event) ->
@@ -60,7 +60,7 @@ class BudgetApp.Views.ExpenseBucketView extends BudgetApp.Views.BaseBucketView
       hasItemizations: @model.itemizations().any()
     )).inlineEditable()
 
-    new BudgetApp.Views.ItemizationsView(el: @$(".itemizations"), collection: @model.itemizations()).render()
+    @newView(BudgetApp.Views.ItemizationsView, el: @$(".itemizations"), collection: @model.itemizations()).render()
 
     @colorize()
 
