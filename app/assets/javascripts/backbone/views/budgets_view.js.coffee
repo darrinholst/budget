@@ -11,16 +11,16 @@ class BudgetApp.Views.IndexView extends BudgetApp.Views.BaseView
   initialize: ->
     super()
     @listenTo(@collection, 'add', @newBudgetAdded)
-    $(document).on('keydown', 'j', @selectNext)
-    $(document).on('keydown', 'k', @selectPrevious)
-    $(document).on('keydown', 'return', @openSelected)
-    $(document).on('keydown', 'o', @openSelected)
+    $(document).bind('keydown', 'j', @selectNext)
+    $(document).bind('keydown', 'k', @selectPrevious)
+    $(document).bind('keydown', 'return', @openSelected)
+    $(document).bind('keydown', 'o', @openSelected)
 
   close: ->
     super()
-    $(document).off('keydown', null, @selectNext)
-    $(document).off('keydown', null, @selectPrevious)
-    $(document).off('keydown', null, @openSelected)
+    $(document).unbind('keydown', null, @selectNext)
+    $(document).unbind('keydown', null, @selectPrevious)
+    $(document).unbind('keydown', null, @openSelected)
 
   selectNext: =>
     if @$('.budget.selected').next('.budget').length
