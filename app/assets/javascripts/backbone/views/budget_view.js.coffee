@@ -1,30 +1,30 @@
 class BudgetApp.Views.BudgetView extends BudgetApp.Views.BaseView
   template: JST["backbone/templates/budget"]
 
-  initialize: (options) =>
-    super()
-    @readonly = options.readonly
-
   events:
     "click [data-collapse-all]": "collapseAll"
     "click [data-expand-all]": "expandAll"
     "click [data-delete-budget]": "deleteBudget"
 
-  collapseAll: =>
+  initialize: (options) ->
+    super()
+    @readonly = options.readonly
+
+  collapseAll: ->
     $(".buckets").slideUp()
     $(".collapse-category").removeClass("icon-angle-down").addClass("icon-angle-right")
 
-  expandAll: =>
+  expandAll: ->
     $(".buckets").slideDown()
     $(".collapse-category").removeClass("icon-angle-right").addClass("icon-angle-down")
 
-  deleteBudget: =>
+  deleteBudget: ->
     if confirm("Are you sure?")
       @model.destroy()
       @remove()
       window.router.navigate('/budgets', true)
 
-  fillDropDown: =>
+  fillDropDown: ->
     $(".nav.budget-list").show()
     $(".nav.budget-list .current-budget").html(@formatDate(@model.startsOn()))
     available = $(".nav.budget-list .available-budgets")

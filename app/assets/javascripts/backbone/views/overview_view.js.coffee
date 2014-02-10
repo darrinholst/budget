@@ -7,17 +7,25 @@ class BudgetApp.Views.OverviewView extends BudgetApp.Views.BaseView
     "change input[name=starts_on]": "startsOnChanged"
     "changeDate": -> @$("input[name=starts_on]").blur().trigger("change")
 
-  actualChanged: =>
-    @model.actualBalance(@$("input[name=actual]").val())
-    @model.save()
-
-  startsOnChanged: =>
-    @model.startsOn(@$("input[name=starts_on]").val())
-    @model.save()
-
   initialize: ->
     super()
     @listenTo(@model, 'change', @render)
+    $(document).bind('keydown', 'ctrl+b', @focusActualBalance)
+
+  close: ->
+    super()
+    $(document).unbind('keydown', null, @focusActualBalance)
+
+  focusActualBalance: =>
+    @$("input[name=actual]").focus()
+
+  actualChanged: ->
+    @model.actualBalance(@$("input[name=actual]").val())
+    @model.save()
+
+  startsOnChanged: ->
+    @model.startsOn(@$("input[name=starts_on]").val())
+    @model.save()
 
   render : (event) ->
     $(@el).html(@template(
