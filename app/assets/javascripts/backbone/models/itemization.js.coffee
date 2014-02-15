@@ -1,7 +1,10 @@
-BudgetApp.Models.Itemization = BudgetApp.Models.BaseModel.extend
+class BudgetApp.Models.Itemization extends BudgetApp.Models.BaseModel
   defaults:
-    name: "Name..."
     spent: 0
+
+  initialize: ->
+    super()
+    @name("#{new Date().getMonth() + 1}/#{new Date().getDate()} - ") unless @name()
 
   name: (newValue) ->
     if newValue?
