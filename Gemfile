@@ -18,7 +18,7 @@ gem 'twitter-bootstrap-rails'
 gem 'unicorn'
 
 group :development, :test do
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
   gem 'growl'
   gem 'guard'
   gem 'guard-jasmine'
@@ -27,6 +27,7 @@ group :development, :test do
   gem 'meta_request'
   gem 'rb-fsevent'
   gem 'rspec'
+  gem 'rspec-rails'
 end
 
 group :development do

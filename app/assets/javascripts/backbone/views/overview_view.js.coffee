@@ -5,7 +5,9 @@ class BudgetApp.Views.OverviewView extends BudgetApp.Views.BaseView
   events:
     "change input[name=actual]": "actualChanged"
     "change input[name=starts_on]": "startsOnChanged"
-    "changeDate": -> @$("input[name=starts_on]").blur().trigger("change")
+    "change input[name=ends_on]": "endsOnChanged"
+    'changeDate input[name=starts_on]': -> @$("input[name=starts_on]").blur().trigger("change")
+    'changeDate input[name=ends_on]': -> @$("input[name=ends_on]").blur().trigger("change")
 
   initialize: ->
     super()
@@ -27,9 +29,14 @@ class BudgetApp.Views.OverviewView extends BudgetApp.Views.BaseView
     @model.startsOn(@$("input[name=starts_on]").val())
     @model.save()
 
+  endsOnChanged: ->
+    @model.endsOn(@$("input[name=ends_on]").val())
+    @model.save()
+
   render : (event) ->
     $(@el).html(@template(
       starts_on: @formatDate(@model.startsOn())
+      ends_on: @formatDate(@model.endsOn())
       total_income: @formatMoney(@model.totalIncome())
       total_expenses: @formatMoney(@model.totalExpenses())
       budgeted_buffer: @formatMoney(@model.budgetedBuffer())
@@ -38,6 +45,6 @@ class BudgetApp.Views.OverviewView extends BudgetApp.Views.BaseView
       actual_buffer: @formatMoney(@model.actualBuffer())
     )).inlineEditable()
 
-    @$("input[name=starts_on]").datepicker()
+    @$("input[name=starts_on], input[name=ends_on]").datepicker()
 
     @

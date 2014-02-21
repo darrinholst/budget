@@ -7,6 +7,14 @@ group 'fast specs' do
   end
 end
 
+group 'slow specs' do
+  guard 'rspec', :bundler => false, :spec_paths => ['spec_slow'] do
+    watch(%r{^spec_slow/.+_spec\.rb$})
+    watch(%r{^spec_slow/support/(.+)\.rb$})  { "spec" }
+    watch('spec_slow/spec_helper.rb')        { "spec" }
+  end
+end
+
 group 'javascript tests' do
   guard 'jasmine', :server => :thin do
     watch(%r{(?:app|lib)/assets/javascripts/(.+?)\.(js\.coffee|js|coffee)$}) { |m| "spec/javascripts/#{m[1]}_spec.#{m[2]}" }

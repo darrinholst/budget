@@ -36,7 +36,7 @@ class BudgetsController < ApplicationController
   private
 
   def budget_params
-    params.permit(:starts_on, :actual_balance).tap do |whitelisted|
+    params.permit(:starts_on, :ends_on, :actual_balance).tap do |whitelisted|
       whitelisted[:income_buckets_attributes] = params[:income_buckets_attributes] || []
       whitelisted[:categories_attributes] = params[:categories_attributes] || []
     end

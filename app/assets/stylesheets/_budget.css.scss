@@ -215,11 +215,11 @@
   }
 
   .overview {
-    > div:nth-child(1n+2) div:first-child {
+    > div:nth-child(1n+3) div:first-child {
       text-indent: 15px;
     }
 
-    > div:nth-child(1) {
+    > div:nth-child(2) {
       margin-bottom: 5px;
     }
 

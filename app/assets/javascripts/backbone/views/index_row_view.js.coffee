@@ -19,6 +19,7 @@ class BudgetApp.Views.IndexRowView extends BudgetApp.Views.BaseView
     $(@el).html(@template(
       url: "#{if BudgetApp.localStorage? then "/sandbox" else ""}#{@model.url()}"
       starts_on: @formatDate(@model.startsOn())
+      ends_on: @formatDate(@model.endsOn())
       actual_balance: @formatMoney(@model.actualBalance())
       remaining: @formatMoney(@model.remaining())
       actual_buffer: @formatMoney(@model.actualBuffer())

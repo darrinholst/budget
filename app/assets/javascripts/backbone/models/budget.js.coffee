@@ -71,6 +71,12 @@ BudgetApp.Models.Budget = BudgetApp.Models.BaseModel.extend
     else
       @toDate(@get("starts_on"))
 
+  endsOn: (newValue) ->
+    if newValue?
+      @set("ends_on", newValue)
+    else
+      @toDate(@get("ends_on"))
+
   actualBalance: (newValue) ->
     if newValue?
       @set("actual_balance", $.parseMoney(newValue))

@@ -6,7 +6,7 @@ class BudgetApp.Views.IndexView extends BudgetApp.Views.BaseView
     'click .modal-footer .btn-success': 'addBudget'
     'click .modal-footer .btn-cancel': 'closeModal'
     'shown #addBudget': 'showModal'
-    'changeDate': => @$('#starts_on').blur()
+    'changeDate': => @$('#starts_on, #ends_on').blur()
 
   initialize: ->
     super()
@@ -38,14 +38,16 @@ class BudgetApp.Views.IndexView extends BudgetApp.Views.BaseView
       newBudget = @collection.get(@$('#from_selection').val()).clone()
       newBudget.clear()
       newBudget.startsOn(@$('#starts_on').val())
+      newBudget.endsOn(@$('#ends_on').val())
       @collection.add(newBudget)
     else
-      @collection.add({starts_on: @$('#starts_on').val()})
+      @collection.add({starts_on: @$('#starts_on').val(), ends_on: @$('#ends_on').val()})
 
     @closeModal()
 
   showModal: =>
     @$('#starts_on').val(@formatDate(new Date())).datepicker()
+    @$('#ends_on').val(@formatDate(new Date())).datepicker()
 
     if @collection.length
       @$('#from_clone').attr('disabled', false).attr('checked', true)

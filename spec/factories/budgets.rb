@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :budget do
-    id 1
     starts_on Time.now
+    ends_on Time.now + 1.day
     actual_balance 10000
 
     income_buckets {[
