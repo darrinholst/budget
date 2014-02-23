@@ -36,4 +36,6 @@ BudgetApp::Application.configure do
     config.logger = Logger.new(STDOUT)
     STDOUT.sync = true
   end
+
+  config.middleware.use PrettyJson
 end

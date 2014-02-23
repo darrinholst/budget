@@ -1,3 +1,3 @@
-class ItemizationSerializer < ActiveModel::Serializer
+class ItemizationSerializer < ApplicationSerializer
   attributes :id, :name, :spent
 end

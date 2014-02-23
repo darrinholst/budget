@@ -6,6 +6,10 @@ BudgetApp::Application.routes.draw do
   get "shared/:token", to: "shared#show"
 
   resources :budgets do
+    collection do
+      get :export
+    end
+
     resources :incomes, only: [:create, :update, :destroy]
 
     resources :categories, only: [:create, :update, :destroy] do

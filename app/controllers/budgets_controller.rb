@@ -2,6 +2,12 @@ class BudgetsController < ApplicationController
   before_filter :authenticate_user!
   attr_writer :budget_repository
 
+  def export
+    authorize Budget, :index?
+    budgets = budget_repository.all_for(current_user)
+    render json: budgets, root: false, export: true
+  end
+
   def index
     authorize Budget
     @budgets = budget_repository.all_for(current_user)
