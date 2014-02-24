@@ -12,11 +12,11 @@ class BudgetApp.Views.BudgetView extends BudgetApp.Views.BaseView
 
   collapseAll: ->
     $(".buckets").slideUp()
-    $(".collapse-category").removeClass("icon-angle-down").addClass("icon-angle-right")
+    $(".collapse-category").removeClass("fa-angle-down").addClass("fa-angle-right")
 
   expandAll: ->
     $(".buckets").slideDown()
-    $(".collapse-category").removeClass("icon-angle-right").addClass("icon-angle-down")
+    $(".collapse-category").removeClass("fa-angle-right").addClass("fa-angle-down")
 
   deleteBudget: ->
     if confirm("Are you sure?")

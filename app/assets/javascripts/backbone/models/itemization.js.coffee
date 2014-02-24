@@ -1,4 +1,4 @@
-class BudgetApp.Models.Itemization extends BudgetApp.Models.BaseModel
+class BudgetApp.Models.Itemization extends Backbone.Model
   defaults:
     spent: 0
 
@@ -8,25 +8,18 @@ class BudgetApp.Models.Itemization extends BudgetApp.Models.BaseModel
 
   name: (newValue) ->
     if newValue?
-      @set("name", newValue)
+      @set('name', newValue)
     else
-      @get("name")
+      @get('name')
 
   spent: (newValue) ->
     if newValue?
-      @set("spent", $.parseMoney(newValue))
+      @set('spent', $.parseMoney(newValue))
     else
-      @get("spent")
+      @get('spent')
 
 class BudgetApp.Collections.Itemizations extends Backbone.Collection
   model: BudgetApp.Models.Itemization
-
-  initialize: ->
-    super()
-    @localStorage = BudgetApp.localStorage
-
-  url: ->
-    "/buckets/#{@bucket.id}/itemizations"
 
   spent: ->
     @models.reduce ((memo, item) -> memo + item.spent()), 0

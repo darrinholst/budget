@@ -25,7 +25,7 @@ class BudgetApp.Views.ExpenseBucketView extends BudgetApp.Views.BaseBucketView
   toggleCollapseBucket: (event) =>
     event.stopPropagation()
     @$(".itemizations").toggle("slide")
-    @$(".collapse-bucket").toggleClass("icon-angle-down").toggleClass("icon-angle-right")
+    @$(".collapse-bucket").toggleClass("fa-angle-down").toggleClass("fa-angle-right")
     @saveBucketCollapsedState()
 
   saveBucketCollapsedState: =>
@@ -36,7 +36,7 @@ class BudgetApp.Views.ExpenseBucketView extends BudgetApp.Views.BaseBucketView
         localStorage.removeItem("bucket_collapsed#{@model.id}")
 
   bucketIsCollapsed: ->
-    @$(".collapse-bucket").hasClass("icon-angle-right")
+    @$(".collapse-bucket").hasClass("fa-angle-right")
 
   isBucketCollapsed: =>
     Modernizr.localstorage && 'true' == localStorage.getItem("bucket_collapsed#{@model.id}")

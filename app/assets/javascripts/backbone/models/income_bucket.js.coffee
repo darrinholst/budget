@@ -1,20 +1,14 @@
-BudgetApp.Models.IncomeBucket = BudgetApp.Models.Bucket.extend
+class BudgetApp.Models.IncomeBucket extends BudgetApp.Models.Bucket
   defaults:
-    name: "Name..."
+    name: 'Name...'
     budgeted: 0
+
+  save: (attributes, options) ->
+    @collection.budget.save(attributes, options)
 
 class BudgetApp.Collections.IncomeBuckets extends BudgetApp.Collections.Buckets
   model: BudgetApp.Models.IncomeBucket
 
-  initialize: ->
-    super()
-    @localStorage = BudgetApp.localStorage
-
-  url: ->
-    "#{@.budget.url()}/incomes"
-
-  clone: ->
-    cloned = new BudgetApp.Collections.IncomeBuckets()
-    cloned.add(bucket.clone()) for bucket in @models
-    cloned
+  initialize: (models, options) ->
+    @budget = options.budget
 

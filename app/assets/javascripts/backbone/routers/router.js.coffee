@@ -2,32 +2,18 @@ class BudgetApp.Routers.Router extends Backbone.Router
   initialize: ->
     super()
     @budgets = new BudgetApp.Collections.Budgets()
-    @budgets.reset window.budgets
+    @budgets.fetch()
 
   routes:
+    ""                    : "listBudgets"
     "budgets"             : "listBudgets"
-    "sandbox/budgets"     : "listBudgets"
-    "shared/:token"       : "showBudget"
     "budgets/:id"         : "editBudget"
-    "sandbox/budgets/:id" : "editBudget"
-
-  showBudget: ->
-    budget = @budgets.first()
-    @_showView(new BudgetApp.Views.BudgetView(model: budget, readonly: true))
 
   listBudgets: ->
-    if(window.localStorageEnabled)
-      BudgetApp.localStorage = new Backbone.LocalStorage("budgets")
-      @budgets.localStorage = BudgetApp.localStorage
-
     @_showView(new BudgetApp.Views.IndexView(collection: @budgets))
 
   editBudget: (id) ->
     budget = @budgets.get(id)
-
-    if window.localStorage and !budget
-      budget = @budgets.create()
-
     @_showView(new BudgetApp.Views.BudgetView(model: budget))
 
   _showView: (view) ->
@@ -35,15 +21,24 @@ class BudgetApp.Routers.Router extends Backbone.Router
     @currentView = view
     $("#backbone").html(@currentView.render().el)
 
+$(document).on "click", "a[data-push-state]", (e) ->
+  e.preventDefault()
+  window.router.navigate($(this).attr("href"), true)
+
+$(window).on "popstate", (e) ->
+  window.router.navigate(location.pathname.substr(1), true)
+
 $ ->
-  if $("#backbone").length
-    $(document).on "click", "a[data-push-state]", (e) ->
-      e.preventDefault()
-      window.router.navigate($(this).attr("href"), true)
+  client = new Dropbox.Client({key: 'wadq0r1h7437t33'})
+  client.authenticate({interactive: false})
+  client.authenticate() unless client.isAuthenticated()
+  Backbone.DropboxDatastore.client = client
 
-    $(window).on "popstate", (e) ->
-      window.router.navigate(location.pathname.substr(1), true)
+  window.router = new BudgetApp.Routers.Router()
+  Backbone.history.start(pushState: true)
 
-    window.router = new BudgetApp.Routers.Router()
-    Backbone.history.start(pushState: true)
+  $(document).on('click', '#sign-out', ->
+    client.signOut()
+    location.reload()
+  )
 

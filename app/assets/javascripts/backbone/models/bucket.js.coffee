@@ -1,58 +1,43 @@
-BudgetApp.Models.Bucket = BudgetApp.Models.BaseModel.extend
+class BudgetApp.Models.Bucket extends Backbone.Model
   defaults:
-    name: "Name..."
+    name: 'Name...'
     budgeted: 0
     spent: 0
+    itemizations: []
 
-  relations: [
-    {
-      type: Backbone.HasMany
-      key: 'itemizations'
-      relatedModel: 'BudgetApp.Models.Itemization'
-      collectionType: 'BudgetApp.Collections.Itemizations'
-      includeInJSON: false
-      reverseRelation:
-        key: 'bucket'
-        includeInJSON: false
-    }
-  ]
+  parse: (response) ->
+    response.itemizations = new BudgetApp.Collections.Itemizations(response.itemizations, parse: true)
+    response
 
   name: (newValue) ->
     if newValue?
-      @set("name", newValue)
+      @set('name', newValue)
     else
-      @get("name")
+      @get('name')
 
   budgeted: (newValue) ->
     if newValue?
-      @set("budgeted", $.parseMoney(newValue))
+      @set('budgeted', $.parseMoney(newValue))
     else
-      @get("budgeted")
+      @get('budgeted')
 
   spent: (newValue) ->
     if newValue?
-      @set("spent", $.parseMoney(newValue))
+      @set('spent', $.parseMoney(newValue))
     else
-      if @itemizations().any() then @itemizations().spent() else @get("spent")
+      if @itemizations().any() then @itemizations().spent() else @get('spent')
 
   remaining: ->
     @budgeted() - @spent()
 
   itemizations: (newValues) ->
     if newValues?
-      @set("itemizations", newValues)
+      @set('itemizations', newValues)
     else
-      @get("itemizations")
+      @get('itemizations')
 
 class BudgetApp.Collections.Buckets extends Backbone.Collection
   model: BudgetApp.Models.Bucket
-
-  initialize: ->
-    super()
-    @localStorage = BudgetApp.localStorage
-
-  url: ->
-    "#{@category.url()}/expenses"
 
   budgeted: ->
     @models.reduce ((memo, bucket) -> memo + bucket.budgeted()), 0
@@ -65,9 +50,4 @@ class BudgetApp.Collections.Buckets extends Backbone.Collection
 
   clear: ->
     @each (bucket) -> bucket.spent(0)
-
-  clone: ->
-    cloned = new BudgetApp.Collections.Buckets()
-    cloned.add(bucket.clone()) for bucket in @models
-    cloned
 

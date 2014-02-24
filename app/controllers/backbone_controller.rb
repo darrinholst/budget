@@ -1,0 +1,2 @@
+class BackboneController < ApplicationController
+end

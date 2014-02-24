@@ -14,14 +14,14 @@ class BudgetApp.Views.BaseBucketView extends BudgetApp.Views.BaseView
 
   nameChanged: (event) =>
     @model.name(event.target.value)
-    @model.patch(name: @model.name())
+    @model.save(name: @model.name())
 
   renderName: =>
     @$("input[name=name]").val(@model.name())
 
   budgetedChanged: (event) =>
     @model.budgeted(event.target.value)
-    @model.patch(budgeted: @model.budgeted())
+    @model.save(budgeted: @model.budgeted())
 
   renderBudgeted: =>
     @$("input[name=budgeted]").val(@formatMoney(@model.budgeted()))

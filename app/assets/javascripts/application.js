@@ -21,7 +21,6 @@
 //= require underscore
 //= require underscore.string
 //= require backbone
-//= require backbone-relational
-//= require backbone-local
+//= require backbone-dropboxDatastore
 
 //= require backbone/budget_app

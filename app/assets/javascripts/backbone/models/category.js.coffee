@@ -1,28 +1,15 @@
-BudgetApp.Models.Category = BudgetApp.Models.BaseModel.extend
+class BudgetApp.Models.Category extends Backbone.Model
   defaults:
-    name: "Name..."
-
-  relations: [
-    {
-      type: Backbone.HasMany
-      key: 'buckets'
-      relatedModel: 'BudgetApp.Models.Bucket'
-      collectionType: 'BudgetApp.Collections.Buckets'
-      includeInJSON: false
-      reverseRelation:
-        key: 'category'
-        includeInJSON: false
-    }
-  ]
+    name: 'Name...'
 
   name: (newValue) ->
     if newValue?
-      @set("name", newValue)
+      @set('name', newValue)
     else
-      @get("name")
+      @get('name')
 
   buckets: ->
-    @get("buckets")
+    @get('buckets')
 
   budgeted: ->
     @buckets().budgeted()
@@ -33,25 +20,18 @@ BudgetApp.Models.Category = BudgetApp.Models.BaseModel.extend
   remaining: ->
     @buckets().remaining()
 
-  toJSON: (includeBuckets) ->
-    json = Backbone.RelationalModel.prototype.toJSON.call(this)
-    json.buckets_attributes = @buckets().toJSON() if includeBuckets
-    json
+  #toJSON: (includeBuckets) ->
+    #json = Backbone.RelationalModel.prototype.toJSON.call(this)
+    #json.buckets_attributes = @buckets().toJSON() if includeBuckets
+    #json
 
-  clone: ->
-    cloned = Backbone.RelationalModel.prototype.clone.call(this)
-    cloned.set("buckets", @buckets().clone())
-    cloned
+  #clone: ->
+    #cloned = Backbone.RelationalModel.prototype.clone.call(this)
+    #cloned.set('buckets', @buckets().clone())
+    #cloned
 
 class BudgetApp.Collections.Categories extends Backbone.Collection
   model: BudgetApp.Models.Category
-
-  initialize: ->
-    super()
-    @localStorage = BudgetApp.localStorage
-
-  url: ->
-    "#{@.budget.url()}/categories"
 
   budgeted: ->
     @models.reduce ((memo, category) -> memo + category.budgeted()), 0
