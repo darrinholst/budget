@@ -28,17 +28,3 @@ $(document).on "click", "a[data-push-state]", (e) ->
 $(window).on "popstate", (e) ->
   window.router.navigate(location.pathname.substr(1), true)
 
-$ ->
-  client = new Dropbox.Client({key: 'wadq0r1h7437t33'})
-  client.authenticate({interactive: false})
-  client.authenticate() unless client.isAuthenticated()
-  Backbone.DropboxDatastore.client = client
-
-  window.router = new BudgetApp.Routers.Router()
-  Backbone.history.start(pushState: true)
-
-  $(document).on('click', '#sign-out', ->
-    client.signOut()
-    location.reload()
-  )
-

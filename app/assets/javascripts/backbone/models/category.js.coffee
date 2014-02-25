@@ -2,6 +2,11 @@ class BudgetApp.Models.Category extends Backbone.Model
   defaults:
     name: 'Name...'
 
+  parse: (response) ->
+    buckets = response.buckets || []
+    response.buckets = new BudgetApp.Collections.Buckets(buckets, parse: true, budget: @collection.budget)
+    response
+
   name: (newValue) ->
     if newValue?
       @set('name', newValue)
@@ -20,10 +25,8 @@ class BudgetApp.Models.Category extends Backbone.Model
   remaining: ->
     @buckets().remaining()
 
-  #toJSON: (includeBuckets) ->
-    #json = Backbone.RelationalModel.prototype.toJSON.call(this)
-    #json.buckets_attributes = @buckets().toJSON() if includeBuckets
-    #json
+  save: (attributes, options) ->
+    @collection.budget.save(attributes, options)
 
   #clone: ->
     #cloned = Backbone.RelationalModel.prototype.clone.call(this)
@@ -32,6 +35,9 @@ class BudgetApp.Models.Category extends Backbone.Model
 
 class BudgetApp.Collections.Categories extends Backbone.Collection
   model: BudgetApp.Models.Category
+
+  initialize: (models, options) ->
+    @budget = options.budget
 
   budgeted: ->
     @models.reduce ((memo, category) -> memo + category.budgeted()), 0
