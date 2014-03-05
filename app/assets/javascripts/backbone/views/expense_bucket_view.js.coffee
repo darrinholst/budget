@@ -43,7 +43,7 @@ class BudgetApp.Views.ExpenseBucketView extends BudgetApp.Views.BaseBucketView
 
   spentChanged: (event) =>
     @model.spent(event.target.value)
-    @model.patch(spent: @model.spent())
+    @model.save()
 
   renderSpent: =>
     @$("input[name=spent]").val(@formatMoney(@model.spent()))

@@ -15,10 +15,11 @@ class BudgetApp.Views.ExpenseCategoryView extends BudgetApp.Views.BaseView
     super()
     @listenTo(@model, "change", @renderSummary)
     @listenTo(@model.buckets(), "add", @newBucketAdded)
+    @listenTo(@model.buckets(), "destroy", @bucketRemoved)
 
   updateSortOrder: =>
-    buckets = ({id: $(el).data("view").model.id, sort_order: i + 1} for el, i in @$(".buckets > div"))
-    @model.patch(buckets_attributes: buckets)
+    #buckets = ({id: $(el).data("view").model.id, sort_order: i + 1} for el, i in @$(".buckets > div"))
+    #@model.patch(buckets_attributes: buckets)
 
   nameChanged: =>
     @model.name(@$("input[name=name]").val())
@@ -30,13 +31,16 @@ class BudgetApp.Views.ExpenseCategoryView extends BudgetApp.Views.BaseView
 
   newBucketAdded: (bucket) =>
     bucket.save({},
-      success: (bucket) =>
+      success: =>
         @renderBucket(bucket, true)
         @updateSortOrder()
 
       error: =>
         alert("Couldn't save new bucket")
     )
+
+  bucketRemoved: =>
+    @model.collection.budget.save()
 
   deleteCategory: =>
     if confirm("Are you sure?")

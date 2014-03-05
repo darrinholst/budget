@@ -3,12 +3,14 @@ class BudgetApp.Models.Bucket extends Backbone.Model
     name: 'Name...'
     budgeted: 0
     spent: 0
-    itemizations: []
 
   parse: (response) ->
     itemizations = response.itemizations || []
     response.itemizations = new BudgetApp.Collections.Itemizations(itemizations, parse: true)
     response
+
+  save: (attributes, options) ->
+    @collection.budget.save(attributes, options)
 
   name: (newValue) ->
     if newValue?
@@ -35,7 +37,7 @@ class BudgetApp.Models.Bucket extends Backbone.Model
     if newValues?
       @set('itemizations', newValues)
     else
-      @get('itemizations')
+      @get('itemizations') || new BudgetApp.Collections.Itemizations()
 
   save: (attributes, options) ->
     @collection.budget.save(attributes, options)

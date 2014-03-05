@@ -31,14 +31,14 @@ class BudgetApp.Views.ItemizationView extends BudgetApp.Views.BaseView
 
   nameChanged: (event) =>
     @model.name(@$("input[name=itemization_name]").val())
-    @model.patch(name: @model.name())
+    @model.save()
 
   renderName: =>
     @$("input[name=itemization_name]").val(@model.name())
 
   spentChanged: (event) =>
     @model.spent(@$("input[name=itemization_spent]").val())
-    @model.patch(spent: @model.spent())
+    @model.save()
     @model.get("bucket").trigger("change:itemizations")
 
   renderSpent: =>

@@ -1,20 +1,22 @@
 class BudgetApp.Routers.Router extends Backbone.Router
-  initialize: ->
-    super()
-    @budgets = new BudgetApp.Collections.Budgets()
-    @budgets.fetch()
-
   routes:
     ""                    : "listBudgets"
     "budgets"             : "listBudgets"
     "budgets/:id"         : "editBudget"
 
   listBudgets: ->
-    @_showView(new BudgetApp.Views.IndexView(collection: @budgets))
+    @_getBudgets =>
+      @_showView(new BudgetApp.Views.IndexView(collection: @budgets))
 
   editBudget: (id) ->
-    budget = @budgets.get(id)
-    @_showView(new BudgetApp.Views.BudgetView(model: budget))
+    @_getBudgets =>
+      budget = @budgets.get(id)
+      @_showView(new BudgetApp.Views.BudgetView(model: budget))
+
+  _getBudgets: (callback) ->
+    return callback() if @budgets
+    @budgets = new BudgetApp.Collections.Budgets()
+    @budgets.fetch(success: callback)
 
   _showView: (view) ->
     @currentView.close() if @currentView && @currentView.close

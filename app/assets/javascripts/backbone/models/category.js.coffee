@@ -28,6 +28,10 @@ class BudgetApp.Models.Category extends Backbone.Model
   save: (attributes, options) ->
     @collection.budget.save(attributes, options)
 
+  parse: (response) ->
+    response.buckets = new BudgetApp.Collections.Buckets(response.buckets, parse: true, budget: @collection.budget)
+    response
+
   #clone: ->
     #cloned = Backbone.RelationalModel.prototype.clone.call(this)
     #cloned.set('buckets', @buckets().clone())
