@@ -3,8 +3,7 @@ class BudgetApp.Models.Category extends Backbone.Model
     name: 'Name...'
 
   parse: (response) ->
-    buckets = response.buckets || []
-    response.buckets = new BudgetApp.Collections.Buckets(buckets, parse: true, budget: @collection.budget)
+    response.buckets = new BudgetApp.Collections.Buckets(response.buckets, parse: true)
     response
 
   name: (newValue) ->
@@ -12,9 +11,6 @@ class BudgetApp.Models.Category extends Backbone.Model
       @set('name', newValue)
     else
       @get('name')
-
-  buckets: ->
-    @get('buckets')
 
   budgeted: ->
     @buckets().budgeted()
@@ -25,23 +21,11 @@ class BudgetApp.Models.Category extends Backbone.Model
   remaining: ->
     @buckets().remaining()
 
-  save: (attributes, options) ->
-    @collection.budget.save(attributes, options)
-
-  parse: (response) ->
-    response.buckets = new BudgetApp.Collections.Buckets(response.buckets, parse: true, budget: @collection.budget)
-    response
-
-  #clone: ->
-    #cloned = Backbone.RelationalModel.prototype.clone.call(this)
-    #cloned.set('buckets', @buckets().clone())
-    #cloned
+  buckets: ->
+    @get('buckets')
 
 class BudgetApp.Collections.Categories extends Backbone.Collection
   model: BudgetApp.Models.Category
-
-  initialize: (models, options) ->
-    @budget = options.budget
 
   budgeted: ->
     @models.reduce ((memo, category) -> memo + category.budgeted()), 0
@@ -54,9 +38,4 @@ class BudgetApp.Collections.Categories extends Backbone.Collection
 
   clear: ->
     @each (model) -> model.buckets().clear()
-
-  clone: ->
-    cloned = new BudgetApp.Collections.Categories()
-    cloned.add(category.clone()) for category in @models
-    cloned
 

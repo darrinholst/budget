@@ -6,10 +6,6 @@ class BudgetApp.Views.BudgetView extends BudgetApp.Views.BaseView
     "click [data-expand-all]": "expandAll"
     "click [data-delete-budget]": "deleteBudget"
 
-  initialize: (options) ->
-    super()
-    @readonly = options.readonly
-
   collapseAll: ->
     $(".buckets").slideUp()
     $(".collapse-category").removeClass("fa-angle-down").addClass("fa-angle-right")
@@ -37,9 +33,10 @@ class BudgetApp.Views.BudgetView extends BudgetApp.Views.BaseView
         available.append("<li><a href=\"#{budget.url()}\" data-push-state>#{@formatDate(budget.startsOn())}</a></li>")
 
   render : (event) ->
-    $(@el).html(@template(readonly: @readonly))
-    @$("[data-income-container]").html(@newView(BudgetApp.Views.IncomeView, model: @model, collection: @model.incomeBuckets()).render().el)
-    @$("[data-expenses-container]").html(@newView(BudgetApp.Views.ExpensesView, model: @model, collection: @model.expenseCategories()).render().el)
+    $(@el).html(@template())
+    @$("[data-income-container]").html(@newView(BudgetApp.Views.IncomeView, collection: @model.incomeBuckets(), budget: @model).render().el)
+    @$("[data-expenses-container]").html(@newView(BudgetApp.Views.ExpensesView, collection: @model.expenseCategories(), budget: @model).render().el)
     @$("[data-overview-container]").html(@newView(BudgetApp.Views.OverviewView, model: @model).render().el)
     @fillDropDown()
     @
+

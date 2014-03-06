@@ -73,7 +73,7 @@ class BudgetApp.Views.IndexView extends BudgetApp.Views.BaseView
     )
 
   renderBudget: (budget) =>
-    view = @newView(BudgetApp.Views.IndexRowView, {collection: @collection, model : budget})
+    view = @newView(BudgetApp.Views.IndexRowView, {collection: @collection, budget: budget})
     @$('.row-fluid:last').before(view.render().el)
 
   addAll: ->

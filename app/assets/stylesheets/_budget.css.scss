@@ -326,20 +326,3 @@
   }
 }
 
-.readonly {
-  .bucket:hover .delete {
-    display: none;
-  }
-
-  .configure-category {
-    display: none;
-  }
-
-  a[data-add-category] {
-    display: none;
-  }
-
-  .ui-sortable {
-    cursor: default;
-  }
-}

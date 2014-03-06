@@ -12,17 +12,17 @@ class BudgetApp.Views.IndexRowView extends BudgetApp.Views.BaseView
 
   deleteBudget: ->
     if confirm("Are you sure you want to delete this budget?")
-      @model.destroy()
+      @budget.destroy()
       @remove()
 
   render: ->
     $(@el).html(@template(
-      url: @model.url()
-      starts_on: @formatDate(@model.startsOn())
-      ends_on: @formatDate(@model.endsOn())
-      actual_balance: @formatMoney(@model.actualBalance())
-      remaining: @formatMoney(@model.remaining())
-      actual_buffer: @formatMoney(@model.actualBuffer())
+      url: @budget.url()
+      starts_on: @formatDate(@budget.startsOn())
+      ends_on: @formatDate(@budget.endsOn())
+      actual_balance: @formatMoney(@budget.actualBalance())
+      remaining: @formatMoney(@budget.remaining())
+      actual_buffer: @formatMoney(@budget.actualBuffer())
     ))
 
     @

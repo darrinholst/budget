@@ -9,8 +9,8 @@ class BudgetApp.Views.OverviewView extends BudgetApp.Views.BaseView
     'changeDate input[name=starts_on]': -> @$("input[name=starts_on]").blur().trigger("change")
     'changeDate input[name=ends_on]': -> @$("input[name=ends_on]").blur().trigger("change")
 
-  initialize: ->
-    super()
+  initialize: (options) ->
+    super(options)
     @listenTo(@model, 'change', @render)
     $(document).bind('keydown', 'ctrl+b', @focusActualBalance)
 

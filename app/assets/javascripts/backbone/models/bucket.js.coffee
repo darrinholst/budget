@@ -9,9 +9,6 @@ class BudgetApp.Models.Bucket extends Backbone.Model
     response.itemizations = new BudgetApp.Collections.Itemizations(itemizations, parse: true)
     response
 
-  save: (attributes, options) ->
-    @collection.budget.save(attributes, options)
-
   name: (newValue) ->
     if newValue?
       @set('name', newValue)
@@ -39,14 +36,8 @@ class BudgetApp.Models.Bucket extends Backbone.Model
     else
       @get('itemizations') || new BudgetApp.Collections.Itemizations()
 
-  save: (attributes, options) ->
-    @collection.budget.save(attributes, options)
-
 class BudgetApp.Collections.Buckets extends Backbone.Collection
   model: BudgetApp.Models.Bucket
-
-  initialize: (models, options) ->
-    @budget = options.budget
 
   budgeted: ->
     @models.reduce ((memo, bucket) -> memo + bucket.budgeted()), 0

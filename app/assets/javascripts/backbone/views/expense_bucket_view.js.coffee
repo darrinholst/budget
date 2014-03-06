@@ -9,26 +9,26 @@ class BudgetApp.Views.ExpenseBucketView extends BudgetApp.Views.BaseBucketView
       "focus input[name=spent]": "spentFocused"
     }
 
-  initialize: ->
-    super()
+  initialize: (options) ->
+    super(options)
     @listenTo(@model, 'change:spent', @renderSpent)
     @listenTo(@model, 'change:itemizations', @renderSpent)
 
   itemizeBucket: ->
     @toggleCollapseBucket(event) if @bucketIsCollapsed()
-    @model.itemizations().add(@newView(BudgetApp.Models.Itemization, bucket: @model))
+    @model.itemizations().add(@newView(BudgetApp.Models.Itemization, bucket: @model, budget: @budget))
     @$(".bucket").addClass("has-itemizations")
 
   spentFocused: (event) ->
     @toggleCollapseBucket(event) if @bucketIsCollapsed()
 
-  toggleCollapseBucket: (event) =>
+  toggleCollapseBucket: (event) ->
     event.stopPropagation()
     @$(".itemizations").toggle("slide")
     @$(".collapse-bucket").toggleClass("fa-angle-down").toggleClass("fa-angle-right")
     @saveBucketCollapsedState()
 
-  saveBucketCollapsedState: =>
+  saveBucketCollapsedState: ->
     if Modernizr.localstorage
       if @bucketIsCollapsed()
         localStorage.setItem("bucket_collapsed#{@model.id}", true)
@@ -38,19 +38,19 @@ class BudgetApp.Views.ExpenseBucketView extends BudgetApp.Views.BaseBucketView
   bucketIsCollapsed: ->
     @$(".collapse-bucket").hasClass("fa-angle-right")
 
-  isBucketCollapsed: =>
+  isBucketCollapsed: ->
     Modernizr.localstorage && 'true' == localStorage.getItem("bucket_collapsed#{@model.id}")
 
-  spentChanged: (event) =>
+  spentChanged: (event) ->
     @model.spent(event.target.value)
-    @model.save()
+    @budget.save()
 
-  renderSpent: =>
+  renderSpent: ->
     @$("input[name=spent]").val(@formatMoney(@model.spent()))
     @$("input[name=remaining]").val(@formatMoney(@model.remaining()))
     @colorize()
 
-  render: =>
+  render: ->
     $(@el).html(@template(
       name: @model.name()
       budgeted: @formatMoney(@model.budgeted())
@@ -60,9 +60,7 @@ class BudgetApp.Views.ExpenseBucketView extends BudgetApp.Views.BaseBucketView
       hasItemizations: @model.itemizations().any()
     )).inlineEditable()
 
-    @newView(BudgetApp.Views.ItemizationsView, el: @$(".itemizations"), collection: @model.itemizations()).render()
-
+    @newView(BudgetApp.Views.ItemizationsView, el: @$(".itemizations"), collection: @model.itemizations(), budget: @budget).render()
     @colorize()
-
     @
 

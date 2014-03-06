@@ -1,6 +1,7 @@
 class BudgetApp.Views.BaseView extends Backbone.View
-  initialize: ->
+  initialize: (options = {}) ->
     super()
+    @budget = options.budget
     @_childViews = []
 
   formatDate: (date) ->
@@ -30,7 +31,7 @@ class BudgetApp.Views.BaseView extends Backbone.View
         localStorage.removeItem("collapsed#{@model.id}")
 
   isCollapsed: =>
-    Modernizr.localstorage && 'true' == localStorage.getItem("collapsed#{@model.id}")
+    Modernizr.localstorage && 'true' == localStorage.getItem("collapsed#{@budget.id}")
 
   close: ->
     @remove()

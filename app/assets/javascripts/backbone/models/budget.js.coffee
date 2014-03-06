@@ -43,10 +43,10 @@ class BudgetApp.Models.Budget extends Backbone.Model
 
   parse: (response) ->
     income_buckets = response.income_buckets || '[]'
-    response.income_buckets = new BudgetApp.Collections.IncomeBuckets(JSON.parse(income_buckets), parse: true, budget: this)
+    response.income_buckets = new BudgetApp.Collections.IncomeBuckets(JSON.parse(income_buckets), parse: true)
 
     categories = response.categories || '[]'
-    response.categories = new BudgetApp.Collections.Categories(JSON.parse(categories), parse: true, budget: this)
+    response.categories = new BudgetApp.Collections.Categories(JSON.parse(categories), parse: true)
     response
 
   toJSON: ->

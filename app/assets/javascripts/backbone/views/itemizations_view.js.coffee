@@ -1,18 +1,19 @@
 class BudgetApp.Views.ItemizationsView extends BudgetApp.Views.BaseView
-  initialize: ->
-    super()
-    @listenTo(@collection, "focus", @focused)
-    @listenTo(@collection, "add", @itemizationAdded)
+  initialize: (options) ->
+    super(options)
+    @listenTo(@collection, 'focus', @focused)
+    @listenTo(@collection, 'add', @itemizationAdded)
 
   focused: =>
-    @collection.last().trigger("focus:item")
+    @collection.last().trigger('focus:item')
 
   itemizationAdded: (itemization) =>
     @renderItemization(itemization)
+    @budget.save()
     @focused()
 
   renderItemization: (itemization) =>
-    view = @newView(BudgetApp.Views.ItemizationView, model: itemization)
+    view = @newView(BudgetApp.Views.ItemizationView, model: itemization, budget: @budget)
     $(@el).append(view.render().el)
 
   render: =>
