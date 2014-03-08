@@ -21,6 +21,21 @@ body {
   clear: both;
 }
 
+.signed-in, .signed-out {
+  display: none;
+}
+
+.loading {
+  position: absolute;
+  left: 50%;
+  width: 220px;
+  margin-left: -110px;
+  top: 50%;
+  height: 20px;
+  margin-top: 20px;
+  background: asset-url('loading.gif');
+}
+
 ul {
   list-style: none;
   margin: 0;
@@ -54,4 +69,3 @@ form .inline {
     padding: 10px 15px;
   }
 }
-

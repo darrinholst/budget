@@ -32,4 +32,3 @@ $ ->
     client.signOut()
     location.reload()
   )
-
