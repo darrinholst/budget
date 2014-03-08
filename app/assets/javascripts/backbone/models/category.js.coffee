@@ -3,7 +3,7 @@ class BudgetApp.Models.Category extends Backbone.Model
     name: 'Name...'
 
   parse: (response) ->
-    response.buckets = new BudgetApp.Collections.Buckets(response.buckets, parse: true)
+    response.buckets = new BudgetApp.Collections.Buckets(response.buckets, parent: this, parse: true)
     response
 
   name: (newValue) ->
@@ -24,7 +24,7 @@ class BudgetApp.Models.Category extends Backbone.Model
   buckets: ->
     @get('buckets')
 
-class BudgetApp.Collections.Categories extends Backbone.Collection
+class BudgetApp.Collections.Categories extends BudgetApp.Collections.BaseCollection
   model: BudgetApp.Models.Category
 
   budgeted: ->

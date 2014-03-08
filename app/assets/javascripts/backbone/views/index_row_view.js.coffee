@@ -1,7 +1,7 @@
 class BudgetApp.Views.IndexRowView extends BudgetApp.Views.BaseView
   template: JST["backbone/templates/index_row"]
   tagName: "div"
-  className: "row-fluid budget"
+  className: "row budget"
 
   events:
     "click [data-delete-budget]": "deleteBudget"

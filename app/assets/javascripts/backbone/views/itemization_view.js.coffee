@@ -1,6 +1,6 @@
 class BudgetApp.Views.ItemizationView extends BudgetApp.Views.BaseView
   template: JST["backbone/templates/itemization"]
-  className: "row-fluid itemization"
+  className: "row itemization"
 
   events:
     "change input[name=itemization_name]": "nameChanged"

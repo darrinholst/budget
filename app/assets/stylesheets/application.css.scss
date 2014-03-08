@@ -1,14 +1,13 @@
 /*
- *= require bootstrap_and_overrides
- *= require font-awesome
+ * require bootstrap_and_overrides
+ * require font-awesome
  */
 
+@import "bootstrap_and_overrides";
 @import "bootstrap-datepicker";
 @import "global";
-@import "validations";
 @import "inline_edit";
 @import "header";
 @import "budgets";
 @import "budget";
-@import "itemizations";
 

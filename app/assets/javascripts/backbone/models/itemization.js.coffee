@@ -18,7 +18,7 @@ class BudgetApp.Models.Itemization extends Backbone.Model
     else
       @get('spent')
 
-class BudgetApp.Collections.Itemizations extends Backbone.Collection
+class BudgetApp.Collections.Itemizations extends BudgetApp.Collections.BaseCollection
   model: BudgetApp.Models.Itemization
 
   spent: ->

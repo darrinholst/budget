@@ -1,18 +1,5 @@
 <div class="income">
-  <i class="fa fa-cog configure-category" data-configure-category></i>
-
-  <i class="collapse-category fa fa-angle-{{#if collapsed}}right{{else}}down{{/if}}" data-collapse></i>
-
-  <div class="row-fluid category header">
-  </div>
-
-  <div class="row-fluid buckets" {{#if collapsed}}style="display: none"{{/if}}>
-  </div>
-</div>
-
-<div class="income-actions">
-  <ul>
-    <li><a href="#" class="btn btn-success" data-add-income>Add Bucket</a></li>
-  </ul>
+  <div class="row category header"></div>
+  <div class="row buckets" {{#if collapsed}}style="display: none"{{/if}}></div>
 </div>
 

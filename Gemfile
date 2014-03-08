@@ -22,10 +22,10 @@ group :development do
 end
 
 group :assets do
-  gem 'less-rails'
   gem 'therubyracer'
   gem 'sass-rails'
   gem 'compass-rails'
+  gem 'bootstrap-sass'
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'handlebars_assets'

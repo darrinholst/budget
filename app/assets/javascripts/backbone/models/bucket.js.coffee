@@ -1,4 +1,4 @@
-class BudgetApp.Models.Bucket extends Backbone.Model
+class BudgetApp.Models.Bucket extends BudgetApp.Models.BaseModel
   defaults:
     name: 'Name...'
     budgeted: 0
@@ -6,7 +6,7 @@ class BudgetApp.Models.Bucket extends Backbone.Model
 
   parse: (response) ->
     itemizations = response.itemizations || []
-    response.itemizations = new BudgetApp.Collections.Itemizations(itemizations, parse: true)
+    response.itemizations = new BudgetApp.Collections.Itemizations(itemizations, parent: this, parse: true)
     response
 
   name: (newValue) ->
@@ -34,9 +34,9 @@ class BudgetApp.Models.Bucket extends Backbone.Model
     if newValues?
       @set('itemizations', newValues)
     else
-      @get('itemizations') || new BudgetApp.Collections.Itemizations()
+      @get('itemizations') || new BudgetApp.Collections.Itemizations([], parent: this)
 
-class BudgetApp.Collections.Buckets extends Backbone.Collection
+class BudgetApp.Collections.Buckets extends BudgetApp.Collections.BaseCollection
   model: BudgetApp.Models.Bucket
 
   budgeted: ->

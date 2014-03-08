@@ -46,13 +46,13 @@ class BudgetApp.Models.Budget extends Backbone.Model
       delete response.income_buckets
     else
       income_buckets = response.income_buckets || '[]'
-      response.income_buckets = new BudgetApp.Collections.IncomeBuckets(JSON.parse(income_buckets), parse: true)
+      response.income_buckets = new BudgetApp.Collections.IncomeBuckets(JSON.parse(income_buckets), parent: this, parse: true)
 
     if @expenseCategories()
       delete response.categories
     else
       categories = response.categories || '[]'
-      response.categories = new BudgetApp.Collections.Categories(JSON.parse(categories), parse: true)
+      response.categories = new BudgetApp.Collections.Categories(JSON.parse(categories), parent: this, parse: true)
 
     response
 
@@ -109,7 +109,7 @@ class BudgetApp.Models.Budget extends Backbone.Model
     @expenseCategories().clear()
     @
 
-class BudgetApp.Collections.Budgets extends Backbone.Collection
+class BudgetApp.Collections.Budgets extends BudgetApp.Collections.BaseCollection
   model: BudgetApp.Models.Budget
   url: -> '/budgets'
   dropboxDatastore: new Backbone.DropboxDatastore('budgets')

@@ -1,3 +1,9 @@
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 .fa {
   color: #666;
 }
@@ -7,48 +13,17 @@ body {
   padding-bottom: 20px;
 }
 
-.hero-unit {
-  background: white;
-
-  p {
-    padding-top: 10px;
-  }
-
-  & + span a, a {
-    text-decoration: underline;
-  }
-
-  a.btn {
-    text-decoration: none;
-  }
-}
-
-body > .container {
-  padding-top: 50px;
+body {
+  padding-top: 70px;
 }
 
 .clear {
   clear: both;
 }
 
-.container-fluid {
-  padding: 0;
-}
-
-
 ul {
   list-style: none;
   margin: 0;
-}
-
-.nav.budget-list {
-  display: none;
-}
-
-.navbar-fixed-top {
-  .brand {
-    padding-left: 20px;
-  }
 }
 
 form .inline {
@@ -80,34 +55,3 @@ form .inline {
   }
 }
 
-#activity {
-  display: none;
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  height: 32px;
-  width: 32px;
-  background: image-url("activity.gif") no-repeat;
-}
-
-@media (min-width: 768px) and (max-width: 979px) {
-  .container {
-    width: auto;
-  }
-}
-
-@media (max-width: 979px) {
-  body > .container {
-    padding-top: 0;
-  }
-}
-
-@media (max-width: 767px) {
-  .navbar-fixed-top {
-    margin-bottom: 10px;
-
-    .btn-navbar {
-      margin-right: 15px;
-    }
-  }
-}

@@ -11,19 +11,13 @@
 }
 
 .budgets {
-  background: white;
-  padding: 20px;
-  border-radius: 3px;
-
-  * {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+  > .container {
+    background: white;
+    padding: 15px 30px;
   }
 
   .budget, .header {
     line-height: 34px;
-    border-bottom: 1px solid #eee;
 
     .column {
       width: 30%;
@@ -112,46 +106,6 @@
         float: left;
         margin-bottom: 0;
       }
-    }
-  }
-
-  @media (max-width: 500px) {
-    #addBudget {
-      width: 95% !important;
-      margin: 20px auto !important;
-    }
-  }
-
-  @media (max-width: 767px) {
-    .header {
-      display: none;
-    }
-
-    .budget {
-      border-bottom: 1px solid #eee;
-      padding: 15px 5px;
-      width: 100%;
-
-      .column {
-        display: none;
-
-        &:first-child {
-          width: 100%;
-          display: block;
-        }
-      }
-
-      .touch-indicator {
-        display: inline-block;
-        position: absolute;
-        right: 50px;
-        margin-top: 8px;
-      }
-    }
-
-    .footer {
-      margin-left: -20px;
-      padding-left: 20px;
     }
   }
 }
