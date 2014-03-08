@@ -1,3 +1,0 @@
-#!/usr/bin/env ruby -w
-exec "bundle exec foreman run rails c"
-

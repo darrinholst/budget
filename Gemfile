@@ -2,28 +2,21 @@ source 'https://rubygems.org'
 
 ruby '2.1.1'
 
-gem 'rails', '3.2.16'
+gem 'rails', '4.1.0.rc1'
+
+gem 'bootstrap-sass'
+gem 'coffee-rails'
+gem 'compass-rails'
 gem 'font-awesome-rails'
+gem 'handlebars_assets'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'sass-rails'
+gem 'uglifier'
 gem 'unicorn'
-
-group :development, :test do
-  gem 'guard-jasmine'
-  gem 'jasminerice'
-end
 
 group :development do
   gem 'foreman'
-end
-
-group :assets do
-  gem 'sass-rails'
-  gem 'compass-rails'
-  gem 'bootstrap-sass'
-  gem 'coffee-rails'
-  gem 'uglifier'
-  gem 'handlebars_assets'
 end
 
 group :production do

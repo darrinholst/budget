@@ -1,5 +1,0 @@
-#!/bin/sh
-
-bundle install --without staging production
-RAILS_ENV=test bundle exec rake spec:javascripts
-
