@@ -19,15 +19,66 @@
   }
 
   .buckets {
-    padding: 5px 0;
+    padding-top: 5px;
     border: 1px solid #ddd;
     border-top: none;
+    border-bottom: none;
   }
 
   .header, .bucket {
     div:first-child input {
       text-align: left;
     }
+  }
+
+  .bucket, .header {
+    position: relative;
+
+    .delete-bucket, .delete-category {
+      display: none;
+      position: absolute;
+      top: 7px;
+      right: 5px;
+      cursor: pointer;
+
+      &:hover {
+        color: #333;
+      }
+    }
+
+    .delete-category {
+      top: 11px;
+    }
+
+    &:hover {
+      .delete-bucket, .delete-category {
+        display: block;
+      }
+    }
+  }
+
+  .add-category, .add-bucket {
+    a {
+      color: #777;
+      font-size: .9em;
+    }
+  }
+
+  .add-category {
+    border: 2px dashed #ddd;
+    background: #fbfbfb;
+    display: inline-block;
+    width: 100%;
+    padding: 10px 15px;
+    text-decoration: underline;
+    font-weight: bold;
+  }
+
+  .add-bucket {
+    padding-left: 20px;
+    border: 1px solid #ddd;
+    border-top: none;
+    padding-bottom: 5px;
   }
 }
 
