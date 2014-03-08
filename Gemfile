@@ -6,7 +6,6 @@ gem 'rails', '3.2.16'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'twitter-bootstrap-rails'
 gem 'unicorn'
 
 group :development, :test do
@@ -15,14 +14,10 @@ group :development, :test do
 end
 
 group :development do
-  gem 'awesome_print'
-  gem 'better_errors'
-  gem 'binding_of_caller'
   gem 'foreman'
 end
 
 group :assets do
-  gem 'therubyracer'
   gem 'sass-rails'
   gem 'compass-rails'
   gem 'bootstrap-sass'
