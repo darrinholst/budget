@@ -38,4 +38,3 @@ class BudgetApp.Collections.Categories extends BudgetApp.Collections.BaseCollect
 
   clear: ->
     @each (model) -> model.buckets().clear()
-
