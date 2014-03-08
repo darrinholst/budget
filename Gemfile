@@ -15,12 +15,12 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'unicorn'
 
-group :development do
+group :development, :test do
   gem 'foreman'
+  gem 'jasmine-rails'
 end
 
 group :production do
   gem 'newrelic_rpm'
   gem 'rails_12factor'
 end
-

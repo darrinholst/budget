@@ -28,5 +28,4 @@ $(document).on "click", "a[data-push-state]", (e) ->
   window.router.navigate($(this).attr("href"), true)
 
 $(window).on "popstate", (e) ->
-  window.router.navigate(location.pathname.substr(1), true)
-
+  window.router.navigate(location.pathname.substr(1), true) if window.router

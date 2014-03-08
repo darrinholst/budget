@@ -1,10 +1,16 @@
 class BudgetApp.Models.BaseModel extends Backbone.Model
   set: (key, value) ->
     super(key, value)
+    @_triggerParentChange(@collection)
 
-    model = @
+  destroy: ->
+    collection = @collection
+    super()
+    @_triggerParentChange(collection)
 
-    while model && model.collection && model.collection.parent
-      model = model.collection.parent
-      model.trigger('change')
+  _triggerParentChange: (collection)->
+    parent = collection.parent
 
+    while parent
+      parent.trigger('change')
+      parent = parent.collection.parent
