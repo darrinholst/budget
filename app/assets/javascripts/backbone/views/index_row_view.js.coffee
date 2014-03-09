@@ -10,7 +10,9 @@ class BudgetApp.Views.IndexRowView extends BudgetApp.Views.BaseView
   go: ->
     window.router.navigate(@$("a").attr("href"), true)
 
-  deleteBudget: ->
+  deleteBudget: (e) ->
+    e.stopPropagation()
+
     if confirm("Are you sure you want to delete this budget?")
       @budget.destroy()
       @remove()
