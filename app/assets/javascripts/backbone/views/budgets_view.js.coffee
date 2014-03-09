@@ -3,9 +3,8 @@ class BudgetApp.Views.IndexView extends BudgetApp.Views.BaseView
   className: 'budgets'
 
   events: ->
-    'click .modal-footer .btn-success': 'addBudget'
-    'click .modal-footer .btn-cancel': 'closeModal'
-    'shown #addBudget': 'showModal'
+    'click #addBudget .btn-primary': 'addBudget'
+    'shown.bs.modal #addBudget': 'showModal'
     'changeDate': => @$('#starts_on, #ends_on').blur()
 
   initialize: ->

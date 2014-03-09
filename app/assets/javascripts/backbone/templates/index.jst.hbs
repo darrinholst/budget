@@ -1,3 +1,39 @@
+<div class="modal fade" id="addBudget" data-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Add a new budget</h4>
+      </div>
+      <div class="modal-body">
+        <div>
+          <label class="inline" for="starts_on">Starts On:</label>
+          <input type="text" id="starts_on">
+        </div>
+        <div>
+          <label class="inline" for="ends_on">Ends On:</label>
+          <input type="text" id="ends_on">
+        </div>
+        <label class="radio">
+          <input name="from" id="from_clone" type="radio" value="clone" checked>
+          <span>From Existing</span>
+          <select id="from_selection"></select>
+          <div class="clear"></div>
+        </label>
+        <label class="radio">
+          <input name="from" id="from_scratch" type="radio" value="scratch">
+          <span>From Scratch</span>
+          <div class="clear"></div>
+        </label>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Create Budget</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container">
   <div class="row header">
     <div class="column">Starts On</div>
@@ -13,36 +49,3 @@
   </div>
 </div>
 
-<div class="modal" data-keyboard="false" id="addBudget">
-  <div class="modal-header">
-    <a class="close" data-dismiss="modal">×</a>
-    <h3>Add a new budget</h3>
-  </div>
-  <div class="modal-body">
-    <div>
-      <label class="inline" for="starts_on">Starts On:</label>
-      <input type="text" id="starts_on">
-    </div>
-
-    <div>
-      <label class="inline" for="ends_on">Ends On:</label>
-      <input type="text" id="ends_on">
-    </div>
-
-    <label class="radio">
-      <input name="from" id="from_clone" type="radio" value="clone" checked>
-      <span>From Existing</span>
-      <select id="from_selection"></select>
-      <div class="clear"></div>
-    </label>
-    <label class="radio">
-      <input name="from" id="from_scratch" type="radio" value="scratch">
-      <span>From Scratch</span>
-      <div class="clear"></div>
-    </label>
-  </div>
-  <div class="modal-footer ">
-    <a href="#" class="btn btn-cancel">Cancel</a>
-    <a href="#" class="btn btn-success">Create Budget</a>
-  </div>
-</div>

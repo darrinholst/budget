@@ -9,11 +9,11 @@
 //= require popover-closer
 
 //= require bootstrap-datepicker
-//  require twitter/bootstrap/bootstrap-modal
-//  require twitter/bootstrap/bootstrap-collapse
-//  require twitter/bootstrap/bootstrap-dropdown
-//  require twitter/bootstrap/bootstrap-tooltip
-//  require twitter/bootstrap/bootstrap-popover
+//= require bootstrap/modal
+//= require bootstrap/collapse
+//= require bootstrap/dropdown
+//= require bootstrap/tooltip
+//= require bootstrap/popover
 
 //= require handlebars.runtime
 //= require json2
