@@ -41,6 +41,11 @@ class BudgetApp.Models.Budget extends Backbone.Model
     ]
   }
 
+  clone: ->
+    cloned = super()
+    cloned.unset('id')
+    cloned
+
   parse: (response) ->
     if @incomeBuckets()
       delete response.income_buckets

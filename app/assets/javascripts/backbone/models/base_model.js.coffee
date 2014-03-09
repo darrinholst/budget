@@ -13,4 +13,4 @@ class BudgetApp.Models.BaseModel extends Backbone.Model
 
     while parent
       parent.trigger('change')
-      parent = parent.collection.parent
+      parent = parent.collection?.parent
