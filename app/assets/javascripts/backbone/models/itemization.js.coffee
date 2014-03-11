@@ -1,4 +1,4 @@
-class BudgetApp.Models.Itemization extends Backbone.Model
+class BudgetApp.Models.Itemization extends BudgetApp.Models.BaseModel
   defaults:
     spent: 0
 

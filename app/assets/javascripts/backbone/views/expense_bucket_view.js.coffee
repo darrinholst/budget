@@ -11,12 +11,11 @@ class BudgetApp.Views.ExpenseBucketView extends BudgetApp.Views.BaseBucketView
 
   initialize: (options) ->
     super(options)
-    @listenTo(@model, 'change:spent', @renderSpent)
-    @listenTo(@model, 'change:itemizations', @renderSpent)
+    @listenTo(@model, 'change', @renderSpent)
 
   itemizeBucket: ->
     @toggleCollapseBucket(event) if @bucketIsCollapsed()
-    @model.itemizations().add(@newView(BudgetApp.Models.Itemization, bucket: @model, budget: @budget))
+    @model.itemizations().add({})
     @$(".bucket").addClass("has-itemizations")
 
   spentFocused: (event) ->

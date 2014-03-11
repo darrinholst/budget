@@ -25,16 +25,16 @@
     border-bottom: none;
   }
 
-  .header, .bucket {
+  .header, .bucket, .itemization {
     div:first-child input {
       text-align: left;
     }
   }
 
-  .bucket, .header {
+  .bucket, .header, .itemization {
     position: relative;
 
-    .delete-bucket, .delete-category {
+    .delete-bucket, .delete-category, .itemize-bucket, .delete-itemization {
       display: none;
       position: absolute;
       top: 7px;
@@ -51,7 +51,7 @@
     }
 
     &:hover {
-      .delete-bucket, .delete-category {
+      .delete-bucket, .delete-category, .itemize-bucket, .delete-itemization {
         display: block;
       }
     }

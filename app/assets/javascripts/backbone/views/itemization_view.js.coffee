@@ -26,17 +26,14 @@ class BudgetApp.Views.ItemizationView extends BudgetApp.Views.BaseView
   spentChanged: (event) ->
     @model.spent(@$("input[name=itemization_spent]").val())
     @budget.save()
-    @model.get("bucket").trigger("change:itemizations")
 
   renderSpent: ->
     @$("input[name=itemization_spent]").val(@formatMoney(@model.spent()))
 
   deleteItemization: ->
     if confirm("Are you sure?")
-      bucket = @model.get("bucket")
       @model.destroy()
       @remove()
-      bucket.trigger("change:itemizations")
 
   render: ->
     $(@el).html(@template(

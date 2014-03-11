@@ -1,7 +1,7 @@
 <div class="clearfix bucket {{#if hasItemizations}}has-itemizations{{/if}}">
   <div class="col-lg-6"><input type="text" name="name" class="inline-edit" value="{{name}}"></div>
   <div class="col-lg-2"><input type="text" name="budgeted" class="inline-edit" value="{{budgeted}}"></div>
-  <div class="col-lg-2 spent"><input type="text" name="spent" class="inline-edit" value="{{spent}}"></div>
+  <div class="col-lg-2 spent"><input type="text" name="spent" class="inline-edit" value="{{spent}}"><i class="fa fa-plus itemize-bucket" data-itemize-bucket title="add itemization"></i></div>
   <div class="col-lg-2"><input type="text" name="remaining" class="inline-edit" value="{{remaining}}" readonly></div>
   <i class="delete fa fa-trash-o delete-bucket" data-delete-bucket title="remove bucket"></i>
 </div>
