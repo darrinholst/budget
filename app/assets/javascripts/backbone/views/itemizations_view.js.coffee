@@ -23,7 +23,10 @@ class BudgetApp.Views.ItemizationsView extends BudgetApp.Views.BaseView
   renderItemization: (itemization) ->
     view = @newView(BudgetApp.Views.ItemizationView, model: itemization, budget: @budget)
     $(@el).append(view.render().el)
+    $(view.el).data("view", view)
 
   render: ->
     @collection.each (itemization) => @renderItemization(itemization)
+    $(@el).sortable(axis: "y")
+
 

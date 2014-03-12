@@ -3,15 +3,21 @@ class BudgetApp.Views.ExpenseBucketView extends BudgetApp.Views.BaseBucketView
 
   events: ->
     _.extend super(), {
-      "change input[name=spent]": "spentChanged"
-      "click [data-itemize-bucket]": "itemizeBucket"
-      "click [data-collapse]": "toggleCollapseBucket"
-      "focus input[name=spent]": "spentFocused"
+      'change input[name=spent]': 'spentChanged'
+      'click [data-itemize-bucket]': 'itemizeBucket'
+      'click [data-collapse]': 'toggleCollapseBucket'
+      'focus input[name=spent]': 'spentFocused'
+      'sortupdate .itemizations': 'updateSortOrder'
     }
 
   initialize: (options) ->
     super(options)
     @listenTo(@model, 'change', @renderSpent)
+
+  updateSortOrder: ->
+    ids = ($(el).data('view').model.cid for el in @$('.itemization'))
+    @model.itemizations().models = @model.itemizations().sortBy((itemization) -> ids.indexOf(itemization.cid))
+    @budget.save()
 
   itemizeBucket: ->
     @toggleCollapseBucket(event) if @bucketIsCollapsed()
