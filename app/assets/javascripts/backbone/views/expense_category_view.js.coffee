@@ -18,8 +18,9 @@ class BudgetApp.Views.ExpenseCategoryView extends BudgetApp.Views.BaseView
     @listenTo(@model.buckets(), "destroy", @bucketRemoved)
 
   updateSortOrder: ->
-    #buckets = ({id: $(el).data("view").model.id, sort_order: i + 1} for el, i in @$(".buckets > div"))
-    #@model.patch(buckets_attributes: buckets)
+    ids = ($(el).data('view').model.cid for el in @$('.buckets > div'))
+    @model.buckets().models = @model.buckets().sortBy((bucket) -> ids.indexOf(bucket.cid))
+    @budget.save()
 
   nameChanged: ->
     @model.name(@$("input[name=name]").val())

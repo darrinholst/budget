@@ -12,8 +12,9 @@ class BudgetApp.Views.ExpensesView extends BudgetApp.Views.BaseView
     @listenTo(@collection, 'destroy', @categoryRemoved)
 
   updateSortOrder: ->
-    #categories = ({id: $(el).data("view").model.id, sort_order: i + 1} for el, i in @$(".category-wrapper"))
-    #@model.patch(categories_attributes: categories)
+    ids = ($(el).data('view').model.cid for el in @$('.category-wrapper'))
+    @collection.models = @collection.sortBy((category) -> ids.indexOf(category.cid))
+    @budget.save()
 
   addNewCategory: ->
     @collection.add({}, parse: true)
