@@ -9,7 +9,6 @@
 }
 
 body {
-  background: #eee;
   padding-bottom: 20px;
 }
 
@@ -58,9 +57,13 @@ form .inline {
 .landing {
   h1 {
     padding: 20px 0;
-    font-size: 50px;
-    color: #51A351;
-    text-shadow: 1px 1px 0 black;
+    font-size: 35px;
+    color: #333;
+
+    img {
+      height: 60px;
+      padding: 10px 5px;
+    }
   }
 
   a {
