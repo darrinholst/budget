@@ -1,25 +1,23 @@
-<div class="row">
-  <div class="col-lg-7 dont-print"><strong>Starts On</strong></div>
-  <div class="col-lg-5"><input type="text" name="starts_on" class="inline-edit" value="{{starts_on}}"></div>
-</div>
-
-<div class="row">
-  <div class="col-lg-7 dont-print"><strong>Ends On</strong></div>
-  <div class="col-lg-5"><input type="text" name="ends_on" class="inline-edit" value="{{ends_on}}"></div>
+<div class="header row">
+  <div class="col-lg-12">
+    <input type="text" name="starts_on" class="inline-edit" value="{{starts_on}}">
+    -&nbsp;
+    <input type="text" name="ends_on" class="inline-edit" value="{{ends_on}}">
+  </div>
 </div>
 
 <div class="row section">
   <div class="col-lg-12 dont-print"><strong>Budgeted</strong></div>
 </div>
-<div class="row">
+<div class="row detail">
   <div class="col-lg-7">Income</div>
   <div class="col-lg-5"><input type="text" class="inline-edit" value="{{total_income}}" readonly></div>
 </div>
-<div class="row">
+<div class="row detail">
   <div class="col-lg-7">Expenses</div>
   <div class="col-lg-5"><input type="text" class="inline-edit" value="{{total_expenses}}" readonly></div>
 </div>
-<div class="row">
+<div class="row detail">
   <div class="col-lg-7">Buffer</div>
   <div class="col-lg-5"><input type="text" class="inline-edit" value="{{budgeted_buffer}}" readonly></div>
 </div>
@@ -27,15 +25,15 @@
 <div class="row section dont-print">
   <div class="col-lg-12"><strong>Actual</strong></div>
 </div>
-<div class="row dont-print">
+<div class="row detail dont-print">
   <div class="col-lg-7">Balance</div>
   <div class="col-lg-5"><input type="text" name="actual" class="inline-edit" value="{{actual_balance}}"></div>
 </div>
-<div class="row dont-print">
+<div class="row detail dont-print">
   <div class="col-lg-7">Not Cleared</div>
   <div class="col-lg-5"><input type="text" class="inline-edit" value="{{remaining}}" readonly></div>
 </div>
-<div class="row dont-print">
+<div class="row detail dont-print">
   <div class="col-lg-7">Buffer</div>
   <div class="col-lg-5"><input type="text" class="inline-edit" value="{{actual_buffer}}" readonly></div>
 </div>

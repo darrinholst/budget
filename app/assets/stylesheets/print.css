@@ -11,20 +11,20 @@ body, p, ol, ul, td, th, input, div {
   display: none;
 }
 
-.row-fluid, .cleared {
+.row, .clearfix {
   clear: both;
 }
 
-.itemization > div, .category > div, .bucket > div, .overview > .row-fluid > div {
+.itemization > div, .category > div, .bucket > div, .overview > .row > div {
   float: left;
 }
 
 .bucket > div:first-child {
-  text-indent: 10px;
+  /*text-indent: 10px;*/
 }
 
 .itemization > div:first-child {
-  text-indent: 20px;
+  /*text-indent: 20px;*/
 }
 
 .income-wrapper {
@@ -49,11 +49,11 @@ ul {
   list-style: none;
 }
 
-.span6 {
+.col-lg-6 {
   width: 200px;
 }
 
-.span2 {
+.col-lg-2 {
   width: 100px;
 }
 

@@ -1,6 +1,6 @@
 class BudgetApp.Views.OverviewView extends BudgetApp.Views.BaseView
   template: JST["backbone/templates/overview"]
-  className: "overview container-fluid"
+  className: "overview"
 
   events:
     "change input[name=actual]": "actualChanged"
