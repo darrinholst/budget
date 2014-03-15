@@ -41,6 +41,9 @@ class BudgetApp.Models.Budget extends Backbone.Model
     ]
   }
 
+  uid: ->
+    @id
+
   clone: ->
     cloned = super()
     cloned.unset('id')

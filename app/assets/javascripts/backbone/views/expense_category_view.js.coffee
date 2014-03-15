@@ -4,7 +4,6 @@ class BudgetApp.Views.ExpenseCategoryView extends BudgetApp.Views.BaseView
 
   events:
     "change input[name=name]": "nameChanged"
-    "click [data-add-expense]": "addNewExpenseBucket"
     "click [data-delete-category]": "deleteCategory"
     "click [data-configure-category]": "configureCategory"
     "click [data-add-bucket]": "addNewExpenseBucket"
@@ -27,6 +26,7 @@ class BudgetApp.Views.ExpenseCategoryView extends BudgetApp.Views.BaseView
     @budget.save()
 
   addNewExpenseBucket: ->
+    @toggleCollapseCategory() if @categoryIsCollapsed()
     @model.buckets().add({})
     @configureCategory()
 

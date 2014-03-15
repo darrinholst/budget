@@ -21,6 +21,7 @@ class BudgetApp.Views.IncomeView extends BudgetApp.Views.BaseView
     @budget.save()
 
   addNewIncomeBucket: ->
+    @toggleCollapseCategory() if @categoryIsCollapsed()
     @collection.add({})
     @configureIncome()
 

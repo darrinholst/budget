@@ -23,6 +23,9 @@ class BudgetApp.Views.BaseView extends Backbone.View
     @$(".collapse-category").toggleClass("fa-angle-down").toggleClass("fa-angle-right")
     @saveCollapsedState()
 
+  categoryIsCollapsed: ->
+    @$(".collapse-category").hasClass("fa-angle-right")
+
   saveCollapsedState: ->
     if Modernizr.localstorage
       if @$(".collapse-category").hasClass("fa-angle-right")
@@ -34,7 +37,7 @@ class BudgetApp.Views.BaseView extends Backbone.View
     Modernizr.localstorage && 'true' == localStorage.getItem(@collapsedId())
 
   collapsedId: ->
-    'collapsed' + (@model || @collection.parent).id
+    'collapsed' + (@model || @collection.parent).uid()
 
   close: ->
     @remove()

@@ -1,7 +1,14 @@
 class BudgetApp.Models.BaseModel extends Backbone.Model
   initialize: ->
     super()
-    @set('id', guid()) unless @id
+    @unset('id')
+    @uid(guid()) unless @uid()
+
+  uid: (newValue) ->
+    if newValue?
+      @set('uid', newValue)
+    else
+      @get('uid')
 
   set: (key, value) ->
     super(key, value)
