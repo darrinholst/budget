@@ -1,4 +1,8 @@
 class BudgetApp.Models.BaseModel extends Backbone.Model
+  initialize: ->
+    super()
+    @set('id', guid()) unless @id
+
   set: (key, value) ->
     super(key, value)
     @_triggerParentChange(@collection)

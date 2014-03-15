@@ -3,6 +3,7 @@
 //= require jquery.ui.sortable
 //= require plugins
 
+//= require guid
 //= require inline-edit
 //= require activity
 //= require money-parser

@@ -2,17 +2,7 @@ class BudgetApp.Views.BudgetView extends BudgetApp.Views.BaseView
   template: JST["backbone/templates/budget"]
 
   events:
-    "click [data-collapse-all]": "collapseAll"
-    "click [data-expand-all]": "expandAll"
     "click [data-delete-budget]": "deleteBudget"
-
-  collapseAll: ->
-    $(".buckets").slideUp()
-    $(".collapse-category").removeClass("fa-angle-down").addClass("fa-angle-right")
-
-  expandAll: ->
-    $(".buckets").slideDown()
-    $(".collapse-category").removeClass("fa-angle-right").addClass("fa-angle-down")
 
   deleteBudget: ->
     if confirm("Are you sure?")

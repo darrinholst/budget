@@ -58,6 +58,7 @@ class BudgetApp.Views.ExpenseCategoryView extends BudgetApp.Views.BaseView
       budgeted: @formatMoney(@model.budgeted())
       spent: @formatMoney(@model.spent())
       remaining: @formatMoney(@model.remaining())
+      collapsed: @isCollapsed()
     )).inlineEditable()
 
     if @model.remaining() == 0

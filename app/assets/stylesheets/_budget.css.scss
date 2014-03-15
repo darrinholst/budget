@@ -81,8 +81,12 @@
       top: 11px;
     }
 
+    .hover-show {
+      display: none;
+    }
+
     &:hover {
-      .delete-bucket, .delete-category, .itemize-bucket, .delete-itemization {
+      .hover-show, .delete-bucket, .delete-category, .itemize-bucket, .delete-itemization {
         display: block;
       }
     }
@@ -118,5 +122,20 @@
 
   .itemizations {
     padding-left: 15px;
+  }
+
+  .collapse-category, .collapse-bucket {
+    position: absolute;
+    top: 12px;
+    left: 4px;
+    cursor: pointer;
+
+    &.fa-angle-right {
+      left: 8px;
+    }
+  }
+
+  .collapse-bucket {
+    top: 6px;
   }
 }

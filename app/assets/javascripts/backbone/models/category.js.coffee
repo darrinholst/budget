@@ -1,4 +1,4 @@
-class BudgetApp.Models.Category extends Backbone.Model
+class BudgetApp.Models.Category extends BudgetApp.Models.BaseModel
   defaults:
     name: 'Name...'
 
