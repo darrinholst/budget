@@ -37,5 +37,17 @@ describe 'BudgetApp.Models.Budget', ->
       json = @budget.toJSON()
 
       expect(json.id).toEqual('some id')
-      expect(json.foo).toBeUndefined()
+      expect(json.foo).toBeNull()
+
+    it 'shortens attribute names', ->
+      json = @budget.toJSON()
+
+      expect(json.ab).toEqual(@budget.actualBalance())
+      expect(json.actual_balance).toBeNull()
+
+  describe '#parse', ->
+    it 'can parse results of toJSON', ->
+      parsed = new BudgetApp.Models.Budget(@budget.toJSON(), parse: true)
+      expect(parsed.actualBalance()).toEqual(@budget.actualBalance())
+
 

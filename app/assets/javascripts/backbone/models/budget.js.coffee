@@ -8,6 +8,14 @@ class BudgetApp.Models.Budget extends Backbone.Model
     'categories'
   ]
 
+  short_attribute_names: {
+    actual_balance: 'ab'
+    starts_on: 'so'
+    ends_on: 'eo'
+    income_buckets: 'ib'
+    categories: 'c'
+  }
+
   defaults: {
     actual_balance: 0
 
@@ -59,6 +67,8 @@ class BudgetApp.Models.Budget extends Backbone.Model
     cloned
 
   parse: (response) ->
+    @_unshortenAttributeNames(response)
+
     if @incomeBuckets()
       delete response.income_buckets
     else
@@ -78,9 +88,19 @@ class BudgetApp.Models.Budget extends Backbone.Model
     json.income_buckets = JSON.stringify(json.income_buckets)
     json.categories = JSON.stringify(json.categories)
 
-    (delete(json[attribute]) unless _.contains(@valid_attributes, attribute)) for attribute of json
+    @_shortenAttributeNames(@_cleanUpAttributes(json))
 
+  _cleanUpAttributes: (json) ->
+    (json[attribute] = null unless _.contains(@valid_attributes, attribute)) for attribute of json
     json
+
+  _shortenAttributeNames: (json) ->
+    (json[short] = json[long]; json[long] = null) for long, short of @short_attribute_names
+    json
+
+  _unshortenAttributeNames: (response) ->
+    (response[long] = response[short] if response[short];delete(response[short])) for long, short of @short_attribute_names
+    response
 
   startsOn: (newValue) ->
     if newValue?
