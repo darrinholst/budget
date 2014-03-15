@@ -55,6 +55,7 @@ GEM
       dotenv (>= 0.7)
       thor (>= 0.13.6)
     fssm (0.2.10)
+    git-version (0.0.3)
     handlebars_assets (0.15)
       execjs (>= 1.2.9)
       multi_json
@@ -149,6 +150,7 @@ DEPENDENCIES
   compass-rails
   font-awesome-rails
   foreman
+  git-version
   handlebars_assets
   jasmine-rails
   jquery-rails
