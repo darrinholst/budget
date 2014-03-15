@@ -10,33 +10,7 @@
 
 body {
   padding-bottom: 20px;
-}
-
-body {
   padding-top: 70px;
-}
-
-.clear {
-  clear: both;
-}
-
-.signed-in, .signed-out {
-  display: none;
-}
-
-#sign-out {
-  margin-right: 15px;
-}
-
-.loading {
-  position: absolute;
-  left: 50%;
-  width: 220px;
-  margin-left: -110px;
-  top: 50%;
-  height: 20px;
-  margin-top: 20px;
-  background: asset-url('loading.gif');
 }
 
 ul {
@@ -58,6 +32,25 @@ form .inline {
   }
 }
 
+.signed-in, .signed-out {
+  display: none;
+}
+
+#sign-out {
+  margin-right: 15px;
+}
+
+.loading {
+  position: absolute;
+  left: 50%;
+  width: 220px;
+  margin-left: -110px;
+  top: 50%;
+  height: 20px;
+  margin-top: 20px;
+  background: asset-url('loading.gif');
+}
+
 .landing {
   h1 {
     padding: 20px 0;
@@ -76,3 +69,16 @@ form .inline {
     padding: 10px 15px;
   }
 }
+
+.available-budgets {
+  .current {
+    padding: 3px 20px;
+    background: #51A351;
+    color: white;
+  }
+}
+
+.nav > li > a:last-child {
+  padding-right: 0;
+}
+
