@@ -1,4 +1,13 @@
 class BudgetApp.Models.Budget extends Backbone.Model
+  valid_attributes: [
+    'id'
+    'actual_balance'
+    'starts_on'
+    'ends_on'
+    'income_buckets'
+    'categories'
+  ]
+
   defaults: {
     actual_balance: 0
 
@@ -68,6 +77,9 @@ class BudgetApp.Models.Budget extends Backbone.Model
     json = super()
     json.income_buckets = JSON.stringify(json.income_buckets)
     json.categories = JSON.stringify(json.categories)
+
+    (delete(json[attribute]) unless _.contains(@valid_attributes, attribute)) for attribute of json
+
     json
 
   startsOn: (newValue) ->

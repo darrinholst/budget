@@ -30,3 +30,12 @@ describe 'BudgetApp.Models.Budget', ->
     expect(@budget.actualBalance()).toEqual(0)
     expect(@budget.expenseCategories().remaining()).toEqual(70000)
 
+  describe '#toJSON', ->
+    it 'removes unused attributes', ->
+      @budget.set('foo', 'bar')
+
+      json = @budget.toJSON()
+
+      expect(json.id).toEqual('some id')
+      expect(json.foo).toBeUndefined()
+
