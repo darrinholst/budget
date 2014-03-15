@@ -11,7 +11,20 @@
   .overview {
     border: 1px solid #ddd;
 
+    @media (min-width: $screen-md-min) {
+      position: fixed;
+      width: 293px;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      position: fixed;
+      width: 360px;
+    }
+
     .header {
+      border: none;
+      border-bottom: 1px solid #ddd;
+
       input {
         width: 100px;
       }
@@ -101,5 +114,9 @@
 
   .category-wrapper.ui-sortable-placeholder {
     margin-bottom: 15px;
+  }
+
+  .itemizations {
+    padding-left: 15px;
   }
 }
