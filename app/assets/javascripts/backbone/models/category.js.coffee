@@ -1,8 +1,20 @@
 class BudgetApp.Models.Category extends BudgetApp.Models.BaseModel
+  valid_attributes: [
+    'uid'
+    'name'
+    'buckets'
+  ]
+
+  short_attribute_names: {
+    name: 'n'
+    buckets: 'b'
+  }
+
   defaults:
     name: 'Name...'
 
   parse: (response) ->
+    super(response)
     response.buckets = new BudgetApp.Collections.Buckets(response.buckets, parent: this, parse: true)
     response
 
@@ -32,9 +44,6 @@ class BudgetApp.Collections.Categories extends BudgetApp.Collections.BaseCollect
 
   remaining: ->
     @models.reduce ((memo, category) -> memo + Math.abs(category.remaining())), 0
-
-  toJSON: (includeBuckets) ->
-    @map((model) -> model.toJSON(includeBuckets))
 
   clear: ->
     @each (model) -> model.buckets().clear()

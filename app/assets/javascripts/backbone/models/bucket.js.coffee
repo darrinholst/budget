@@ -1,10 +1,26 @@
 class BudgetApp.Models.Bucket extends BudgetApp.Models.BaseModel
+  valid_attributes: [
+    'uid'
+    'name'
+    'budgeted'
+    'spent'
+    'itemizations'
+  ]
+
+  short_attribute_names: {
+    name: 'n'
+    budgeted: 'b'
+    spent: 's'
+    itemizations: 'i'
+  }
+
   defaults:
     name: 'Name...'
     budgeted: 0
     spent: 0
 
   parse: (response) ->
+    super(response)
     itemizations = response.itemizations || []
     response.itemizations = new BudgetApp.Collections.Itemizations(itemizations, parent: this, parse: true)
     response

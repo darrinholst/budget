@@ -36,7 +36,6 @@ describe 'BudgetApp.Models.Budget', ->
 
       json = @budget.toJSON()
 
-      expect(json.id).toEqual('some id')
       expect(json.foo).toBeNull()
 
     it 'shortens attribute names', ->

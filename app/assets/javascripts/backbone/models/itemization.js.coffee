@@ -1,4 +1,15 @@
 class BudgetApp.Models.Itemization extends BudgetApp.Models.BaseModel
+  valid_attributes: [
+    'uid'
+    'name'
+    'spent'
+  ]
+
+  short_attribute_names: {
+    name: 'n'
+    spent: 's'
+  }
+
   defaults:
     spent: 0
 
