@@ -138,4 +138,29 @@
   .collapse-bucket {
     top: 6px;
   }
+
+  .category-wrapper .guage {
+    position: relative;
+    display: none;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-top: none;
+    height: 5px;
+    overflow: hidden;
+
+    .days {
+      position: absolute;
+      left: 0;
+      height: 100%;
+      border-right: 3px solid #333;
+    }
+
+    .money {
+      position: absolute;
+      left: 0;
+      height: 100%;
+      background: $brand-primary;
+      transition: width 1s;
+    }
+  }
 }

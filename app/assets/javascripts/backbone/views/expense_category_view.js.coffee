@@ -52,6 +52,15 @@ class BudgetApp.Views.ExpenseCategoryView extends BudgetApp.Views.BaseView
     left = if parseInt(@$(".category-container").css("left")) < 0 then 0 else -250
     @$(".category-container").animate({left: left}, 250)
 
+  renderGuage: ->
+    percentComplete = @model.collection.parent.percentComplete()
+
+    if percentComplete
+      @$('.guage').find('.days').width(percentComplete + '%')
+      @$('.guage').find('.money').width(@model.percentSpent() + '%')
+      @$('.guage').show()
+
+
   renderSummary: ->
     @$(".category").html(JST["backbone/templates/expense_category_summary"](
       name: @model.name()
@@ -60,6 +69,8 @@ class BudgetApp.Views.ExpenseCategoryView extends BudgetApp.Views.BaseView
       remaining: @formatMoney(@model.remaining())
       collapsed: @isCollapsed()
     )).inlineEditable()
+
+    @renderGuage()
 
     if @model.remaining() == 0
       @$(".category").addClass("cleared")

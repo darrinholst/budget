@@ -36,6 +36,9 @@ class BudgetApp.Models.Category extends BudgetApp.Models.BaseModel
   buckets: ->
     @get('buckets')
 
+  percentSpent: ->
+    Math.round(((@spent() / @budgeted()) || 0) * 100)
+
 class BudgetApp.Collections.Categories extends BudgetApp.Collections.BaseCollection
   model: BudgetApp.Models.Category
 
