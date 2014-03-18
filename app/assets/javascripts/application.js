@@ -2,7 +2,9 @@
 //= require jquery_ujs
 //= require jquery.ui.sortable
 //= require plugins
+//= require moment
 
+//= require clock
 //= require guid
 //= require inline-edit
 //= require activity

@@ -136,6 +136,16 @@ class BudgetApp.Models.Budget extends BudgetApp.Models.BaseModel
     @expenseCategories().clear()
     @
 
+  percentComplete: ->
+    now = Clock.now()
+    startsOn = moment(@startsOn()).startOf('day')
+    endsOn = moment(@endsOn()).endOf('day')
+
+    if now <= endsOn and now >= startsOn
+      totalDays = moment(endsOn).diff(moment(startsOn), 'days')
+      completedDays = moment(Clock.now()).diff(moment(startsOn), 'days')
+      Math.round((completedDays / (totalDays + 1)) * 100)
+
 class BudgetApp.Collections.Budgets extends BudgetApp.Collections.BaseCollection
   model: BudgetApp.Models.Budget
   url: -> '/budgets'
