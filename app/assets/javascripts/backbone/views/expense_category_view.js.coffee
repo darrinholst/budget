@@ -54,11 +54,15 @@ class BudgetApp.Views.ExpenseCategoryView extends BudgetApp.Views.BaseView
 
   renderGuage: ->
     percentComplete = @model.collection.parent.percentComplete()
+    percentSpent = @model.percentSpent()
 
     if percentComplete
       @$('.guage').find('.days').width(percentComplete + '%')
-      @$('.guage').find('.money').width(@model.percentSpent() + '%')
-      @$('.guage').show()
+      @$('.guage').find('.money').width(percentSpent + '%')
+      @$('.guage').removeClass('over cleared')
+                  .addClass(if percentSpent == 100 then 'cleared' else '')
+                  .addClass(if percentSpent > 100 then 'over' else '')
+                  .show()
 
 
   renderSummary: ->
@@ -71,11 +75,6 @@ class BudgetApp.Views.ExpenseCategoryView extends BudgetApp.Views.BaseView
     )).inlineEditable()
 
     @renderGuage()
-
-    if @model.remaining() == 0
-      @$(".category").addClass("cleared")
-    else
-      @$(".category").removeClass("cleared")
 
   renderBucket: (bucket, focus) ->
     view = @newView(BudgetApp.Views.ExpenseBucketView, model: bucket, budget: @budget)

@@ -53,7 +53,6 @@ class BudgetApp.Views.ExpenseBucketView extends BudgetApp.Views.BaseBucketView
   renderSpent: ->
     @$("input[name=spent]").val(@formatMoney(@model.spent()))
     @$("input[name=remaining]").val(@formatMoney(@model.remaining()))
-    @colorize()
 
   render: ->
     $(@el).html(@template(
@@ -66,6 +65,5 @@ class BudgetApp.Views.ExpenseBucketView extends BudgetApp.Views.BaseBucketView
     )).inlineEditable()
 
     @newView(BudgetApp.Views.ItemizationsView, el: @$(".itemizations"), collection: @model.itemizations(), budget: @budget).render()
-    @colorize()
     @
 

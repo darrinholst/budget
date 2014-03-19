@@ -8,7 +8,6 @@ class BudgetApp.Views.BaseBucketView extends BudgetApp.Views.BaseView
 
   initialize: (options) ->
     super(options)
-    @listenTo(@model, 'change', @colorize)
     @listenTo(@model, 'change:name', @renderName)
     @listenTo(@model, 'change:budgeted', @renderBudgeted)
 
@@ -31,8 +30,4 @@ class BudgetApp.Views.BaseBucketView extends BudgetApp.Views.BaseView
     if confirm("Are you sure?")
       @model.destroy()
       @remove()
-
-  colorize: =>
-    $(@el)[if @model.remaining() == 0 then "addClass" else "removeClass"]("cleared")
-    $(@el)[if @model.remaining() < 0 then "addClass" else "removeClass"]("over")
 

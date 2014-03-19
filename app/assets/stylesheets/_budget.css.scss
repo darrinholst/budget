@@ -160,7 +160,15 @@
       left: 0;
       height: 100%;
       background: $brand-primary;
-      transition: width 1s;
+      transition: width .5s;
+    }
+
+    &.cleared .money {
+      background: #aaa;
+    }
+
+    &.over .money {
+      background: $state-danger-text;
     }
   }
 }
