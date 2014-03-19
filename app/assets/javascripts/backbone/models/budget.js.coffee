@@ -63,7 +63,7 @@ class BudgetApp.Models.Budget extends BudgetApp.Models.BaseModel
 
   clone: ->
     cloned = super()
-    cloned.unset('id')
+    delete(cloned.id)
     cloned
 
   parse: (response) ->

@@ -17,7 +17,7 @@ describe 'BudgetApp.Models.Budget', ->
   it 'can clone itself', ->
     cloned = @budget.clone()
 
-    expect(cloned.get('id')).toBeUndefined()
+    expect('id' of cloned).toBe(false)
     expect(cloned.startsOn()).toEqual(Date.parse('03/01/2014'))
     expect(cloned.endsOn()).toEqual(Date.parse('03/31/2014'))
     expect(cloned.totalIncome()).toEqual(100000)
