@@ -65,5 +65,7 @@ class BudgetApp.Collections.Buckets extends BudgetApp.Collections.BaseCollection
     @models.reduce ((memo, bucket) -> memo + (if bucket.remaining() < 0 then 0 else bucket.remaining())), 0
 
   clear: ->
-    @each (bucket) -> bucket.spent(0)
+    @each (bucket) -> 
+      bucket.spent(0)
+      bucket.itemizations().clear()
 

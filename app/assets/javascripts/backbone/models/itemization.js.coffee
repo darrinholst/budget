@@ -35,3 +35,6 @@ class BudgetApp.Collections.Itemizations extends BudgetApp.Collections.BaseColle
   spent: ->
     @models.reduce ((memo, item) -> memo + item.spent()), 0
 
+  clear: ->
+    @models = []
+

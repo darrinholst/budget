@@ -9,8 +9,9 @@ describe 'BudgetApp.Models.Budget', ->
         {budgeted: 100000}
       ])
       categories: JSON.stringify([
-        {buckets: [{budgeted: 40000, spent: 20000}]},
-        {buckets: [{budgeted: 30000, spent: 10000}]}
+        {buckets: [{budgeted: 40000, spent: 20000}]}
+        {buckets: [{budgeted: 20000, spent: 10000}]}
+        {buckets: [{budgeted: 10000, spent: 0, itemizations:[{spent: 5000}]}]}
       ])
     }, parse: true)
 
@@ -22,7 +23,7 @@ describe 'BudgetApp.Models.Budget', ->
     expect(cloned.endsOn()).toEqual(Date.parse('03/31/2014'))
     expect(cloned.totalIncome()).toEqual(100000)
     expect(cloned.totalExpenses()).toEqual(70000)
-    expect(cloned.expenseCategories().remaining()).toEqual(40000)
+    expect(cloned.expenseCategories().remaining()).toEqual(35000)
 
   it 'can clear itself', ->
     @budget.clear()
