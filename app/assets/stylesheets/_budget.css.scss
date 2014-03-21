@@ -171,4 +171,16 @@
       background: $state-danger-text;
     }
   }
+
+  .bucket {
+    .collapse-bucket {
+      display: none;
+    }
+
+    &.has-itemizations:hover {
+      .collapse-bucket {
+        display: block;
+      }
+    }
+  }
 }
