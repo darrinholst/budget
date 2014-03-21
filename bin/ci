@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby -w
+
+system 'bundle'
+exec 'RAILS_ENV=test bundle exec rake spec:javascript'
+
