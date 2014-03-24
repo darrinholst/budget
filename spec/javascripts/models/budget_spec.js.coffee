@@ -2,7 +2,7 @@ describe 'BudgetApp.Models.Budget', ->
   beforeEach ->
     @budget = new BudgetApp.Models.Budget({
       id: 'some id'
-      actual_balance: '100001'
+      actual_balance: '100000'
       starts_on: '03/01/2014'
       ends_on: '03/31/2014'
       income_buckets: JSON.stringify([
@@ -81,4 +81,11 @@ describe 'BudgetApp.Models.Budget', ->
       parsed = new BudgetApp.Models.Budget(@budget.toJSON(), parse: true)
       expect(parsed.actualBalance()).toEqual(@budget.actualBalance())
 
+  describe '#actualBuffer', ->
+    it 'substracts remaining expeses from actual balance', ->
+      expect(@budget.actualBuffer()).toEqual(65000)
+
+    it 'substracts held income which is identified by a negative number', ->
+      @budget.incomeBuckets().add(new BudgetApp.Models.IncomeBucket(budgeted: -5000))
+      expect(@budget.actualBuffer()).toEqual(60000)
 

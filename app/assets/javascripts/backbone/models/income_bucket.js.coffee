@@ -17,3 +17,6 @@ class BudgetApp.Models.IncomeBucket extends BudgetApp.Models.Bucket
 class BudgetApp.Collections.IncomeBuckets extends BudgetApp.Collections.Buckets
   model: BudgetApp.Models.IncomeBucket
 
+  held: ->
+    @models.reduce ((memo, bucket) -> memo + (if bucket.budgeted() < 0 then Math.abs(bucket.budgeted()) else 0)), 0
+

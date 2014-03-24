@@ -117,7 +117,7 @@ class BudgetApp.Models.Budget extends BudgetApp.Models.BaseModel
     @expenseCategories().remaining()
 
   actualBuffer: ->
-    @actualBalance() - @remaining()
+    @actualBalance() - @remaining() - @incomeBuckets().held()
 
   totalIncome: ->
     @incomeBuckets().budgeted()
