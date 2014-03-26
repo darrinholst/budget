@@ -1,19 +1,23 @@
 class BudgetApp.Views.IndexRowView extends BudgetApp.Views.BaseView
-  template: JST["backbone/templates/index_row"]
-  tagName: "div"
-  className: "row budget"
+  template: JST['backbone/templates/index_row']
+  tagName: 'div'
+  className: 'row budget'
+
+  initialize: (options = {}) ->
+    super(options)
+    $(@el).attr('id', @budget.cid)
 
   events:
-    "click [data-delete-budget]": "deleteBudget"
-    "click": "go"
+    'click [data-delete-budget]': 'deleteBudget'
+    'click': 'go'
 
   go: ->
-    window.router.navigate(@$("a").attr("href"), true)
+    window.router.navigate(@$('a').attr('href'), true)
 
   deleteBudget: (e) ->
     e.stopPropagation()
 
-    if confirm("Are you sure you want to delete this budget?")
+    if confirm('Are you sure you want to delete this budget?')
       @budget.destroy()
       @remove()
 

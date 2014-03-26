@@ -81,7 +81,10 @@ class BudgetApp.Views.IndexView extends BudgetApp.Views.BaseView
   render: ->
     $(@el).html(@template())
     @addAll()
+
+    activeBudget = @collection.find((b) -> !b.inFuture())
+    @$("##{activeBudget.cid}").addClass('selected') if activeBudget
+
     $('.nav.budget-list').hide()
-    @$('.budget:first').addClass('selected')
     @
 
