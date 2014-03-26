@@ -136,6 +136,10 @@ class BudgetApp.Models.Budget extends BudgetApp.Models.BaseModel
     @expenseCategories().clear()
     @
 
+  inFuture: ->
+    days = moment(@startsOn()).startOf('day').diff(moment(Clock.now()).startOf('day'), 'days')
+    days > 0
+
   percentComplete: ->
     now = Clock.now()
     startsOn = moment(@startsOn()).startOf('day')

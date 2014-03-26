@@ -31,6 +31,16 @@ describe 'BudgetApp.Models.Budget', ->
     expect(@budget.actualBalance()).toEqual(0)
     expect(@budget.expenseCategories().remaining()).toEqual(70000)
 
+
+  describe '#inFuture', ->
+    it 'shows as future when start date is in the future', ->
+      spyOn(Clock, 'now').and.returnValue(Date.parse('2/28/2014 14:12'))
+      expect(@budget.inFuture()).toBe(true)
+
+    it 'shows as not in the future when start date is not in the future', ->
+      spyOn(Clock, 'now').and.returnValue(Date.parse('3/01/2014 14:12'))
+      expect(@budget.inFuture()).toBe(false)
+
   describe '#percentComplete', ->
     it 'calculates percent complete on the first day', ->
       spyOn(Clock, 'now').and.returnValue(Date.parse('03/01/2014'))

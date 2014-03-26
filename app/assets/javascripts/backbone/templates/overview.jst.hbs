@@ -22,6 +22,7 @@
   <div class="col-md-5"><input type="text" class="inline-edit" value="{{budgeted_buffer}}" readonly></div>
 </div>
 
+{{#unless future}}
 <div class="row section dont-print">
   <div class="col-md-12"><strong>Actual</strong></div>
 </div>
@@ -37,3 +38,4 @@
   <div class="col-md-7">Buffer</div>
   <div class="col-md-5"><input type="text" class="inline-edit" value="{{actual_buffer}}" readonly></div>
 </div>
+{{/unless}}

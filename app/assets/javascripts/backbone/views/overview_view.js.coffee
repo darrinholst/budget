@@ -43,6 +43,7 @@ class BudgetApp.Views.OverviewView extends BudgetApp.Views.BaseView
       actual_balance: @formatMoney(@model.actualBalance())
       remaining: @formatMoney(@model.remaining())
       actual_buffer: @formatMoney(@model.actualBuffer())
+      future: @model.inFuture()
     )).inlineEditable()
 
     @$("input[name=starts_on], input[name=ends_on]").datepicker()

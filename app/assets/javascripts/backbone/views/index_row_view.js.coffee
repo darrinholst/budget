@@ -22,9 +22,9 @@ class BudgetApp.Views.IndexRowView extends BudgetApp.Views.BaseView
       url: @budget.url()
       starts_on: @formatDate(@budget.startsOn())
       ends_on: @formatDate(@budget.endsOn())
-      actual_balance: @formatMoney(@budget.actualBalance())
-      remaining: @formatMoney(@budget.remaining())
-      actual_buffer: @formatMoney(@budget.actualBuffer())
+      actual_balance: if @budget.inFuture() then '&mdash;' else @formatMoney(@budget.actualBalance())
+      remaining: if @budget.inFuture() then '&mdash;' else @formatMoney(@budget.remaining())
+      actual_buffer: if @budget.inFuture() then '&mdash;' else @formatMoney(@budget.actualBuffer())
     ))
 
     @
