@@ -69,11 +69,20 @@ class BudgetApp.Models.Budget extends BudgetApp.Models.BaseModel
   parse: (response) ->
     super(response)
 
+    if response.income_buckets
+      response.income_categories ||= JSON.stringify([{name: 'Income', buckets: JSON.parse(response.income_buckets)}])
+
     if @incomeBuckets()
       delete response.income_buckets
     else
       income_buckets = response.income_buckets || '[]'
       response.income_buckets = new BudgetApp.Collections.IncomeBuckets(JSON.parse(income_buckets), parent: this, parse: true)
+
+    if @incomeCategories()
+      delete response.income_categories
+    else
+      income_categories = response.income_categories || '[]'
+      response.income_categories = new BudgetApp.Collections.Categories(JSON.parse(income_categories), parent: this, parse: true)
 
     if @expenseCategories()
       delete response.categories
@@ -109,6 +118,9 @@ class BudgetApp.Models.Budget extends BudgetApp.Models.BaseModel
 
   incomeBuckets: ->
     @get('income_buckets')
+
+  incomeCategories: ->
+    @get('income_categories')
 
   expenseCategories: ->
     @get('categories')
