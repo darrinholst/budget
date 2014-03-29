@@ -4,7 +4,7 @@ class BudgetApp.Models.Budget extends BudgetApp.Models.BaseModel
     'actual_balance'
     'starts_on'
     'ends_on'
-    'income_buckets'
+    'income_categories'
     'categories'
   ]
 
@@ -13,6 +13,7 @@ class BudgetApp.Models.Budget extends BudgetApp.Models.BaseModel
     starts_on: 'so'
     ends_on: 'eo'
     income_buckets: 'ib'
+    income_categories: 'ic'
     categories: 'c'
   }
 
@@ -73,7 +74,6 @@ class BudgetApp.Models.Budget extends BudgetApp.Models.BaseModel
 
     if response.income_buckets
       response.income_categories ||= JSON.stringify([{name: 'Income', buckets: JSON.parse(response.income_buckets)}])
-      delete response.income_buckets
 
     if @incomeCategories()
       delete response.income_categories
@@ -91,7 +91,7 @@ class BudgetApp.Models.Budget extends BudgetApp.Models.BaseModel
 
   toJSON: ->
     super((json) ->
-      json.income_buckets = JSON.stringify(json.income_buckets)
+      json.income_categories = JSON.stringify(json.income_categories)
       json.categories = JSON.stringify(json.categories)
     )
 

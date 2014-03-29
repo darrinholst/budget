@@ -19,9 +19,17 @@ describe 'BudgetApp.Models.Budget', ->
     it 'converts income_buckets to income_categories', ->
       expect(@budget.incomeCategories().budgeted()).toEqual(100000)
 
-    it 'removes income buckets', ->
-      expect(@budget.incomeBuckets().budgeted()).toEqual(100000)
-      expect(@budget.get('income_buckets')).toBeUndefined()
+    it 'can continue to parse old objects that have buckets', ->
+      @budget = new BudgetApp.Models.Budget({ib: JSON.stringify([{budgeted: 100}])}, parse: true)
+      expect(@budget.incomeCategories().budgeted()).toEqual(100)
+
+    it 'stores income categories instead of buckets', ->
+      json = @budget.toJSON()
+      console.log(json)
+      expect(json.income_buckets).toBeNull()
+      expect(json.ib).toBeNull()
+      expect(json.income_categories).toBeNull()
+      expect(json.ic).not.toBeNull()
 
   it 'can clone itself', ->
     cloned = @budget.clone()
@@ -38,7 +46,6 @@ describe 'BudgetApp.Models.Budget', ->
 
     expect(@budget.actualBalance()).toEqual(0)
     expect(@budget.expenseCategories().remaining()).toEqual(70000)
-
 
   describe '#inFuture', ->
     it 'shows as future when start date is in the future', ->
