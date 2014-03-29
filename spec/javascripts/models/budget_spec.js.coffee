@@ -15,8 +15,13 @@ describe 'BudgetApp.Models.Budget', ->
       ])
     }, parse: true)
 
-  it 'converts income_buckets to income_categories', ->
-    expect(@budget.incomeCategories().budgeted()).toEqual(100000)
+  describe 'conversion from income buckets to income categories', ->
+    it 'converts income_buckets to income_categories', ->
+      expect(@budget.incomeCategories().budgeted()).toEqual(100000)
+
+    it 'removes income buckets', ->
+      expect(@budget.incomeBuckets().budgeted()).toEqual(100000)
+      expect(@budget.get('income_buckets')).toBeUndefined()
 
   it 'can clone itself', ->
     cloned = @budget.clone()

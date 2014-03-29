@@ -33,6 +33,10 @@ class BudgetApp.Models.Category extends BudgetApp.Models.BaseModel
   remaining: ->
     @buckets().remaining()
 
+  #TODO: move this to a new income category object
+  held: ->
+    @buckets().held()
+
   buckets: ->
     @get('buckets')
 
@@ -47,6 +51,10 @@ class BudgetApp.Collections.Categories extends BudgetApp.Collections.BaseCollect
 
   remaining: ->
     @models.reduce ((memo, category) -> memo + Math.abs(category.remaining())), 0
+
+  #TODO: move this to a new income categories object
+  held: ->
+    @models.reduce ((memo, category) -> memo + category.held()), 0
 
   clear: ->
     @each (model) -> model.buckets().clear()

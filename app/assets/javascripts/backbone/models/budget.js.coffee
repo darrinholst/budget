@@ -19,9 +19,11 @@ class BudgetApp.Models.Budget extends BudgetApp.Models.BaseModel
   defaults: {
     actual_balance: 0
 
-    income_buckets: [
-      {name: "Salary"}
-    ]
+    income_categories: [
+      {name: 'Income', buckets: [
+        {name: "Salary"}
+      ]}
+    ],
 
     categories: [
       {name: "Housing", buckets: [
@@ -71,12 +73,7 @@ class BudgetApp.Models.Budget extends BudgetApp.Models.BaseModel
 
     if response.income_buckets
       response.income_categories ||= JSON.stringify([{name: 'Income', buckets: JSON.parse(response.income_buckets)}])
-
-    if @incomeBuckets()
       delete response.income_buckets
-    else
-      income_buckets = response.income_buckets || '[]'
-      response.income_buckets = new BudgetApp.Collections.IncomeBuckets(JSON.parse(income_buckets), parent: this, parse: true)
 
     if @incomeCategories()
       delete response.income_categories
@@ -117,7 +114,7 @@ class BudgetApp.Models.Budget extends BudgetApp.Models.BaseModel
       @get('actual_balance')
 
   incomeBuckets: ->
-    @get('income_buckets')
+    @incomeCategories().at(0).buckets()
 
   incomeCategories: ->
     @get('income_categories')
@@ -129,7 +126,7 @@ class BudgetApp.Models.Budget extends BudgetApp.Models.BaseModel
     @expenseCategories().remaining()
 
   actualBuffer: ->
-    @actualBalance() - @remaining() - @incomeBuckets().held()
+    @actualBalance() - @remaining() - @incomeCategories().held()
 
   totalIncome: ->
     @incomeBuckets().budgeted()

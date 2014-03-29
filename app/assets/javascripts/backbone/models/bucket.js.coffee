@@ -64,6 +64,10 @@ class BudgetApp.Collections.Buckets extends BudgetApp.Collections.BaseCollection
   remaining: ->
     @models.reduce ((memo, bucket) -> memo + (if bucket.remaining() < 0 then 0 else bucket.remaining())), 0
 
+  #TODO: remove when start using income specific categories
+  held: ->
+    @models.reduce ((memo, bucket) -> memo + (if bucket.budgeted() < 0 then Math.abs(bucket.budgeted()) else 0)), 0
+
   clear: ->
     @each (bucket) -> 
       bucket.spent(0)
