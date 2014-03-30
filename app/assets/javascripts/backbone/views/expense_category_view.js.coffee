@@ -71,7 +71,7 @@ class BudgetApp.Views.ExpenseCategoryView extends BudgetApp.Views.BaseView
       budgeted: @formatMoney(@model.budgeted())
       spent: @formatMoney(@model.spent())
       remaining: @formatMoney(@model.remaining())
-      collapsed: @isCollapsed()
+      collapsed: @categoryIsCollapsed()
     )).inlineEditable()
 
     @renderGuage()
@@ -87,7 +87,7 @@ class BudgetApp.Views.ExpenseCategoryView extends BudgetApp.Views.BaseView
     @$(".buckets").sortable(axis: "y")
 
   render: ->
-    $(@el).html(@template(name: @model.name(), collapsed: @isCollapsed())).inlineEditable()
+    $(@el).html(@template(name: @model.name(), collapsed: @categoryIsCollapsed())).inlineEditable()
     @renderSummary()
     @renderBuckets()
     @

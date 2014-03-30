@@ -1,8 +1,8 @@
 class BudgetApp.Models.Category extends BudgetApp.Models.BaseModel
   valid_attributes: [
-    'uid'
     'name'
     'buckets'
+    'collapsed'
   ]
 
   short_attribute_names: {

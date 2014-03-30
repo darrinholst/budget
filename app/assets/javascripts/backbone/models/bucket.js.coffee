@@ -1,10 +1,10 @@
 class BudgetApp.Models.Bucket extends BudgetApp.Models.BaseModel
   valid_attributes: [
-    'uid'
     'name'
     'budgeted'
     'spent'
     'itemizations'
+    'collapsed'
   ]
 
   short_attribute_names: {
@@ -69,7 +69,7 @@ class BudgetApp.Collections.Buckets extends BudgetApp.Collections.BaseCollection
     @models.reduce ((memo, bucket) -> memo + (if bucket.budgeted() < 0 then Math.abs(bucket.budgeted()) else 0)), 0
 
   clear: ->
-    @each (bucket) -> 
+    @each (bucket) ->
       bucket.spent(0)
       bucket.itemizations().clear()
 

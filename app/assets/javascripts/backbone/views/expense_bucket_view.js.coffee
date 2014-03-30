@@ -31,20 +31,11 @@ class BudgetApp.Views.ExpenseBucketView extends BudgetApp.Views.BaseBucketView
     event.stopPropagation()
     @$(".itemizations").toggle("slide")
     @$(".collapse-bucket").toggleClass("fa-angle-down").toggleClass("fa-angle-right")
-    @saveBucketCollapsedState()
-
-  saveBucketCollapsedState: ->
-    if Modernizr.localstorage
-      if @bucketIsCollapsed()
-        localStorage.setItem("bucket_collapsed#{@model.id}", true)
-      else
-        localStorage.removeItem("bucket_collapsed#{@model.id}")
+    @model.set('collapsed', @$(".collapse-bucket").hasClass("fa-angle-right"))
+    @budget.save()
 
   bucketIsCollapsed: ->
-    @$(".collapse-bucket").hasClass("fa-angle-right")
-
-  isBucketCollapsed: ->
-    Modernizr.localstorage && 'true' == localStorage.getItem("bucket_collapsed#{@model.id}")
+    @model.get('collapsed')
 
   spentChanged: (event) ->
     @model.spent(event.target.value)
@@ -60,7 +51,7 @@ class BudgetApp.Views.ExpenseBucketView extends BudgetApp.Views.BaseBucketView
       budgeted: @formatMoney(@model.budgeted())
       spent: @formatMoney(@model.spent())
       remaining: @formatMoney(@model.remaining())
-      collapsed: @isBucketCollapsed()
+      collapsed: @bucketIsCollapsed()
       hasItemizations: @model.itemizations().any()
     )).inlineEditable()
 

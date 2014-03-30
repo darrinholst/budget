@@ -5,7 +5,6 @@
 //= require moment
 
 //= require clock
-//= require guid
 //= require inline-edit
 //= require activity
 //= require money-parser

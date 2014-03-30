@@ -25,10 +25,3 @@ describe 'BudgetApp.Models.BaseModel', ->
     @grandparent.on('change', -> done())
     @child.destroy()
 
-  it 'returns the id as the uid if present', ->
-    @child.id = 'the id'
-    expect(@child.uid()).toEqual('the id')
-
-  it 'generates a uid if id is not present', ->
-    expect(@child.uid().length).toEqual(36)
-

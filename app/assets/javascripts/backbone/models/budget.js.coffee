@@ -61,9 +61,6 @@ class BudgetApp.Models.Budget extends BudgetApp.Models.BaseModel
     ]
   }
 
-  uid: ->
-    @id
-
   clone: ->
     cloned = super()
     delete(cloned.id)

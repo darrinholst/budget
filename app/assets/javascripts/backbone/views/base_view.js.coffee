@@ -21,23 +21,11 @@ class BudgetApp.Views.BaseView extends Backbone.View
   toggleCollapseCategory: ->
     @$(".buckets").toggle("slide")
     @$(".collapse-category").toggleClass("fa-angle-down").toggleClass("fa-angle-right")
-    @saveCollapsedState()
+    @model.set('collapsed', @$(".collapse-category").hasClass("fa-angle-right"))
+    @budget.save()
 
   categoryIsCollapsed: ->
-    @$(".collapse-category").hasClass("fa-angle-right")
-
-  saveCollapsedState: ->
-    if Modernizr.localstorage
-      if @$(".collapse-category").hasClass("fa-angle-right")
-        localStorage.setItem(@collapsedId(), true)
-      else
-        localStorage.removeItem(@collapsedId())
-
-  isCollapsed: ->
-    Modernizr.localstorage && 'true' == localStorage.getItem(@collapsedId())
-
-  collapsedId: ->
-    'collapsed' + (@model || @collection.parent).uid()
+    @model.get('collapsed')
 
   close: ->
     @remove()

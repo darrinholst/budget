@@ -1,6 +1,5 @@
 class BudgetApp.Models.IncomeBucket extends BudgetApp.Models.Bucket
   valid_attributes: [
-    'uid'
     'name'
     'budgeted'
   ]

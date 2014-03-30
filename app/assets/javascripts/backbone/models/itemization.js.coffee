@@ -1,6 +1,5 @@
 class BudgetApp.Models.Itemization extends BudgetApp.Models.BaseModel
   valid_attributes: [
-    'uid'
     'name'
     'spent'
   ]

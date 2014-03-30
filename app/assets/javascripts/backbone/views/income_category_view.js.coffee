@@ -35,7 +35,7 @@ class BudgetApp.Views.IncomeCategoryView extends BudgetApp.Views.BaseView
   renderSummary: ->
     @$(".category").html(JST["backbone/templates/income_summary"](
       budgeted: @formatMoney(@model.budgeted())
-      collapsed: @isCollapsed()
+      collapsed: @categoryIsCollapsed()
     ))
 
   renderBucket: (bucket, focus) ->
@@ -49,7 +49,7 @@ class BudgetApp.Views.IncomeCategoryView extends BudgetApp.Views.BaseView
     @$(".buckets").sortable(axis: "y")
 
   render: ->
-    $(@el).html(@template(collapsed: @isCollapsed()))
+    $(@el).html(@template(collapsed: @categoryIsCollapsed()))
     @renderSummary()
     @renderBuckets()
     @
