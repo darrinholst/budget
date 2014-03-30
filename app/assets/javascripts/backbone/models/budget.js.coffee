@@ -113,9 +113,6 @@ class BudgetApp.Models.Budget extends BudgetApp.Models.BaseModel
     else
       @get('actual_balance')
 
-  incomeBuckets: ->
-    @incomeCategories().at(0).buckets()
-
   incomeCategories: ->
     @get('income_categories')
 
@@ -129,7 +126,7 @@ class BudgetApp.Models.Budget extends BudgetApp.Models.BaseModel
     @actualBalance() - @remaining() - @incomeCategories().held()
 
   totalIncome: ->
-    @incomeBuckets().budgeted()
+    @incomeCategories().budgeted()
 
   totalExpenses: ->
     @expenseCategories().budgeted()

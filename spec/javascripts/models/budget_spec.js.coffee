@@ -111,6 +111,6 @@ describe 'BudgetApp.Models.Budget', ->
       expect(@budget.actualBuffer()).toEqual(65000)
 
     it 'substracts held income which is identified by a negative number', ->
-      @budget.incomeBuckets().add(new BudgetApp.Models.IncomeBucket(budgeted: -5000))
+      @budget.incomeCategories().at(0).buckets().add(new BudgetApp.Models.IncomeBucket(budgeted: -5000))
       expect(@budget.actualBuffer()).toEqual(60000)
 
