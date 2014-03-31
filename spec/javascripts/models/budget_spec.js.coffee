@@ -25,9 +25,8 @@ describe 'BudgetApp.Models.Budget', ->
 
     it 'stores income categories instead of buckets', ->
       json = @budget.toJSON()
-      console.log(json)
       expect(json.income_buckets).toBeNull()
-      expect(json.ib).toBeNull()
+      expect(json.ib).toBeUndefined()
       expect(json.income_categories).toBeNull()
       expect(json.ic).not.toBeNull()
 

@@ -32,9 +32,10 @@ class BudgetApp.Models.BaseModel extends Backbone.Model
 
   _shortenAttributeNames: (json) ->
     swapEm = (long, short) =>
-      json[short] = json[long]
-      # see comment above
-      if @id then json[long] = null else delete(json[long])
+      if json[long]
+        json[short] = json[long]
+        # see comment above
+        if @id then json[long] = null else delete(json[long])
 
     swapEm(long, short) for long, short of @short_attribute_names if @short_attribute_names
 
