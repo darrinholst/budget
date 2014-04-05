@@ -57,8 +57,8 @@ class BudgetApp.Views.ExpenseCategoryView extends BudgetApp.Views.BaseView
     percentSpent = @model.percentSpent()
 
     if percentComplete != undefined
-      @$('.guage').find('.days').width(percentComplete + '%')
-      @$('.guage').find('.money').width(percentSpent + '%')
+      @$('.guage').find('.days').css(width: percentComplete + '%')
+      @$('.guage').find('.money').css(width: percentSpent + '%')
       @$('.guage').removeClass('over cleared')
                   .addClass(if percentSpent == 100 then 'cleared' else '')
                   .addClass(if percentSpent > 100 then 'over' else '')
